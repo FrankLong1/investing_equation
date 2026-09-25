@@ -41,6 +41,11 @@ $$
   and appropriate given the fund's external context and theses.
 - Internal context changes what the fund may or should do without changing what
   the fund claims is externally true.
+- Multiple funds can reuse the same dated research assessment. Each fund keeps
+  its own $S$ and $K$; eligibility, risk budget, costs, and capacity can lead
+  to different decisions from the same assessment. A mandate may specify a
+  research question or horizon, but it cannot by itself revise the evidence or
+  probability assigned to an external outcome.
 - External context describes market liquidity, financing, and borrow
   availability. Internal context describes the fund's existing usage, access,
   relationships, limits, and remaining capacity.

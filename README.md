@@ -7,7 +7,9 @@ An open framework for turning source-linked investment research into reviewable 
 - [Human-reviewed overview](human-reviewed/hedge-fund-as-a-function-v4.md) and its linked modules
 - [Working paper](paper/a-hedge-fund-as-a-function-v4.md)
 - [Provisional skill registry](skills/README.md)
+- [Numbered function contracts](functions/README.md)
 - [Portfolio measurement framework](key-metrics/README.md)
+- [Visualization lab](visualizations/README.md)
 
 The skill registry is a design specification, not a live investment engine. Its examples are illustrative. This repository does not approve, route, or execute real-capital actions.
 

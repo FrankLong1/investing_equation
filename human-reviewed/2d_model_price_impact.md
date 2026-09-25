@@ -4,7 +4,7 @@
 [Form a Variant View](./2c_form-a-variant-view.md) ·
 [Calculate Expected Returns](./2e_calculate_expected_returns.md) ·
 [Understand Market Pricing](./2b_understand-market-pricing.md) ·
-[Stock Drivers](./0_stock_drivers.md)
+[Stock Drivers](./1a_stock_drivers.md)
 
 ## Purpose
 

@@ -1,4 +1,4 @@
-# 1. External Context
+# 1B. Gather Relevant Context
 
 Status: draft for human review  
 Parent: [A Hedge Fund as a Function — Version 4](./hedge-fund-as-a-function-v4.md)
@@ -39,7 +39,7 @@ trades even when overall exposure is modest.
 
 ### Relevance Framework
 
-[0. Understand What Drives the Stock](./0_stock_drivers.md) defines the basis for
+[1A. Understand What Drives the Stock](./1a_stock_drivers.md) defines the basis for
 filtration: retain information that could materially affect a relevant stock
 through fundamentals, the multiple, technicals, or macro. Include plausible
 emerging drivers even when the market does not yet recognize them. The tiers

@@ -1,0 +1,16 @@
+{
+  "name": "investing-equation-visualizations",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "neon-studies/00*",
+    "paper-atlas"
+  ],
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "npm run build --workspaces"
+  },
+  "devDependencies": {
+    "vite": "8.3.1"
+  }
+}

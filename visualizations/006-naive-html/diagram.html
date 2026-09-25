@@ -1,0 +1,90 @@
+<div id="research-portfolio-loop">
+<style>
+#research-portfolio-loop {color:var(--foreground);font-family:inherit;}
+#research-portfolio-loop * {box-sizing:border-box;}
+#research-portfolio-loop h2,#research-portfolio-loop h3 {margin:0;font-weight:500;}
+#research-portfolio-loop .wrapper {border:1px solid var(--border);border-radius:16px;padding:20px;}
+#research-portfolio-loop .research {background:color-mix(in srgb,var(--viz-series-1) 4%,transparent);}
+#research-portfolio-loop .portfolio {background:color-mix(in srgb,var(--viz-series-2) 4%,transparent);}
+#research-portfolio-loop .groups {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;margin-top:20px;}
+#research-portfolio-loop .stage {min-width:0;border:1px solid var(--border);border-radius:12px;padding:16px;}
+#research-portfolio-loop .stage h3 {margin-bottom:18px;}
+#research-portfolio-loop .node {border:1px solid var(--border);border-radius:8px;padding:12px;background:var(--card);color:var(--card-foreground);display:flex;gap:10px;align-items:baseline;min-width:0;}
+#research-portfolio-loop .number {font-weight:500;white-space:nowrap;}
+#research-portfolio-loop .node span:last-child {overflow-wrap:anywhere;}
+#research-portfolio-loop .arrow {text-align:center;color:var(--muted-foreground);padding:3px;}
+#research-portfolio-loop .loop-label {display:flex;gap:8px;justify-content:center;align-items:center;color:var(--muted-foreground);text-align:center;}
+#research-portfolio-loop .feedback {margin-top:16px;padding:12px 0;border-top:1px solid var(--border);}
+#research-portfolio-loop .bridge {display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:18px 8px;}
+#research-portfolio-loop .bridge .loop-label {flex-direction:column;}
+#research-portfolio-loop .gather {display:flex;flex-direction:column;}
+#research-portfolio-loop .gather .iteration {margin-top:18px;}
+#research-portfolio-loop .gather .loop-label {margin-top:auto;padding-top:24px;}
+#research-portfolio-loop .risk-layout {display:grid;grid-template-columns:1fr 30px 1.3fr;align-items:center;gap:12px;margin-top:18px;}
+#research-portfolio-loop .expression {border:1px solid var(--border);border-radius:12px;padding:16px;}
+#research-portfolio-loop .expression h3 {margin-bottom:14px;}
+#research-portfolio-loop .learn {max-width:430px;margin:0 auto;}
+#research-portfolio-loop .return {display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;}
+#research-portfolio-loop .down {display:none;}
+@media(max-width:540px){
+#research-portfolio-loop .groups {grid-template-columns:1fr;gap:14px;}
+#research-portfolio-loop .wrapper {padding:14px;}
+#research-portfolio-loop .stage {padding:12px;}
+#research-portfolio-loop .gather .loop-label {padding-top:14px;}
+#research-portfolio-loop .risk-layout {grid-template-columns:1fr;gap:8px;}
+#research-portfolio-loop .across {display:none;}
+#research-portfolio-loop .down {display:inline;}
+}
+</style>
+<section class="wrapper research" aria-label="Research loop">
+<h2>Research Loop</h2>
+<div class="groups">
+<section class="stage gather">
+<h3>1. Gather Relevant Information</h3>
+<div class="node"><span class="number">1A</span><span>Understand What Drives the Stock</span></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="node"><span class="number">1B</span><span>Gather Relevant Context</span></div>
+<div class="iteration text-small loop-label">↺ New context updates the drivers</div>
+<div class="loop-label"><span aria-hidden="true">⇄</span><span>Evidence informs the view<br>Questions guide further research</span></div>
+</section>
+<section class="stage">
+<h3>2. Thesis Formation</h3>
+<div class="node"><span class="number">2A</span><span>Identify the Key Debates</span></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="node"><span class="number">2B</span><span>Understand Market Pricing</span></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="node"><span class="number">2C</span><span>Form a Variant View</span></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="node"><span class="number">2D</span><span>Model Price Impact</span></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="node"><span class="number">2E</span><span>Calculate Expected Returns</span></div>
+</section>
+</div>
+<div class="feedback loop-label"><span aria-hidden="true">↔</span><span>1. Gather Relevant Information ↔ 2. Thesis Formation</span></div>
+</section>
+<div class="bridge">
+<div class="loop-label"><span>Investment view and expected returns</span><span aria-hidden="true">↓</span></div>
+<div class="loop-label"><span>Portfolio needs and risk questions</span><span aria-hidden="true">↑</span></div>
+</div>
+<section class="wrapper portfolio" aria-label="Portfolio management and risk">
+<h2>Portfolio Management and Risk</h2>
+<div class="risk-layout">
+<div class="node"><span class="number">3</span><span>Internal Context</span></div>
+<div class="arrow" aria-hidden="true"><span class="across">→</span><span class="down">↓</span></div>
+<section class="expression">
+<h3>4. Express the View</h3>
+<div class="node"><span class="number">4a</span><span>Selection</span></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="node"><span class="number">4b</span><span>Position Sizing</span></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="node"><span class="number">4c</span><span>Timing</span></div>
+</section>
+</div>
+</section>
+<div class="arrow text-small" style="padding:14px">Decisions and outcomes<br><span aria-hidden="true">↓</span></div>
+<div class="node learn"><span class="number">5</span><span>State Update And Learning</span></div>
+<div class="return text-small">
+<div class="loop-label">↶ Update evidence and beliefs<br>Back to Research Loop</div>
+<div class="loop-label">↶ Update portfolio state<br>Back to 3. Internal Context</div>
+</div>
+</div>

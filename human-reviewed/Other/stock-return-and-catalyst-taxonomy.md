@@ -1,7 +1,7 @@
 # Stock Return And Catalyst Taxonomy
 
 [Operating-loop overview](../hedge-fund-as-a-function-v4.md) ·
-[Understand What Drives the Stock](../0_stock_drivers.md) ·
+[Understand What Drives the Stock](../1a_stock_drivers.md) ·
 [Form a Variant View](../2c_form-a-variant-view.md) ·
 [Timing](../4c_timing.md)
 

@@ -3,7 +3,7 @@
 [Core model v4](./hedge-fund-as-a-function-v4.md) ·
 [Identify the Key Debates](./2a_identify-key-debates.md) ·
 [Form a Variant View](./2c_form-a-variant-view.md) ·
-[External Context](./1_external-context.md)
+[Gather Relevant Context](./1b_gather-relevant-context.md)
 
 ## Purpose
 
@@ -34,7 +34,7 @@ whether each is a speaker's own forecast, a secondhand report, or a whisper.
 
   Record who said it and when. Keep beliefs, reported positioning, intended
   actions, and our interpretation separate; one room does not establish
-  market consensus. Carry positioning observations into Step 0's
+  market consensus. Carry positioning observations into Step 1A's
   investor-base analysis.
 
 - **Sell-Side Consensus**

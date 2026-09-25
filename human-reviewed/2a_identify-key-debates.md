@@ -1,8 +1,8 @@
 # 2A. Identify the Key Debates
 
 [Core model v4](./hedge-fund-as-a-function-v4.md) ·
-[Stock Drivers](./0_stock_drivers.md) ·
-[External Context](./1_external-context.md) ·
+[Stock Drivers](./1a_stock_drivers.md) ·
+[Gather Relevant Context](./1b_gather-relevant-context.md) ·
 [Understand Market Pricing](./2b_understand-market-pricing.md)
 
 ## Purpose
@@ -63,7 +63,7 @@ P,
 $$
 
 where $b$ is a key debate, $d$ is the material driver it affects, and
-$\mathbf{x}$ is the set of Step 0 price inputs through which it reaches price.
+$\mathbf{x}$ is the set of Step 1A price inputs through which it reaches price.
 
 ## Output: Key Debate Map
 

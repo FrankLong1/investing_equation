@@ -1,0 +1,2878 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research Loop · Naive HTML · Investing Equation</title>
+<style>
+:root{color-scheme:light dark;--background:light-dark(#fff,#181818);--foreground:light-dark(#1a1c1f,#fff);--card:color-mix(in oklab,var(--foreground) 5%,var(--background));--card-foreground:var(--foreground);--border:color-mix(in srgb,var(--foreground) 18%,var(--background));--muted-foreground:light-dark(#59616b,#bac0c8);--viz-series-1:light-dark(#339cff,#83c3ff);--viz-series-2:light-dark(#f3883b,#f59a56);font:14px/1.5 system-ui,sans-serif;background:var(--background);color:var(--foreground)}
+body{margin:0;padding:24px}main{max-width:736px;margin:auto}h2{font-size:20px;line-height:1.3}h3{font-size:16px;line-height:1.4}.text-small{font-size:12px}a{color:inherit}#research-portfolio-loop a.node{text-decoration:none;transition:background .12s}#research-portfolio-loop a.node:hover{background:color-mix(in srgb,var(--viz-series-1) 12%,var(--card))}a:focus-visible,button:focus-visible{outline:2px solid var(--viz-series-1);outline-offset:3px}.page-nav{display:flex;justify-content:space-between;gap:16px;margin-bottom:20px;color:var(--muted-foreground);font-size:12px}.page-nav a{text-underline-offset:3px}
+dialog{box-sizing:border-box;width:min(880px,calc(100% - 24px));max-height:88vh;padding:0;border:1px solid var(--border);border-radius:14px;background:var(--background);color:var(--foreground)}dialog::backdrop{background:#0008}.reader-bar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 20px;background:var(--background);border-bottom:1px solid var(--border);z-index:1}.reader-bar button{font:inherit;color:inherit;border:1px solid var(--border);background:var(--card);border-radius:7px;padding:6px 12px;cursor:pointer}.reader-content{padding:20px 28px;overflow-wrap:anywhere}.reader-content h1{font-size:25px;line-height:1.3}.reader-content h2{margin-top:28px}.reader-content h3{margin-top:24px}.reader-content a{color:var(--viz-series-1);text-underline-offset:3px}.reader-content table{display:block;overflow:auto;border-collapse:collapse;width:100%;font-size:13px}.reader-content th,.reader-content td{text-align:left;padding:10px;min-width:140px;border-bottom:1px solid var(--border);vertical-align:top}.reader-content pre{overflow:auto;padding:12px;background:var(--card);border-radius:6px;font-size:12px}.reader-content code{font-family:ui-monospace,monospace}.source-link{font-size:12px}.reader-content img{max-width:100%}[hidden]{display:none!important}@media(max-width:540px){body{padding:12px}.reader-content{padding:14px 16px}}@media(prefers-reduced-motion:reduce){#research-portfolio-loop a.node{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<nav class="page-nav"><a href="../index.html">← Visualization lab</a><span>006 · Naive HTML</span></nav>
+<div id="research-portfolio-loop">
+<style>
+#research-portfolio-loop {color:var(--foreground);font-family:inherit;}
+#research-portfolio-loop * {box-sizing:border-box;}
+#research-portfolio-loop h2,#research-portfolio-loop h3 {margin:0;font-weight:500;}
+#research-portfolio-loop .wrapper {border:1px solid var(--border);border-radius:16px;padding:20px;}
+#research-portfolio-loop .research {background:color-mix(in srgb,var(--viz-series-1) 4%,transparent);}
+#research-portfolio-loop .portfolio {background:color-mix(in srgb,var(--viz-series-2) 4%,transparent);}
+#research-portfolio-loop .groups {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;margin-top:20px;}
+#research-portfolio-loop .stage {min-width:0;border:1px solid var(--border);border-radius:12px;padding:16px;}
+#research-portfolio-loop .stage h3 {margin-bottom:18px;}
+#research-portfolio-loop .node {border:1px solid var(--border);border-radius:8px;padding:12px;background:var(--card);color:var(--card-foreground);display:flex;gap:10px;align-items:baseline;min-width:0;}
+#research-portfolio-loop .number {font-weight:500;white-space:nowrap;}
+#research-portfolio-loop .node span:last-child {overflow-wrap:anywhere;}
+#research-portfolio-loop .arrow {text-align:center;color:var(--muted-foreground);padding:3px;}
+#research-portfolio-loop .loop-label {display:flex;gap:8px;justify-content:center;align-items:center;color:var(--muted-foreground);text-align:center;}
+#research-portfolio-loop .feedback {margin-top:16px;padding:12px 0;border-top:1px solid var(--border);}
+#research-portfolio-loop .bridge {display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:18px 8px;}
+#research-portfolio-loop .bridge .loop-label {flex-direction:column;}
+#research-portfolio-loop .gather {display:flex;flex-direction:column;}
+#research-portfolio-loop .gather .iteration {margin-top:18px;}
+#research-portfolio-loop .gather .loop-label {margin-top:auto;padding-top:24px;}
+#research-portfolio-loop .risk-layout {display:grid;grid-template-columns:1fr 30px 1.3fr;align-items:center;gap:12px;margin-top:18px;}
+#research-portfolio-loop .expression {border:1px solid var(--border);border-radius:12px;padding:16px;}
+#research-portfolio-loop .expression h3 {margin-bottom:14px;}
+#research-portfolio-loop .learn {max-width:430px;margin:0 auto;}
+#research-portfolio-loop .return {display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;}
+#research-portfolio-loop .down {display:none;}
+@media(max-width:540px){
+#research-portfolio-loop .groups {grid-template-columns:1fr;gap:14px;}
+#research-portfolio-loop .wrapper {padding:14px;}
+#research-portfolio-loop .stage {padding:12px;}
+#research-portfolio-loop .gather .loop-label {padding-top:14px;}
+#research-portfolio-loop .risk-layout {grid-template-columns:1fr;gap:8px;}
+#research-portfolio-loop .across {display:none;}
+#research-portfolio-loop .down {display:inline;}
+}
+</style>
+<section class="wrapper research" aria-label="Research loop">
+<h2>Research Loop</h2>
+<div class="groups">
+<section class="stage gather">
+<h3>1. Gather Relevant Information</h3>
+<a class="node" href="#doc-1a_stock_drivers"><span class="number">1A</span><span>Understand What Drives the Stock</span></a>
+<div class="arrow" aria-hidden="true">↓</div>
+<a class="node" href="#doc-1b_gather-relevant-context"><span class="number">1B</span><span>Gather Relevant Context</span></a>
+<div class="iteration text-small loop-label">↺ New context updates the drivers</div>
+<div class="loop-label"><span aria-hidden="true">⇄</span><span>Evidence informs the view<br>Questions guide further research</span></div>
+</section>
+<section class="stage">
+<h3>2. Thesis Formation</h3>
+<a class="node" href="#doc-2a_identify-key-debates"><span class="number">2A</span><span>Identify the Key Debates</span></a>
+<div class="arrow" aria-hidden="true">↓</div>
+<a class="node" href="#doc-2b_understand-market-pricing"><span class="number">2B</span><span>Understand Market Pricing</span></a>
+<div class="arrow" aria-hidden="true">↓</div>
+<a class="node" href="#doc-2c_form-a-variant-view"><span class="number">2C</span><span>Form a Variant View</span></a>
+<div class="arrow" aria-hidden="true">↓</div>
+<a class="node" href="#doc-2d_model_price_impact"><span class="number">2D</span><span>Model Price Impact</span></a>
+<div class="arrow" aria-hidden="true">↓</div>
+<a class="node" href="#doc-2e_calculate_expected_returns"><span class="number">2E</span><span>Calculate Expected Returns</span></a>
+</section>
+</div>
+<div class="feedback loop-label"><span aria-hidden="true">↔</span><span>1. Gather Relevant Information ↔ 2. Thesis Formation</span></div>
+</section>
+<div class="bridge">
+<div class="loop-label"><span>Investment view and expected returns</span><span aria-hidden="true">↓</span></div>
+<div class="loop-label"><span>Portfolio needs and risk questions</span><span aria-hidden="true">↑</span></div>
+</div>
+<section class="wrapper portfolio" aria-label="Portfolio management and risk">
+<h2>Portfolio Management and Risk</h2>
+<div class="risk-layout">
+<a class="node" href="#doc-3_internal-context"><span class="number">3</span><span>Internal Context</span></a>
+<div class="arrow" aria-hidden="true"><span class="across">→</span><span class="down">↓</span></div>
+<section class="expression">
+<h3>4. Express the View</h3>
+<a class="node" href="#doc-4a_selection"><span class="number">4a</span><span>Selection</span></a>
+<div class="arrow" aria-hidden="true">↓</div>
+<a class="node" href="#doc-4b_sizing"><span class="number">4b</span><span>Position Sizing</span></a>
+<div class="arrow" aria-hidden="true">↓</div>
+<a class="node" href="#doc-4c_timing"><span class="number">4c</span><span>Timing</span></a>
+</section>
+</div>
+</section>
+<div class="arrow text-small" style="padding:14px">Decisions and outcomes<br><span aria-hidden="true">↓</span></div>
+<a class="node learn" href="#doc-5_state-update-and-learning"><span class="number">5</span><span>State Update And Learning</span></a>
+<div class="return text-small">
+<div class="loop-label">↶ Update evidence and beliefs<br>Back to Research Loop</div>
+<div class="loop-label">↶ Update portfolio state<br>Back to 3. Internal Context</div>
+</div>
+</div>
+
+</main>
+<dialog id="document-reader" aria-labelledby="reader-title">
+<div class="reader-bar"><span id="reader-title">Framework document</span><button type="button" id="close-reader">Close</button></div>
+<div class="reader-content">
+<article id="doc-1a_stock_drivers" hidden>
+<a class="source-link" href="../../human-reviewed/1a_stock_drivers.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>1A. Understand What Drives the Stock</h1>
+<p><a href="#doc-hedge-fund-as-a-function-v4">Core model v4</a> ·
+<a href="#doc-2a_identify-key-debates">Identify the Key Debates</a> ·
+<a href="#doc-Other--stock-return-and-catalyst-taxonomy">Stock Return and Catalyst Taxonomy</a></p>
+<h2>Price inputs</h2>
+<pre class="formula"><code>P_t
+=
+\operatorname{Price}
+\left(F_t,\mathrm{Mult}_t,\mathrm{Tech}_t,\mathrm{Macro}_t\right).</code></pre>
+
+<ul>
+<li><strong>Fundamentals ($F_t$):</strong> the expected path of business economics—revenue,
+  earnings, cash flow, assets, or a probability-weighted payoff. The market
+  often trades on forward operating indicators such as backlog, bookings,
+  usage, or power capacity because they inform that path. Identify both the
+  indicator receiving market attention and the assumptions connecting it to
+  future financial outcomes.</li>
+<li><strong>Multiple ($\mathrm{Mult}_t$):</strong> what investors will pay for the selected
+  fundamental, based on growth, quality, durability, defensibility, capital
+  intensity, cash conversion, and uncertainty. High but temporary or expensive
+  growth can receive a low multiple.</li>
+<li><strong>Technicals ($\mathrm{Tech}_t$):</strong> positioning, flows, float, borrow, options
+  exposure, index activity, and forced transactions that determine who must
+  trade against how much liquidity.</li>
+<li><strong>Macro ($\mathrm{Macro}_t$):</strong> rates, inflation, growth, policy, FX,
+  commodities, and the broader risk regime.</li>
+</ul>
+<p>The compact valuation shorthand is:</p>
+<pre class="formula"><code>P_t \approx F_t \times \mathrm{Mult}_t.</code></pre>
+
+<p>This shorthand does not mean the stock trades directly on EPS. Investors may
+use an operating indicator as a proxy for future financial outcomes, or even
+quote value per unit of that indicator. The conversion depends on demand,
+pricing, execution, costs, and financing; it can change across regimes.</p>
+<h2>1. Fundamentals</h2>
+<p>Organize metrics into three buckets: reported financial metrics, disclosed
+operating KPIs, and undisclosed but estimated metrics. These describe our
+visibility into the economics; any bucket can contain an emerging or
+underappreciated driver.</p>
+<h3>Key Questions</h3>
+<h4>Current Market Focus</h4>
+<ul>
+<li><strong>Sellside:</strong> What do sell-side analysts emphasize in reports, models, and earnings questions?</li>
+<li><strong>Management Guidance:</strong> Which metrics does management guide to, and what numbers does the market expect?</li>
+<li><strong>Meeting Transcripts:</strong> What topics and questions recur when we discuss the company?</li>
+</ul>
+<h4>1. Reported Financial Metrics</h4>
+<ul>
+<li><strong>Financial Metrics:</strong> Which reported revenue, margin, earnings, cash-flow, or investment measures matter most, and what drives them?</li>
+<li><strong>Financial Sensitivity:</strong> Which products, segments, costs, or constraints have the greatest financial sensitivity?</li>
+</ul>
+<h4>2. Disclosed Operating KPIs</h4>
+<ul>
+<li><strong>Current Indicator:</strong> Which forward operating indicators does the stock trade on, and over what horizon?</li>
+<li><strong>Economic Link:</strong> How do those indicators translate into revenue, margins, and ultimately earnings or cash flow? What assumptions make that translation credible?</li>
+<li><strong>Metric Definition:</strong> What exactly is being measured—for example, announced, secured, energized, contracted, or revenue-producing capacity?</li>
+</ul>
+<p>Illustrative ways this can work:</p>
+<ul>
+<li><strong>Equipment Backlog:</strong> Backlog can signal future sales and earnings, conditional on delivery timing, cancellations, pricing, and margins. The size of the backlog alone does not establish its financial value.</li>
+<li><strong>Infrastructure Capacity:</strong> Secured capacity can proxy for future revenue and earnings when investors expect it to be delivered, equipped, and leased at attractive prices. That inference depends on demand, utilization, costs, and financing; capacity alone does not establish rentable service capacity or shareholder value.</li>
+</ul>
+<h4>3. Undisclosed but Estimated Metrics</h4>
+<ul>
+<li><strong>Missing Metrics:</strong> Which financial metrics or operating KPIs do we need to estimate for known business drivers?</li>
+<li><strong>Estimation:</strong> What evidence and operating assumptions support the estimate?</li>
+<li><strong>Checks:</strong> Does the estimate reconcile with reported totals, and how sensitive is it to uncertain inputs?</li>
+</ul>
+<p>Keep estimated business economics separate from reported figures and from
+what we think the market expects; the latter belongs in Step 2B.</p>
+<h4>4. Emerging Drivers</h4>
+<ul>
+<li><strong>Potential Drivers:</strong> What new products, business lines, or changes in the business could become material?</li>
+<li><strong>Early Evidence:</strong> What signs of adoption or commercial traction are visible?</li>
+<li><strong>Path to Materiality:</strong> What would need to happen for this to meaningfully affect company earnings or cash flow?</li>
+</ul>
+<h2>2. Multiple</h2>
+<h3>Key Questions</h3>
+<h4>Current Valuation Framework</h4>
+<ul>
+<li><strong>Valuation Method:</strong> Which financial measure or operating indicator anchors valuation, and what valuation method does the market use?</li>
+<li><strong>Embedded Assumptions:</strong> What growth, quality, and durability assumptions underpin the current multiple?</li>
+</ul>
+<h4>Changes in the Pricing Regime</h4>
+<ul>
+<li><strong>Previous and Current Anchor:</strong> Was the stock previously valued mainly on A and now increasingly on B? A pricing-regime change is a shift in the metric, framework, or assumptions investors give the most weight to.</li>
+<li><strong>Changed Assumptions:</strong> What changed in the link between the old indicator and future financial outcomes—for example, demand, scarcity, pricing, or execution confidence?</li>
+<li><strong>Evidence of the Shift:</strong> Do valuation practice, investor commentary, and reactions to new information support a sustained change in emphasis?</li>
+</ul>
+<p>For example, in a supply-constrained environment, an infrastructure provider
+may trade mainly on secured capacity because investors expect that capacity to
+find customers at attractive prices. If demand becomes less certain, emphasis
+may shift toward contracted utilization, realized pricing, margins, or cash
+generation. More capacity can then carry less value, or require investment
+without adequate returns.</p>
+<p>Map the current regime here; assess a potential future shift in Steps 2A–2C.</p>
+<h4>Comparable Companies</h4>
+<ul>
+<li><strong>Peer Group:</strong> Which companies does the market use as comps, and how comparable are their economics?</li>
+<li><strong>Relative Valuation:</strong> What explains the stock's current premium or discount to those comps?</li>
+</ul>
+<h2>3. Technicals</h2>
+<h3>Key Questions</h3>
+<h4>Investor Base and Positioning</h4>
+<ul>
+<li><strong>Investor Base:</strong> Who owns and trades the stock, and over what horizons?</li>
+<li><strong>Positioning:</strong> How concentrated, crowded, or shorted is it, and what evidence supports that assessment?</li>
+</ul>
+<h4>Liquidity, Float, and Borrow</h4>
+<ul>
+<li><strong>Float and Liquidity:</strong> How much stock is available to trade, and how deep is the liquidity?</li>
+<li><strong>Borrow:</strong> What are the current borrow availability, costs, and constraints?</li>
+</ul>
+<h2>4. Macro</h2>
+<h3>Key Questions</h3>
+<h4>Relevant Macro Variables</h4>
+<ul>
+<li><strong>Macro Exposures:</strong> Which rates, growth, inflation, policy, FX, or commodity variables matter to this stock?</li>
+</ul>
+<h4>How They Affect the Stock</h4>
+<ul>
+<li><strong>Transmission Channels:</strong> Through which business, valuation, or trading channels do those variables reach price?</li>
+<li><strong>Sensitivity Evidence:</strong> What evidence establishes the stock's sensitivity to them?</li>
+</ul>
+<h2>How to identify current price drivers</h2>
+<p>A <strong>price driver</strong> is any variable whose change or surprise can materially
+affect the stock through fundamentals, the multiple, technicals, or macro.</p>
+<ul>
+<li><strong>Build the causal bridge:</strong> trace the operating indicator through the
+  business into future earnings or free cash flow, making the conversion
+  assumptions explicit.</li>
+<li><strong>Example:</strong> secured power → energized and equipped compute capacity →
+    contracted and utilized capacity × realized pricing → revenue → operating
+    costs, investment, and financing → earnings or cash flow.</li>
+<li><strong>Check the pricing regime:</strong> identify which link investors currently focus
+  on and whether the assumptions supporting that focus still hold. Estimate
+  price sensitivity within the relevant regime rather than assuming a fixed
+  relationship across regimes.</li>
+<li><strong>Measure covariance and price response:</strong> test whether changes or surprises
+  in the variable coincide with abnormal stock returns:</li>
+</ul>
+<p>$$
+  \operatorname{Cov}
+  \left(\operatorname{Surprise}(d_t),AR_t\right).
+  $$</p>
+<ul>
+<li><strong>Variables:</strong> $d_t$ is the candidate driver; $AR_t$ is the stock's return
+    after controlling for market and sector moves.</li>
+<li><strong>Limitation:</strong> covariance is noisy because of anticipation, omitted
+    variables, simultaneous news, and regime changes.</li>
+<li><strong>See what people are saying:</strong> track the numbers emphasized in company
+  guidance, earnings questions, sell-side models and previews, estimate
+  revisions, news coverage, and public or appropriately authorized investor
+  commentary.</li>
+</ul>
+</article>
+<article id="doc-1b_gather-relevant-context" hidden>
+<a class="source-link" href="../../human-reviewed/1b_gather-relevant-context.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>1B. Gather Relevant Context</h1>
+<p>Status: draft for human review<br />
+Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a></p>
+<h2>Purpose</h2>
+<p>Define the lawful, time-stamped external context entering the framework's investment
+loop. It specifies the first two operations that turn an effectively unlimited
+world into a bounded research input: <strong>filtration</strong> and <strong>refining</strong>. This
+document does not decide what the investment process believes or what the portfolio should do.</p>
+<h2>1. Filtration</h2>
+<h3>Information Taxonomy</h3>
+<pre class="formula"><code>C^E=(\operatorname{Micro},\mathsf T,\operatorname{Macro},M).</code></pre>
+
+<ul>
+<li><strong>Micro:</strong> company, asset, industry, value-chain, and capital-structure
+  economics.</li>
+<li><strong>Technology:</strong> capability, cost curve, adoption, architecture, and
+  competitive change.</li>
+<li><strong>Macro:</strong> economic, policy, geopolitical, and physical/social conditions.</li>
+<li><strong>Market:</strong> expectations (probably the most important, what is priced in), valuation, positioning, flows, liquidity,
+  financing, borrow, and market structure.</li>
+</ul>
+<p>Within Market, distinguish:</p>
+<ol>
+<li><strong>Sentiment:</strong> how bullish or bearish investors are. (e.g. buyside bogey data)</li>
+<li><strong>Exposure and Cash:</strong> how much risk investors actually carry and how much cash they hold.</li>
+<li><strong>Leverage:</strong> how much exposure is financed or amplified, and how vulnerable it is to forced reduction.</li>
+<li><strong>Crowding:</strong> how concentrated investors are in the same names, themes, or trades.</li>
+</ol>
+<p>These can diverge: investors can be bullish while holding substantial cash,
+or heavily invested without much leverage. Crowding can be high in a few
+trades even when overall exposure is modest.</p>
+<h3>Relevance Framework</h3>
+<p><a href="#doc-1a_stock_drivers">1A. Understand What Drives the Stock</a> defines the basis for
+filtration: retain information that could materially affect a relevant stock
+through fundamentals, the multiple, technicals, or macro. Include plausible
+emerging drivers even when the market does not yet recognize them. The tiers
+below identify which holdings, candidates, or read-throughs that information
+affects.</p>
+<pre class="formula"><code>\text{External context }(\operatorname{Micro},\mathsf T,\operatorname{Macro},M)
+\xrightarrow{\operatorname{Filter}}
+\text{Retained external context}.</code></pre>
+
+<p>Classify each candidate observation by the nearest investable object it can
+affect. Choose one <strong>primary relevance tier</strong> and record secondary links as
+tags:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>What it affects directly</th>
+<th>Example transmission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Position-relevant</strong></td>
+<td>An existing holding, hedge, exposure, or portfolio risk.</td>
+<td>A supplier disruption changes the earnings path of a held company.</td>
+</tr>
+<tr>
+<td><strong>2. Coverage-relevant</strong></td>
+<td>An asset that could plausibly enter the portfolio.</td>
+<td>A product launch changes the economics of a covered candidate.</td>
+</tr>
+<tr>
+<td><strong>3. Read-through-relevant</strong></td>
+<td>An entity or mechanism that transmits into Tier 1 or Tier 2.</td>
+<td>A customer's demand data read through to a covered supplier.</td>
+</tr>
+</tbody>
+</table>
+<p>To retain an observation, name its affected entity or universe, causal
+channel, horizon, and materiality rationale or uncertainty. A thesis, key
+debate, risk monitor, or representation gap can also justify retention when
+the asset-level path is still being resolved.</p>
+<h2>2. Refining</h2>
+<p>Refining turns retained information into source-linked, <strong>semi-structured
+information objects</strong>: structured enough to filter, relate, and retrieve, but
+not forced prematurely into a fully specified thesis or model.</p>
+<p>Each object preserves the original artifact and captures, where available:
+source and timing; observation, fact, inference, or forecast type; taxonomy
+and relevance tags; affected entities and causal channels; and lineage or
+confidence notes. It can also hold a transcript, extraction, or summary, but
+those derived forms never replace the source record.</p>
+<p>The result is a searchable research corpus. Semantic search finds conceptually
+similar evidence; keyword search finds exact terms, entities, and events. Later
+research can connect the objects to a thesis, market state, or key debate.</p>
+<pre><code class="language-json">{
+  &quot;source&quot;: {
+    &quot;reference&quot;: &quot;primary filing, transcript, dataset, or article&quot;,
+    &quot;event_time&quot;: &quot;when the underlying event occurred&quot;,
+    &quot;available_time&quot;: &quot;when the process could have known it&quot;,
+    &quot;lineage&quot;: [&quot;underlying primary source&quot;]
+  },
+  &quot;raw_artifact&quot;: &quot;original document, transcript, or data observation&quot;,
+  &quot;extracted&quot;: {
+    &quot;claim&quot;: &quot;the relevant observation or assertion&quot;,
+    &quot;type&quot;: &quot;observation | fact_claim | inference | forecast&quot;,
+    &quot;summary&quot;: &quot;optional short representation&quot;,
+    &quot;entities&quot;: [&quot;issuer, asset, industry, or counterpart&quot;],
+    &quot;domains&quot;: [&quot;micro&quot;, &quot;technology&quot;, &quot;macro&quot;, &quot;market&quot;],
+    &quot;relevance&quot;: &quot;position | coverage | read_through&quot;,
+    &quot;causal_channels&quot;: [&quot;optional named path&quot;],
+    &quot;confidence_notes&quot;: &quot;what is uncertain or unverified&quot;
+  }
+}
+</code></pre>
+</article>
+<article id="doc-2a_identify-key-debates" hidden>
+<a class="source-link" href="../../human-reviewed/2a_identify-key-debates.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>2A. Identify the Key Debates</h1>
+<p><a href="#doc-hedge-fund-as-a-function-v4">Core model v4</a> ·
+<a href="#doc-1a_stock_drivers">Stock Drivers</a> ·
+<a href="#doc-1b_gather-relevant-context">Gather Relevant Context</a> ·
+<a href="#doc-2b_understand-market-pricing">Understand Market Pricing</a></p>
+<h2>Purpose</h2>
+<p>Use the stock-driver map and retained external context to identify the key
+unresolved questions that matter to the stock. Define the competing answers
+before estimating which answers the market is pricing in <a href="#doc-2b_understand-market-pricing">2B</a>.</p>
+<h2>Types of Debates</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Core Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Demand and Growth</strong></td>
+<td>How large can demand become, and how quickly?</td>
+</tr>
+<tr>
+<td><strong>Competition and Share</strong></td>
+<td>Who wins customers, revenue, and pricing power?</td>
+</tr>
+<tr>
+<td><strong>Business Economics</strong></td>
+<td>Does growth translate into durable margins, cash flow, and attractive investment returns?</td>
+</tr>
+<tr>
+<td><strong>Structural Change</strong></td>
+<td>Could a new technology or business model fundamentally expand or impair the business?</td>
+</tr>
+<tr>
+<td><strong>Valuation</strong></td>
+<td>What multiple or valuation framework is justified by the business's prospects and risks?</td>
+</tr>
+<tr>
+<td><strong>Event and Policy Outcomes</strong></td>
+<td>Will a consequential event occur, or a policy change take effect, and with what economic consequences?</td>
+</tr>
+<tr>
+<td><strong>Positioning and Flows</strong></td>
+<td>Could crowding, leverage, or changes in ownership materially affect price?</td>
+</tr>
+</tbody>
+</table>
+<p>Use these as prompts for finding debates. A debate may span several types;
+write the specific unresolved question rather than stopping at the category.</p>
+<h2>Key Questions</h2>
+<ul>
+<li><strong>Current Debates:</strong> What questions recur in sell-side research, management Q&amp;A, and meeting transcripts?</li>
+<li><strong>Underlying Uncertainty:</strong> What exactly is unresolved about the driver: magnitude, timing, durability, or mechanism?</li>
+<li><strong>Competing Answers:</strong> What are the plausible answers, and what evidence or reasoning supports each?</li>
+<li><strong>Materiality:</strong> Would different answers materially change the stock's earnings, valuation, or trading dynamics?</li>
+</ul>
+<p>A debate should be a specific question. For example: “Are current margins
+sustainable as capacity expands?” is a debate; “margins” is only a topic.</p>
+<h2>What Aren't We Asking?</h2>
+<ul>
+<li><strong>Overlooked Debates:</strong> What important uncertainty is missing from current discussion, including around emerging drivers?</li>
+<li><strong>Unchallenged Assumptions:</strong> What are we treating as settled that could materially change the outlook if wrong?</li>
+<li><strong>Missing Connections:</strong> What changes in customers, suppliers, competitors, or adjacent industries have we not connected to this stock?</li>
+</ul>
+<p>Turn material questions into entries in the debate map, even if no one else
+is discussing them. Keep the evidence that a question matters separate from
+the claim that the market has overlooked it; assess market awareness in 2B.</p>
+<h2>From a Debate to Price</h2>
+<pre class="formula"><code>b
+\rightarrow
+d
+\rightarrow
+\mathbf{x}
+\rightarrow
+P,
+\qquad
+\mathbf{x}
+=
+\left(F,\mathrm{Mult},\mathrm{Tech},\mathrm{Macro}\right),</code></pre>
+
+<p>where $b$ is a key debate, $d$ is the material driver it affects, and
+$\mathbf{x}$ is the set of Step 1A price inputs through which it reaches price.</p>
+<h2>Output: Key Debate Map</h2>
+<p>For each debate, record the question, affected driver, competing answers,
+supporting sources, materiality rationale, and relevant horizon. Carry open
+questions into <a href="#doc-2b_understand-market-pricing">2B</a>; identifying a debate
+does not require a variant view.</p>
+<h3>Example: Hypothetical Search and Cloud Platform Debate Map</h3>
+<p>This is an <strong>illustrative candidate map</strong> for a fictional platform company, not
+a claim about any actual issuer or current market debate. The questions and
+perspectives demonstrate how to structure research before estimating what is
+priced in.</p>
+<p>“AI Search” is a topic. “Will AI answers expand or erode search economics?” is
+a debate.</p>
+<table>
+<thead>
+<tr>
+<th>Key Debate</th>
+<th>Viable Perspectives</th>
+<th>Why It Matters to the Stock</th>
+<th>Evidence That Would Distinguish the Perspectives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Search Usage:</strong> Will users keep bringing valuable queries to the platform as AI assistants improve?</td>
+<td>• The platform retains the habit and gains new usage.<br>• It retains simple queries but loses valuable research and shopping journeys.<br>• Displacement remains limited to certain categories.</td>
+<td>Search volume and the commercial value of the query mix.</td>
+<td>Usage by query category, shopping journeys, referral patterns, and user retention.</td>
+</tr>
+<tr>
+<td><strong>Search Monetization:</strong> Can AI answers generate as much advertising revenue per commercial interaction as traditional search?</td>
+<td>• Better intent understanding improves monetization.<br>• Fewer ad opportunities reduce monetization.<br>• Performance varies substantially by query type.</td>
+<td>Revenue generated from retained traffic.</td>
+<td>Ad engagement, advertiser conversion, revenue per comparable interaction, and adoption of AI ad formats.</td>
+</tr>
+<tr>
+<td><strong>Search Costs:</strong> Can efficiency gains offset the additional cost of answering queries with AI?</td>
+<td>• Lower inference costs and better routing preserve margins.<br>• Richer answers consume the savings.<br>• Margins weaken during a transition and then recover.</td>
+<td>Profit earned on Search revenue.</td>
+<td>Serving-cost trends, model routing, compute intensity, and margin progression.</td>
+</tr>
+<tr>
+<td><strong>Cloud Growth:</strong> Does AI demand create durable, broad customer spending?</td>
+<td>• AI workloads become recurring production usage.<br>• Spending stays concentrated in a few large customers.<br>• Experimentation grows faster than durable deployment.</td>
+<td>Cloud's sustainable revenue growth.</td>
+<td>Production deployments, renewals, customer concentration, backlog conversion, and expansion within customers.</td>
+</tr>
+<tr>
+<td><strong>Cloud Economics:</strong> Does AI infrastructure growth translate into attractive profits?</td>
+<td>• Utilization and differentiated technology support returns.<br>• Competition passes most savings to customers.<br>• Revenue grows but remains capital intensive.</td>
+<td>Cloud profit contribution and the value of that growth.</td>
+<td>Pricing, utilization, depreciation, operating margins, and capital required per dollar of revenue.</td>
+</tr>
+<tr>
+<td><strong>Investment Returns:</strong> Will the infrastructure build generate enough incremental cash to justify its cost?</td>
+<td>• Demand absorbs capacity at attractive returns.<br>• Capacity arrives ahead of demand.<br>• Ongoing replacement spending keeps cash generation constrained.</td>
+<td>Free cash flow and returns on capital.</td>
+<td>Capacity utilization, incremental operating cash flow, capital expenditure, and equipment replacement needs.</td>
+</tr>
+</tbody>
+</table>
+</article>
+<article id="doc-2b_understand-market-pricing" hidden>
+<a class="source-link" href="../../human-reviewed/2b_understand-market-pricing.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>2B. Understand Market Pricing</h1>
+<p><a href="#doc-hedge-fund-as-a-function-v4">Core model v4</a> ·
+<a href="#doc-2a_identify-key-debates">Identify the Key Debates</a> ·
+<a href="#doc-2c_form-a-variant-view">Form a Variant View</a> ·
+<a href="#doc-1b_gather-relevant-context">Gather Relevant Context</a></p>
+<h2>Purpose</h2>
+<p>For each debate identified in <a href="#doc-2a_identify-key-debates">2A</a>, work through
+what the market appears to believe, what assumptions underpin that view, and
+how much of it is reflected in forecasts, valuation, and price.</p>
+<h2>1. Gather Expectations</h2>
+<p>For each key debate, identify the specific numbers it turns on—for example,
+next-quarter revenue, next-year EPS, or a segment's operating margin. Gather
+expectations for those numbers and the qualitative views behind them from
+the sources below, then cross-check against positioning. Include informal
+expectations from meeting transcripts, commentary, and discussions; identify
+whether each is a speaker's own forecast, a secondhand report, or a whisper.</p>
+<ul>
+<li>
+<p><strong>Management Guidance:</strong> What metric, period, and number or range has management guided to, and under what operating assumptions?</p>
+</li>
+<li>
+<p><strong>Buy-Side</strong></p>
+</li>
+</ul>
+<p>Use direct conversations, especially buy-side dinners and round-the-room
+  questions, to establish:</p>
+<ul>
+<li><strong>Views and Forecasts:</strong> What do investors believe about the key debates, and what numbers are they modeling, including for individual segments?</li>
+<li><strong>Bogeys:</strong> What results would count as a beat or disappointment, and how do those hurdles differ from their forecasts?</li>
+<li><strong>Positioning:</strong> What do they own, short, or avoid, at what size, and why? Include relevant theme allocations and specify gross, net, or another exposure measure.</li>
+<li><strong>Potential Changes:</strong> What evidence or price would change their view or position?</li>
+</ul>
+<p>Record who said it and when. Keep beliefs, reported positioning, intended
+  actions, and our interpretation separate; one room does not establish
+  market consensus. Carry positioning observations into Step 1A's
+  investor-base analysis.</p>
+<ul>
+<li>
+<p><strong>Sell-Side Consensus</strong></p>
+</li>
+<li>
+<p><strong>Consensus:</strong> What is the published estimate, how wide is the range, and when were the underlying forecasts updated?</p>
+</li>
+<li>
+<p><strong>Segment Models:</strong> What revenue, margin, and profit assumptions sit beneath the headline number in individual analysts' models?</p>
+</li>
+<li>
+<p><strong>Consensus-Setting Checks and Metrics</strong></p>
+</li>
+<li>
+<p><strong>Shared Reference Points:</strong> Which channel checks or third-party datasets shape investor expectations, and whose? Identify the underlying population, measurement, and access rights.</p>
+</li>
+<li><strong>Implied Expectations:</strong> What does the latest reading measure, and how do investors translate it into forecasts or beat/miss hurdles?</li>
+</ul>
+<p>Source influence and measurement accuracy are separate; repeated references
+  to the same check are not independent evidence.</p>
+<ul>
+<li><strong>Positioning Cross-Check:</strong> Do observed holdings, exposures, and flows support stated beliefs? Allow for hedges, mandates, disclosure lags, and price-driven weight changes. Disclosed long holdings alone do not establish net exposure. See the positioning source guide in Appendix C.</li>
+</ul>
+<h2>2. Work Backward From Price</h2>
+<ul>
+<li><strong>Required Performance:</strong> What revenue growth, margins, and duration of success would justify the current price? Reverse engineer a growth/margin assumption from the multiple, making reinvestment, terminal value, and required return explicit.</li>
+<li><strong>Debate Sensitivity:</strong> What range for the debated variable is consistent with price, conditional on the other assumptions? Work through individual segments and their contributions to value where relevant.</li>
+</ul>
+<h2>3. Compare Related Companies</h2>
+<ul>
+<li><strong>Identify Comps:</strong> Which companies or individual business segments are comparable?</li>
+<li><strong>Build Comp Tables:</strong> How do valuation multiples, expected growth, and margins compare on a consistent basis? Do this at the segment level where relevant.</li>
+<li><strong>Explain the Gap:</strong> If a valuation gap exists, what differences in expectations, business quality, capital intensity, or risk could explain it?</li>
+</ul>
+<h2>Differences Across Investor Cohorts</h2>
+<p>Apply this lens across the three methods above: different groups may focus
+on different drivers, use different assumptions, or understand different
+parts of the business.</p>
+<ul>
+<li><strong>Relevant Cohorts:</strong> Which analyst and investor groups follow the stock, and which are missing from our evidence?</li>
+<li><strong>Different Beliefs:</strong> Where do their forecasts or valuation assumptions differ, and why? Support differences with specific comments or models rather than group labels.</li>
+<li><strong>Pricing Influence:</strong> Which views appear to influence current pricing, and what evidence supports that assessment? Coverage, ownership, and willingness to trade are different things.</li>
+</ul>
+<p><strong>Illustrative hypothesis — diversified financial firm:</strong> Analysts focused on
+existing fee businesses may place less weight on demand from a new technology
+cycle than investors following its supply chain. Test whether that difference
+actually appears in their assumptions, then trace the new demand through
+financing opportunities, capital deployed, fee-paying assets, fee rates, and
+profitability. A difference in attention only becomes a useful expectations gap
+if it changes the financial outlook or valuation; neither cohort should be
+presumed correct.</p>
+<h2>Output and Handoff to 2C</h2>
+<p>For each debate, pass to <a href="#doc-2c_form-a-variant-view">2C</a>:</p>
+<ul>
+<li><strong>Market View:</strong> The inferred qualitative view and key metric expectations, with periods and values or ranges.</li>
+<li><strong>Underlying Assumptions:</strong> The operating and financial assumptions supporting that view.</li>
+<li><strong>Evidence and Uncertainty:</strong> Supporting sources, meaningful cohort differences, plausible alternatives, and unresolved gaps. Distinguish stated forecasts from assumptions inferred from valuation.</li>
+</ul>
+<p>Keep uncertainty about what the market believes separate from the fund's
+confidence in its own view.</p>
+<h2>Appendix</h2>
+<h3>A. Study Reactions to New Information</h3>
+<ul>
+<li>
+<p><strong>Earnings and Guidance</strong></p>
+</li>
+<li>
+<p><strong>Surprises:</strong> How did results or guidance differ from the expectations recorded before the release?</p>
+</li>
+<li>
+<p><strong>Revisions:</strong> Which forecasts and valuation assumptions changed afterward?</p>
+</li>
+<li>
+<p><strong>Company and Industry News</strong></p>
+</li>
+<li>
+<p><strong>Relevant Events:</strong> How did the stock respond to product news, competitor results, or industry disclosures affecting the debate?</p>
+</li>
+<li>
+<p><strong>Confounding News:</strong> What simultaneous information or broader market moves could explain the response?</p>
+</li>
+<li>
+<p><strong>What Surprised the Market?</strong></p>
+</li>
+<li>
+<p><strong>Interpretation:</strong> Which prior expectations are consistent with the observed reaction and subsequent commentary?</p>
+</li>
+<li><strong>Limits:</strong> Could a muted response reflect anticipation, offsetting news, low materiality, or delayed incorporation?</li>
+<li><strong>Price Setters:</strong> Which investors appear to have changed their views or trading behavior, and what evidence supports that inference?</li>
+</ul>
+<h3>B. Options and Other Securities</h3>
+<ul>
+<li>
+<p><strong>Options-Implied Outcomes and Uncertainty</strong></p>
+</li>
+<li>
+<p><strong>Priced Outcomes:</strong> What terminal-price ranges, downside risks, and event uncertainty are reflected in options?</p>
+</li>
+<li><strong>Interpretation:</strong> What assumptions would be needed to connect those price outcomes to the business debate?</li>
+</ul>
+<p>Options imply risk-adjusted pricing distributions, not a direct measurement
+  of investors' real-world probabilities for business outcomes.</p>
+<ul>
+<li>
+<p><strong>Signals From Bonds and Other Instruments</strong></p>
+</li>
+<li>
+<p><strong>Related Claims:</strong> What do bonds or other relevant instruments imply about financing, solvency, or the same underlying exposure?</p>
+</li>
+<li><strong>Consistency:</strong> Do those signals support or challenge the equity interpretation, after allowing for different payoffs and risk premia?</li>
+</ul>
+<h3>C. Positioning Source Guide</h3>
+<ul>
+<li><strong>Holdings:</strong> Use 13F, <a href="https://www.sec.gov/data-research/sec-markets-data/form-n-port-data-sets">N-PORT</a>, and fund disclosures to identify owners, allocations, and changes. Check disclosure dates and portfolio coverage.</li>
+<li><strong>Prime Brokers and Custodians:</strong> Use available aggregate exposure, crowding, and flow data; record which client universe is represented.</li>
+<li><strong>Shorts and Borrow:</strong> Track <a href="https://www.finra.org/investors/insights/short-interest">reported short interest</a>, shares on loan, utilization, and borrow fees. Short-sale volume is not outstanding short interest.</li>
+<li><strong>Fund and Retail Flows:</strong> Use appropriately licensed fund-flow, allocation, and brokerage-activity data to track participation and changes. Record the source population and reporting lag.</li>
+<li><strong>Research Providers:</strong> Evaluate specialist research and sell-side flow reports for coverage, methodology, incentives, and timeliness.</li>
+<li><strong>Prime-Broker Reports:</strong> Where lawfully available, use aggregate client-flow data with its coverage and confidentiality limits documented.</li>
+</ul>
+</article>
+<article id="doc-2c_form-a-variant-view" hidden>
+<a class="source-link" href="../../human-reviewed/2c_form-a-variant-view.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>2C. Form a Variant View</h1>
+<p><a href="#doc-hedge-fund-as-a-function-v4">Core model v4</a> ·
+<a href="#doc-2a_identify-key-debates">Identify the Key Debates</a> ·
+<a href="#doc-2b_understand-market-pricing">Understand Market Pricing</a> ·
+<a href="#doc-2d_model_price_impact">Model Price Impact</a> ·
+<a href="#doc-1a_stock_drivers">Stock Drivers</a></p>
+<h2>Purpose</h2>
+<p>Form a clear, evidence-backed variant view on a key debate or stock driver.
+Start from the debates in <a href="#doc-2a_identify-key-debates">2A</a> and the market's
+qualitative view and numerical assumptions in <a href="#doc-2b_understand-market-pricing">2B</a>.
+Identify what the market may be missing or misjudging, then map and test the
+implications. Finding no defensible disagreement is a valid result.</p>
+<h2>1. Generate Candidate Disagreements</h2>
+<ul>
+<li><strong>The Market Is Missing Something</strong></li>
+</ul>
+<p>Hypothetical examples for a computing-hardware supplier, not claims about any
+  company's historical consensus:</p>
+<ul>
+<li><strong>Omitted Driver:</strong> What material driver is absent from the market's analysis?<ul>
+<li><strong>Example:</strong> “Investors focus on the current customer base; demand from a new application could become material.”</li>
+</ul>
+</li>
+<li><strong>Omitted Debate:</strong> What important question is not being asked about a known driver?<ul>
+<li><strong>Example:</strong> “Investors see demand from a new application, but aren't asking whether alternative architectures could replace the current product.”</li>
+</ul>
+</li>
+<li>
+<p><strong>Omitted Perspective:</strong> What plausible answer is missing from an existing debate?</p>
+<ul>
+<li><strong>Example:</strong> “Investors debate product performance, but the supplier's software ecosystem could matter more to customer choice.”</li>
+</ul>
+</li>
+<li>
+<p><strong>The Market Recognizes Something but Misjudges It</strong></p>
+</li>
+<li>
+<p><strong>Magnitude:</strong> Is the market overestimating or underestimating its size or impact?</p>
+</li>
+<li><strong>Timing:</strong> Could it happen earlier or later than expected?</li>
+<li><strong>Duration:</strong> Could it persist longer or reverse sooner than expected?</li>
+<li><strong>Probability:</strong> Is it more or less likely than the market assumes?</li>
+<li><strong>Economics:</strong> Is the market translating the driver into revenue, profit, cash flow, or value per share incorrectly?</li>
+<li><strong>Interactions and Causality:</strong> Could the same evidence support a different explanation, direction of effect, or interaction with other drivers?</li>
+</ul>
+<p><strong>Valuation Framework:</strong> Is the market misjudging how any of these drivers
+translate into financial value or an appropriate valuation multiple?</p>
+<p>These buckets can overlap across cohorts: a driver may be absent from one
+group's models and misjudged in another's. Identify what is missing or
+misjudged and the specific assumption that would change.</p>
+<h2>2. Map the Implications for Key Debates and Stock Drivers</h2>
+<ul>
+<li><strong>Exact Disagreement:</strong> What does the market appear to believe, and what do we believe instead?</li>
+<li><strong>Affected Debates:</strong> If our belief is true, which debates change, and which perspective does it support?</li>
+<li><strong>Affected Drivers:</strong> Which operating or financial drivers change, in what direction, and over what horizon?</li>
+<li><strong>Causal Link:</strong> Why do those changes follow, and what intermediate assumptions must hold?</li>
+<li><strong>New Debate or Driver:</strong> Does the view reveal something material missing from the existing map?</li>
+</ul>
+<h2>3. Test the Disagreement</h2>
+<ul>
+<li><strong>Supporting Evidence:</strong> What observations favor our interpretation over the market's?</li>
+<li><strong>Strongest Counterargument:</strong> What would someone who understands the business well say against us?</li>
+<li><strong>Already Understood:</strong> Could investors already know this and reasonably assign it little value?</li>
+</ul>
+<h3>Falsifiability</h3>
+<p>A good thesis must specify what evidence would make us change our mind.
+If no plausible observation could materially weaken or invalidate the view,
+the thesis is not sufficiently specified.</p>
+<ul>
+<li><strong>Observable Test:</strong> What metric, event, or failed causal link would count against us?</li>
+<li><strong>Timeframe and Benchmark:</strong> By when should we observe it, and against what comparison or defensible threshold?</li>
+<li><strong>Consequence:</strong> Would that evidence lower confidence, require revising an assumption, or make us abandon the thesis?</li>
+</ul>
+<p>For probabilistic theses, contrary evidence may accumulate rather than
+invalidate the view in one observation. A falling stock price alone need
+not invalidate the underlying business thesis.</p>
+<p><strong>Hypothetical capacity-provider example:</strong> “Demand will be strong” is a
+starting belief. A more specific candidate variant view is: “The market expects
+strong demand but underestimates how quickly new supply will pressure realized
+pricing, so revenue per unit of capacity and margins will fall below
+expectations.” This is a hypothesis to test, not an established conclusion.</p>
+<h2>4. Identify the Recognition Path</h2>
+<ul>
+<li><strong>Current Barrier:</strong> Why might the market's view persist despite our evidence? Identify a difference in information, interpretation, timing, or incentives that can be tested.</li>
+<li><strong>Revelation:</strong> What event, disclosure, or gradual accumulation of evidence would make the disagreement observable and favor our view?</li>
+<li><strong>Transmission:</strong> Why would that evidence change investors' assumptions about the affected drivers or valuation framework?</li>
+<li><strong>Timing:</strong> When could recognition occur, and what could delay it? Pass this uncertainty to <a href="#doc-2e_calculate_expected_returns">2E</a> for scenario probabilities.</li>
+</ul>
+<p>For an emerging driver, recognition might require a segment breakout,
+guidance, or repeated results that make its economics measurable. An earnings
+release is a recognition event only if it reveals evidence about the debate.
+If the path is unclear, preserve that uncertainty in the handoff.</p>
+<h2>5. Handoff to Model Price Impact</h2>
+<ul>
+<li><strong>Clear Variant View:</strong> State the market's assumption, our alternative, and why we differ.</li>
+<li><strong>Affected Debates and Drivers:</strong> Identify what changes if we are right, the causal links, and the relevant horizon.</li>
+<li><strong>Evidence and Tests:</strong> Retain supporting evidence, uncertainty, and the falsification test: observable evidence, timeframe, benchmark, and consequence for the thesis.</li>
+<li><strong>Recognition:</strong> State what could make the disagreement observable to investors, and when.</li>
+</ul>
+<p>Pass this to <a href="#doc-2d_model_price_impact">2D. Model Price Impact</a> to quantify
+metric deltas and the resulting conditional stock price.</p>
+</article>
+<article id="doc-2d_model_price_impact" hidden>
+<a class="source-link" href="../../human-reviewed/2d_model_price_impact.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>2D. Model Price Impact</h1>
+<p><a href="#doc-hedge-fund-as-a-function-v4">Core model v4</a> ·
+<a href="#doc-2c_form-a-variant-view">Form a Variant View</a> ·
+<a href="#doc-2e_calculate_expected_returns">Calculate Expected Returns</a> ·
+<a href="#doc-2b_understand-market-pricing">Understand Market Pricing</a> ·
+<a href="#doc-1a_stock_drivers">Stock Drivers</a></p>
+<h2>Purpose</h2>
+<p>Translate the variant view from 2C into a conditional stock price:
+core driver → financial impact → valuation metric → multiple or other
+valuation framework → value per share.</p>
+<h2>1. Isolate the Core Variant Driver</h2>
+<ul>
+<li><strong>Core Driver:</strong> What primary driver anchors the thesis? Identify any secondary driver separately; downstream consequences are part of the same causal chain.</li>
+<li><strong>Market vs. Variant:</strong> What does the market assume in 2B, what do we assume instead, and over what period?</li>
+<li><strong>Common Basis:</strong> Use consistent metric definitions, forecast periods, and valuation dates. Make assumptions held constant explicit.</li>
+</ul>
+<h2>2. Model the Financial Impact</h2>
+<ul>
+<li><strong>Financial Bridge:</strong> How much does the driver change, and how does that flow through revenue, costs, margins, and investment into the metric used for valuation—such as EPS, AFFO per share, EBITDA, or revenue?</li>
+<li><strong>Offsets and Interactions:</strong> What cannibalization, competitive responses, bottlenecks, or linked changes alter the result? Avoid counting the same benefit twice.</li>
+<li><strong>Delta Table:</strong> Show the market case, variant case, difference, and supporting assumption for each material metric and period.</li>
+</ul>
+<h2>3. Determine the Multiple or Valuation Framework</h2>
+<ul>
+<li><strong>Baseline Valuation:</strong> What multiple or other valuation framework is appropriate? First isolate the financial impact at an unchanged multiple or other valuation assumptions.</li>
+<li><strong>Valuation Change:</strong> Does the thesis also change growth, durability, capital intensity, or risk enough to justify a different multiple or framework? Show that effect separately.</li>
+</ul>
+<h2>4. Calculate the Price Impact</h2>
+<ul>
+<li><strong>Equity Bridge:</strong> Where valuing the enterprise, account consistently for debt, cash, other claims, and diluted shares to reach value per share in each case.</li>
+<li><strong>Price Reconciliation:</strong> How does the market case compare with today's stock price? Explain any gap rather than attributing it to our variant view.</li>
+<li><strong>Price Impact:</strong> Report both the difference between the modeled variant and market prices and the variant price's upside or downside versus today's price.</li>
+<li><strong>Sensitivities:</strong> What price range follows from reasonable uncertainty in the key operating and valuation assumptions?</li>
+</ul>
+<h2>Output</h2>
+<ul>
+<li><strong>Assumption Bridge:</strong> Market belief → our belief → changes in operating and financial metrics.</li>
+<li><strong>Valuation Bridge:</strong> Changed metrics and valuation assumptions → conditional value per share.</li>
+<li><strong>Result:</strong> Market-case price, variant-case price or range, the difference, upside or downside versus today's price, and the valuation date or horizon.</li>
+<li><strong>Key Dependencies:</strong> Which assumptions explain most of the price impact, and which remain uncertain?</li>
+</ul>
+<p>The result is conditional on the variant assumptions and valuation framework.
+Whether and when investors recognize the view is a separate question from
+what the modeled business would be worth under those assumptions. Use an
+explicit spreadsheet or calculation model for the arithmetic.</p>
+<h2>Handoff to 2E</h2>
+<p>Pass the conditional price model and its assumptions to
+<a href="#doc-2e_calculate_expected_returns">2E</a>. Use the model across the range of
+outcomes; 2E assigns probabilities and accounts for recognition by the chosen
+horizon to build the return distribution.</p>
+</article>
+<article id="doc-2e_calculate_expected_returns" hidden>
+<a class="source-link" href="../../human-reviewed/2e_calculate_expected_returns.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>2E. Calculate Expected Returns</h1>
+<p><a href="#doc-hedge-fund-as-a-function-v4">Core model v4</a> ·
+<a href="#doc-2d_model_price_impact">Model Price Impact</a> ·
+<a href="#doc-4b_sizing">Position Sizing</a></p>
+<h2>Purpose</h2>
+<p>Calculate the expected total return from today's price over a specified
+horizon, using the variant view from 2C and the conditional price model from
+2D. Expected return is the probability-weighted average across plausible
+outcomes, including being right, partly right, wrong, or right but too early.
+It is not the upside to a single target price.</p>
+<p>The central questions are: <strong>what could we earn or lose, how likely is each
+outcome, and how reliable is that estimate?</strong> Scenarios and their probabilities
+support that calculation and preserve its downside and uncertainty. Portfolio
+weights and optimizer design belong in <a href="#doc-4b_sizing">4B sizing</a>.</p>
+<h2>The Bridge from Variant View to Expected Return</h2>
+<p>Start with the specific disagreement already established in 2B–2C. A large
+business opportunity is not enough: the calculation must identify what is
+missing from today's price and how that changes the prospective payoff.</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Question</th>
+<th>Owner / use in 2E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Market expectations</td>
+<td>What operating outcome and valuation does today's price appear to embed? Distinguish inferred pricing from published consensus.</td>
+<td>Bring forward 2B.</td>
+</tr>
+<tr>
+<td>Variant view</td>
+<td>What specifically do we expect to differ, by how much, and why?</td>
+<td>Bring forward 2C and its evidence / disconfirmation tests.</td>
+</tr>
+<tr>
+<td>Conditional price impact</td>
+<td>If that view plays out, what changes in earnings, cash flow, and valuation, and what price follows?</td>
+<td>Bring forward 2D; do not treat the business surprise as the same percentage stock return.</td>
+</tr>
+<tr>
+<td>Likelihood</td>
+<td>How likely are our view, partial success, and the competing outcomes?</td>
+<td>Estimate scenario probabilities and explain the evidence.</td>
+</tr>
+<tr>
+<td>Recognition and horizon</td>
+<td>How much of the difference could be reflected in price by the measurement date?</td>
+<td>Include delay or incomplete recognition in scenario prices and probabilities.</td>
+</tr>
+<tr>
+<td>Payoff if wrong</td>
+<td>What price and return follow if the market is right or outcomes are worse than either forecast?</td>
+<td>Include failure and adverse cases in the same calculation.</td>
+</tr>
+</tbody>
+</table>
+<p>This combines two documented approaches: CFRA's public equity-research
+methodology starts with expectations embedded in prices and identifies variant
+perceptions; Damodaran's scenario-analysis framework calculates values under
+alternative outcomes and a probability-weighted value where probabilities can
+be estimated. The workflow here is our synthesis, not a claim that every fund
+uses one standardized formula or explicitly calibrated scenario weights.</p>
+<p>Sources: <a href="https://www.cfraresearch.com/insights/faq/what-is-cfra-equity-research-methodology/">CFRA equity research methodology</a>,
+<a href="https://pages.stern.nyu.edu/~adamodar/pdfiles/DSV2/DSV2.pdf">Damodaran, Investment Valuation — scenario analysis</a>.</p>
+<h2>1. Define the Range of Outcomes</h2>
+<ul>
+<li><strong>Scenarios:</strong> What plausible combinations of operating outcomes, valuation, and market recognition could occur? Include partial success, failure, and material adverse outcomes.</li>
+<li><strong>Common Horizon:</strong> At what date are we measuring every scenario's price and return?</li>
+<li><strong>Coherent Cases:</strong> Make scenarios mutually exclusive and collectively exhaustive at the chosen level of detail. Split “right” into recognized and not-yet-recognized outcomes where necessary; do not count “right but late” twice.</li>
+<li><strong>Linked Drivers:</strong> Which assumptions move together? Build consistent scenarios across affected debates rather than treating correlated outcomes as independent bets.</li>
+</ul>
+<h2>2. Assign Probabilities</h2>
+<ul>
+<li><strong>Evidence and Base Rates:</strong> What supports each probability, including relevant historical frequencies, current evidence, and competing explanations?</li>
+<li><strong>Truth and Recognition:</strong> How likely is the business outcome, and how likely is recognition by the horizon conditional on that outcome? Preserve the distinction when constructing joint scenario probabilities.</li>
+<li><strong>Uncertainty:</strong> How sensitive is the assessment to uncertain evidence, market expectations, or model assumptions? Use alternative probability sets where a precise estimate is not defensible.</li>
+<li><strong>Reconciliation:</strong> Do probabilities sum to 100%, with material residual outcomes explicitly represented?</li>
+<li><strong>Updates:</strong> What evidence would change the weights or require a new scenario?</li>
+</ul>
+<h2>3. Calculate Expected Return</h2>
+<ul>
+<li><strong>Scenario Prices:</strong> Run each scenario through the 2D model. Estimate the price at the common horizon, allowing for incomplete recognition, rather than assuming full convergence to modeled value.</li>
+<li><strong>Total Returns:</strong> Calculate returns from a dated current price, including distributions where applicable. State the instrument and whether returns are gross or net of specified costs.</li>
+<li><strong>Expected Return:</strong> Calculate the probability-weighted average of scenario total returns using an explicit spreadsheet or calculation model. Retain dispersion, probability of loss, and material downside scenarios alongside the mean; they answer different questions.</li>
+<li><strong>Path Risk:</strong> Record interim drawdown, funding, or liquidity risks separately; an attractive terminal return does not describe the path needed to reach it.</li>
+</ul>
+<p>For a cash equity, with scenario $s$, current price $P_0$, horizon price
+$P_{T,s}$, and cash distributions $D_s$ received through the horizon (without
+reinvestment), gross total return and expected return are:</p>
+<pre class="formula"><code>R_s = \frac{P_{T,s} + D_s - P_0}{P_0},
+\qquad
+\widehat{\mathbb{E}}[R_T] = \sum_s p_s R_s,
+\qquad
+\sum_s p_s = 1.</code></pre>
+
+<p>Use instrument-specific payoff calculations for derivatives and reconcile
+short-position cash flows and financing in sizing. State any costs already
+included so 4B does not deduct them again.</p>
+<h3>Illustrative Variant-View Calculation</h3>
+<p>All numbers below are invented. The stock is $100. Our reading of market
+expectations is $5 of next-year EPS at 20× earnings. Our variant view is $6 of
+EPS because margins improve more than expected. If the market recognizes that
+outcome and assigns 22× earnings, the horizon price is $132: 32% upside. The
+multiple increase needs its own justification; it is not automatic when EPS
+beats expectations.</p>
+<p>Suppose we assign 60% probability to the business thesis and, conditional on
+that thesis, 75% probability to recognition by the one-year horizon:</p>
+<table>
+<thead>
+<tr>
+<th>Joint outcome</th>
+<th style="text-align: right;">Probability</th>
+<th style="text-align: right;">Horizon price</th>
+<th style="text-align: right;">Return from $100</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thesis right and recognized</td>
+<td style="text-align: right;">60% × 75% = 45%</td>
+<td style="text-align: right;">$132</td>
+<td style="text-align: right;">+32%</td>
+</tr>
+<tr>
+<td>Thesis right but recognition delayed</td>
+<td style="text-align: right;">60% × 25% = 15%</td>
+<td style="text-align: right;">$110</td>
+<td style="text-align: right;">+10%</td>
+</tr>
+<tr>
+<td>Thesis wrong / adverse outcome</td>
+<td style="text-align: right;">40%</td>
+<td style="text-align: right;">$80</td>
+<td style="text-align: right;">−20%</td>
+</tr>
+</tbody>
+</table>
+<p>With no dividends or costs, expected one-year return is
+<strong>45% × 32% + 15% × 10% + 40% × (−20%) = 7.9%.</strong></p>
+<p>The $110 delayed-case price and $80 failure-case price also require models;
+they are not implied by the probabilities. The coarse failure case is grouped
+for illustration and should be split when materially different outcomes matter.</p>
+<p>The variant view explains the earnings disagreement; 2D explains its price
+impact; 2E weighs that payoff against delay and failure. Neither 32% upside nor
+60% × 32% is the expected return. Do not multiply the resulting 7.9% by
+conviction or recognition probability again. It is a total-return forecast,
+not automatically 7.9% alpha; benchmark-relative return requires a matching
+benchmark forecast over the same horizon.</p>
+<h2>4. Assess How Reliable the Estimate Is</h2>
+<ul>
+<li><strong>Estimation Method:</strong> Are probabilities based on a relevant historical reference class, a statistical model tested on later unseen observations, or explicit analyst judgment? Record the method and its limitations; numerical precision does not establish accuracy.</li>
+<li><strong>Sensitivity:</strong> Recalculate expected return under plausible alternative probability sets and price assumptions. Which changes erase or reverse the expected payoff?</li>
+<li><strong>Coverage:</strong> Do coarse scenario prices omit material variation within each case or adverse outcomes outside the modeled range?</li>
+<li><strong>Calibration:</strong> Preserve dated forecasts, their horizons, and realized outcomes. Across repeated forecasts, test whether probability assessments and expected returns were systematically optimistic or pessimistic.</li>
+<li><strong>Open Uncertainty:</strong> If probabilities are not defensible, report provisional estimates and the range across alternative assumptions. Do not present a completed scenario table as a validated forecast.</li>
+</ul>
+<h2>Output and Handoff to 4B Sizing</h2>
+<ul>
+<li><strong>Expected Return Estimate:</strong> Supply the probability-weighted total return, instrument, dated current price, common horizon, and gross/net cost convention. Label any benchmark-relative estimate separately.</li>
+<li><strong>Supporting Scenarios:</strong> Preserve each outcome's probability, assumptions, horizon price, return, and evidence so the mean can be audited and recalculated.</li>
+<li><strong>Uncertainty and Downside:</strong> Retain alternative estimates, material loss scenarios, path risks, sensitivities, shared risk drivers, and update triggers.</li>
+</ul>
+<h3>Where the Mean–Variance Optimizer Fits</h3>
+<p>2E calculates expected returns. <a href="#doc-4b_sizing">4B's mean–variance starting point</a>
+combines those estimates with a portfolio covariance model, costs, existing
+positions, and constraints to calculate target weights, including zero. That
+optimizer uses expected returns and covariance; a full return distribution is
+not required as an input. Preserve the supporting scenarios for downside
+analysis and alternative sizing methods.</p>
+<p>Separate stock-level scenario tables do not specify how returns move together.
+Their dispersion is not a complete portfolio risk model. 4B owns that
+reconciliation and must not multiply expected returns by conviction or
+recognition probabilities already included here.</p>
+</article>
+<article id="doc-3_internal-context" hidden>
+<a class="source-link" href="../../human-reviewed/3_internal-context.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>3. Internal Context</h1>
+<p>Status: draft for human review
+Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a></p>
+<h2>Core Function</h2>
+<pre class="formula"><code>C^I=(S,K).</code></pre>
+
+<ul>
+<li><strong>$S$ — current state:</strong> book and position state together with the capital,
+  liquidity, financing, counterparties, and operational capacity available to
+  act.</li>
+<li><strong>$K$ — mandate, objectives, and constraints:</strong> what the fund is trying to
+  achieve and the risk and governance boundaries within which it may act.</li>
+</ul>
+<h2>Components</h2>
+<h3>3.1 Book And Position State Within $S$</h3>
+<ul>
+<li>Positions, cash, orders, fills, P&amp;L, and current long, short, factor, theme,
+  concentration, liquidity, and other portfolio exposures.</li>
+</ul>
+<h3>3.2 Operating Capacity Within $S$</h3>
+<ul>
+<li>Available capital and collateral, financing and borrow capacity, fund-level
+  liquidity needs, broker and counterparty relationships, custody, and
+  operational readiness. These are observed or available resources, distinct
+  from the permissions and limits in $K$.</li>
+</ul>
+<h3>3.3 Mandate, Objectives, And Constraints</h3>
+<ul>
+<li>Strategy mandate, return objective, horizon, eligible instruments, risk
+  budgets, hard limits, authority, approvals, exceptions, and escalation.</li>
+<li>Detailed companion: <a href="#doc-Other--portfolio-constitution-and-decision-governance">Portfolio Constitution And Decision Governance</a>.</li>
+</ul>
+<h2>Boundary</h2>
+<ul>
+<li>Together, $S$ and $K$ determine which portfolio actions are feasible
+  and appropriate given the fund's external context and theses.</li>
+<li>Internal context changes what the fund may or should do without changing what
+  the fund claims is externally true.</li>
+<li>Multiple funds can reuse the same dated research assessment. Each fund keeps
+  its own $S$ and $K$; eligibility, risk budget, costs, and capacity can lead
+  to different decisions from the same assessment. A mandate may specify a
+  research question or horizon, but it cannot by itself revise the evidence or
+  probability assigned to an external outcome.</li>
+<li>External context describes market liquidity, financing, and borrow
+  availability. Internal context describes the fund's existing usage, access,
+  relationships, limits, and remaining capacity.</li>
+</ul>
+</article>
+<article id="doc-4a_selection" hidden>
+<a class="source-link" href="../../human-reviewed/4a_selection.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>4a. Selection</h1>
+<p>Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a></p>
+<p>Research candidate selection is encompassed by the <strong>2A–2E thesis-formation
+process</strong>: identify key debates, understand market expectations, form a variant
+view, model its price impact, and build a probability distribution of returns.
+Those candidate assessments can be reused by funds asking the same dated
+research question. They do not authorize a holding in any fund.</p>
+<p>That work produces the candidate theses and payoff distributions passed from
+<a href="#doc-2e_calculate_expected_returns">2E</a> to the optimizer in
+<a href="#doc-4b_sizing">4B. Position Sizing</a>. A separate selection workflow is not
+needed here. Sizing determines each fund's final weights, including zero,
+subject to its investable universe, current portfolio, and constraints.</p>
+</article>
+<article id="doc-4b_sizing" hidden>
+<a class="source-link" href="../../human-reviewed/4b_sizing.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>4b. Position Sizing</h1>
+<p>Status: canonical sizing framework for human review
+Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a></p>
+<h2>Purpose</h2>
+<p>Position sizing turns the candidate-thesis set for the investable universe into
+target portfolio weights. It decides how much of the portfolio's scarce risk
+budget each asset should receive. It is not a synonym for conviction, a reward
+for a good story, or a mechanical translation of upside into capital.</p>
+<p>For $\mathcal U=\mathcal U(C^I)$, the output is:</p>
+<pre class="formula"><code>Z=\{w_i\}_{i\in\mathcal U},
+\qquad
+w_i\in[\underline w_i(K),\overline w_i(K)].</code></pre>
+
+<p>A nonzero $w_i$ allocates capital long or short. When $K$ permits a zero
+weight, $w_i=0$ is a valid portfolio-construction result, not a rejection of
+the candidate thesis or a separate selection decision.
+The lower and upper bounds come from the applicable mandate and constraints
+$K$; this framework does not prescribe numerical position limits.</p>
+<p>The thesis system supplies structured judgments. Deterministic portfolio and
+risk systems later reconcile those inputs with correlation, factor exposure,
+liquidity, costs, and hard constraints. This document defines the core
+single-thesis inputs to that decision.</p>
+<p><a href="#doc-2e_calculate_expected_returns">2E. Calculate Expected Returns</a>
+supplies the optimizer's thesis-level return inputs: scenario probabilities,
+horizon returns, summary statistics, and uncertainty. The 2A–2E series
+already encompasses candidate selection. Sizing combines those outputs with
+portfolio-level dependencies, risk, costs, and constraints to calculate target
+weights, including zero. Do not apply an additional probability multiplier
+for conviction or recognition already represented in 2E's scenario weights.</p>
+<pre><code class="language-text">candidate thesis set and payoff distributions
+→ volatility-adjusted risk capacity
+→ fundamental-side conviction
+→ positioning and crowding adjustment
+→ upside, downside, and asymmetry
+→ proposed weights, including zero
+→ portfolio-level optimization and constraints
+→ target-weight vector
+</code></pre>
+<h2>1. Market factors</h2>
+<p>Market factors determine the risk capacity and path vulnerability of an
+otherwise attractive thesis. They are not evidence that the thesis is true;
+they determine how much risk the portfolio can safely take while waiting for it
+to resolve.</p>
+<h3>1.1 Volatility</h3>
+<p>Volatility determines how much capital produces a given amount of risk. All
+else equal, a more volatile asset should receive less capital for the same risk
+budget. But realized volatility is not the whole risk estimate: event risk,
+gap risk, downside skew, correlation in stress, and liquidity deterioration can
+matter more than a benign trailing-volatility number.</p>
+<p>Ask:</p>
+<ul>
+<li>What is normal realized and implied volatility at the intended horizon?</li>
+<li>What is the expected move through the next known catalyst or event?</li>
+<li>What is the adverse path under the disconfirming perspective?</li>
+<li>Does volatility rise precisely when the rest of the portfolio is vulnerable?</li>
+</ul>
+<p>The output is a risk-scaled capacity, not a final weight.</p>
+<h3>1.2 Positioning and crowding</h3>
+<p>Crowding changes the path and sometimes the payoff even when the fundamental
+thesis is correct. It answers, <strong>who already owns or is short this view, who
+sets the marginal price, and what happens if they must change position?</strong></p>
+<p>Crowding can cut both ways:</p>
+<ul>
+<li>A crowded long can amplify downside when the thesis disappoints or liquidity
+  falls.</li>
+<li>A crowded short can create squeeze risk and make a correct bear thesis
+  untradeable on the path.</li>
+<li>An underowned view may offer room for new buyers, but lack of ownership is not
+  proof that it is unpriced.</li>
+</ul>
+<p>Assess ownership, hedge-fund and long-only positioning, short interest and
+borrow, options and dealer state, flows, liquidity, leverage, and concentration
+of likely sellers or buyers. Apply a sizing haircut when the expected exit is
+one crowded door, and record whether crowding is a risk, a catalyst amplifier,
+or both.</p>
+<h2>2. Thesis inputs</h2>
+<p>Thesis inputs determine whether the fund should spend risk capacity on this
+asset. Fundamental conviction is a probability distribution over what is true;
+the payoff map is the numerical return distribution conditional on each
+perspective.</p>
+<h3>2.1 Fundamental-side conviction</h3>
+<p>Fundamental conviction is confidence in the underlying truth distribution: the
+causal model, the evidence, the scenario weights, and the conditional economics.
+It answers, <strong>how likely is the variant view to be right?</strong></p>
+<p>It does not answer whether the view is already priced, whether the catalyst
+will arrive, or whether the position is crowded. Those are separate inputs.</p>
+<p>Increase fundamental-side conviction when the evidence is direct, independent,
+diagnostic, current, and consistent with the causal model. Reduce it for sparse
+or correlated evidence, unresolved model ambiguity, a weak market-belief
+estimate, or an unclear invalidation test.</p>
+<p>The output should be a probability distribution and uncertainty range—not a
+single adjective such as "high conviction."</p>
+<h3>2.2 How much upside</h3>
+<p>Upside is the conditional return from today's price if the variant view is
+recognized. It must be paired with downside, probability, and time—not
+recorded as a standalone target-price percentage.</p>
+<p>For each perspective, specify:</p>
+<pre><code class="language-text">probability
+× target price / return from today's price
+× time to realization
+× adverse path and loss if wrong or delayed
+</code></pre>
+<p>The relevant question is not "how much upside exists?" It is:</p>
+<blockquote>
+<p>Is the probability-weighted payoff, after downside and time, large enough to
+justify consuming scarce portfolio risk?</p>
+</blockquote>
+<p>An attractive-looking upside case should receive little size when it is already
+priced, low probability, far-dated with no credible catalyst, or paired with
+unbounded downside. Conversely, a modest expected return can deserve capital
+when the downside is controlled, the catalyst is near, and the position
+diversifies the book.</p>
+<h2>Sizing synthesis</h2>
+<p>Sizing combines 2E's expected returns and supporting scenarios with portfolio
+risk, costs, and constraints. Conviction and catalyst assessments already
+encoded in scenario probabilities must not multiply expected return again.
+Additional adjustments must identify a distinct risk or estimation uncertainty
+and explain how it is represented.</p>
+<h2>Minimum sizing input record</h2>
+<pre><code class="language-yaml">sizing_input:
+  thesis_ref:
+  volatility_and_tail_risk:
+  fundamental_probability_distribution:
+  market_belief_and_pricedness_confidence:
+  conditional_upside_downside_and_horizon:
+  catalyst_confidence_and_path_risk:
+  positioning_and_crowding_assessment:
+  liquidity_and_exit_assessment:
+  proposed_risk_allocation:
+  uncertainty_haircuts: []
+  portfolio_constraints_to_check: []
+</code></pre>
+<h2>Mean–Variance Optimizer: Starting Point</h2>
+<p>A mean–variance formulation chooses portfolio weights $w$ using expected
+returns $\mu$ from 2E and a portfolio return covariance matrix $\Sigma$:</p>
+<pre class="formula"><code>\max_{w \in \mathcal W}\quad
+w^\top\mu
+- \frac{\lambda}{2} w^\top\Sigma w
+- C(w-w_0).</code></pre>
+
+<ul>
+<li><strong>Expected Return:</strong> $w^\top\mu$ is expected portfolio return. For this formulation, use asset returns in excess of the cash funding rate and account for cash consistently.</li>
+<li><strong>Risk:</strong> $w^\top\Sigma w$ is portfolio variance, including cross-asset dependencies; $\lambda$ controls the penalty for variance. The covariance model is a separate estimate, not something supplied by independent bull/base/bear tables.</li>
+<li><strong>Costs:</strong> $w_0$ is the current portfolio. $C$ represents trading costs; include holding, borrow, and financing costs consistently where applicable, without duplicating costs already in expected returns.</li>
+<li><strong>Constraints:</strong> $\mathcal W$ contains the mandate's position, leverage, exposure, liquidity, and other applicable limits.</li>
+<li><strong>Consistent Inputs:</strong> Align return and covariance horizons and units. A long-horizon thesis forecast cannot be paired mechanically with a daily risk estimate.</li>
+</ul>
+<p>The optimizer consumes estimates; it does not infer which thesis is true or
+validate 2E's probabilities. A full return distribution is unnecessary for
+this objective, and solving it does not require assuming normally distributed
+returns. It does measure risk through variance, so evaluate tail, liquidity,
+and path risks separately. Scenario-based objectives need aligned joint
+portfolio scenarios.</p>
+<p>Treat this as a starting formulation, not an adopted final objective. Test
+weight sensitivity to plausible forecast and risk-model changes before relying
+on the allocation.</p>
+<p>References: <a href="https://www.cvxportfolio.com/en/stable/returns.html">Cvxportfolio return models</a>,
+<a href="https://www.cvxportfolio.com/en/stable/risks.html">risk models</a>, and
+<a href="https://docs.mosek.com/portfolio-cookbook/estimationerror.html">MOSEK on estimation error</a>.</p>
+</article>
+<article id="doc-4c_timing" hidden>
+<a class="source-link" href="../../human-reviewed/4c_timing.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>4c. Timing</h1>
+<p>Status: working brainstorm for human review<br />
+Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a> ·
+<a href="#doc-2c_form-a-variant-view">Form a Variant View</a> ·
+<a href="#doc-4b_sizing">Position Sizing</a></p>
+<h2>Purpose</h2>
+<p>Timing determines the path from the current portfolio to the target-weight
+vector set by sizing: whether, when, and in what sequence the fund should
+initiate, add, hold, trim, hedge, exit, pause, or wait. It is not a selection
+decision or a generic attempt to predict the next price move.</p>
+<p>Thesis formation defines the <code>variant_view</code> and <code>catalyst</code>. Timing uses that
+record; it does not invent a second catalyst. Its job is to decide whether the
+fund should carry the desired risk before, through, or after the relevant
+evidence window.</p>
+<p>The central question is:</p>
+<blockquote>
+<p>Given the target weight, thesis path, evidence already revealed, price
+already paid, and next likely information, should the fund initiate, add,
+hold, trim, pause, exit, hedge, or wait?</p>
+</blockquote>
+<p>Timing is distinct from execution. <strong>Investment timing</strong> decides when the fund
+wants risk exposure. <strong>Execution timing</strong> decides how the approved change is
+traded while managing liquidity, market impact, and transaction cost.</p>
+<h2>Timing Principles</h2>
+<ol>
+<li><strong>There is no need to buy the bottom.</strong> A position can be attractive after
+   it has already risen if the remaining payoff still exceeds the remaining
+   risk.</li>
+<li><strong>Big trends can run longer than expected.</strong> A secular tailwind can keep
+   compounding as evidence, estimates, adoption, and market updates unfold.</li>
+<li><strong>Wait for useful validation, but not until the opportunity is exhausted.</strong>
+   Confirmation can improve a decision while leaving substantial upside.</li>
+<li><strong>A thesis needs a marginal price setter.</strong> Be aware of the buyer, seller,
+   or short who could change the price, what they currently believe or need to
+   do, and what evidence could cause them to act.</li>
+<li><strong>Being right is not the same as being paid.</strong> The view must be recognized
+   and transmitted into price within a horizon that makes the position worth
+   carrying.</li>
+<li><strong>The path must be survivable.</strong> A position that exceeds financing,
+   liquidity, drawdown, risk-budget, mandate, or patience constraints can fail
+   even when the terminal thesis is right.</li>
+<li><strong>Timing is a state-contingent exposure policy, not an entry date.</strong> It
+   specifies how much of the desired risk to carry now and what evidence should
+   cause the fund to add, hold, reduce, exit, or continue waiting.</li>
+<li><strong>Being first has a distinct payoff and failure mode.</strong> It preserves the
+   return that may disappear in a large confirmation move, but it also accepts
+   the greatest risk of catching a falling knife before enough evidence exists.</li>
+</ol>
+<h2>Brainstorm</h2>
+<h3>Core Principle</h3>
+<p>A position need not be bought before it moves. A confirming price move can be
+evidence that a durable change is becoming real. The fund may buy or add after a
+stock is up when the fundamental and market-implied evidence says that the
+remaining opportunity is still attractive.</p>
+<pre><code class="language-text">fundamental tailwind strengthens
+→ price confirms the change
+→ market still underestimates duration, magnitude, breadth, or economic capture
+→ remaining payoff justifies owning or increasing exposure
+</code></pre>
+<p>The relevant question is not “has the security gone up?” It is “has the price
+move exceeded, matched, or lagged the change in likely economic outcomes and
+market expectations?”</p>
+<p>The practical version of “the market can stay irrational longer than the fund
+can stay solvent” is broader than literal insolvency. The market may simply
+require more evidence, operate on a different horizon, or be constrained from
+acting. Timing must therefore ask whether the fund can carry the position until
+the expected recognition mechanism has had a reasonable chance to work.</p>
+<h3>Inputs</h3>
+<ul>
+<li><strong>Thesis path:</strong> the <code>variant_view</code>, scenario/payoff map, market belief,
+  catalyst, invalidation conditions, and horizon.</li>
+<li><strong>Current evidence:</strong> what has changed in the fundamental world and what
+  remains unresolved.</li>
+<li><strong>Market state:</strong> price path, valuation, estimates, positioning, flows,
+  volatility, liquidity, and financing/borrow where relevant.</li>
+<li><strong>Internal context:</strong> existing exposure, factor and theme overlap, remaining
+  risk budget, liquidity capacity, and hard limits.</li>
+</ul>
+<h3>Recognition-Horizon and Path-Survivability Risk</h3>
+<p>Fundamental conviction and timing conviction answer different questions:</p>
+<ul>
+<li><strong>Truth probability:</strong> how likely is the variant view to be right?</li>
+<li><strong>Recognition probability:</strong> conditional on the view being right, how likely
+  is the market to update toward it by horizon $T$?</li>
+<li><strong>Path survivability:</strong> can the position remain financeable, liquid,
+  admissible, and behaviorally holdable until that recognition can occur?</li>
+<li><strong>Remaining payoff:</strong> after waiting, confirmation, carry, and price movement,
+  is enough return still available?</li>
+</ul>
+<p>The recognition probability $q_T$ is supplied by the thesis record:</p>
+<pre class="formula"><code>q_T
+=
+\Pr(\text{the market recognizes the variant view by }T
+\mid \text{the variant view is right}).</code></pre>
+
+<p>If $p_{\mathrm{truth}}$ is the probability that the view is right, then the
+following is a useful diagnostic:</p>
+<pre class="formula"><code>\Pr(\text{right and recognized by }T)
+=
+p_{\mathrm{truth}}q_T.</code></pre>
+
+<p>This is not an expected-return formula. Deterministic scenario analysis must
+also include the return and loss in every state, partial recognition, time,
+carry, financing, liquidity, and the path before resolution. Its purpose is to
+prevent a high truth probability from being mistaken for a high probability of
+getting paid within the decision horizon.</p>
+<p>Recognition moves through several gates:</p>
+<pre><code class="language-text">variant view is true
+→ decision-relevant evidence appears
+→ relevant participants notice and update
+→ changed beliefs or constraints produce orders
+→ orders transmit into price
+→ the position survives long enough to realize the payoff
+</code></pre>
+<p>A failure at any gate can turn a correct view into a poor trade. Timing should
+name the weakest gate and the observation that would show it is improving or
+failing.</p>
+<h4>Three clocks</h4>
+<ul>
+<li><strong>Business and capital clock:</strong> when the underlying economics, capacity,
+  balance sheet, or competitive position actually change.</li>
+<li><strong>Expectations clock:</strong> when forecasts, valuation assumptions, and investor
+  beliefs update.</li>
+<li><strong>Stock and positioning clock:</strong> when buyers, sellers, short-coverers, or
+  forced flows move the security.</li>
+</ul>
+<p>The clocks can lead or lag one another. Timing chooses where across them the
+fund is willing to carry risk; it must not assume that an improvement in the
+business immediately creates an improvement in the stock.</p>
+<h4>Path-survivability check</h4>
+<p>Before carrying pre-recognition risk, ask:</p>
+<ul>
+<li>Can the fund finance and borrow the expression through the plausible delay?</li>
+<li>Can it tolerate the adverse mark-to-market path without breaching risk limits
+  or being forced to exit?</li>
+<li>Will liquidity remain sufficient under stress?</li>
+<li>Is the expression's tenor compatible with the recognition horizon?</li>
+<li>What capital, carry, and opportunity cost accumulates while waiting?</li>
+<li>If the position is reduced or exited, what evidence would permit disciplined
+  re-entry rather than permanent abandonment after an early loss?</li>
+</ul>
+<p>A thesis can be selected and have a positive target size while the correct
+current exposure is zero because its recognition horizon or path is not yet
+investable.</p>
+<h3>Value Of Waiting Versus Cost Of Waiting</h3>
+<p>The central timing comparison is not “up or down next?” It is whether the value
+of additional information exceeds the deterioration in opportunity caused by
+waiting.</p>
+<p><strong>Value of waiting:</strong></p>
+<ul>
+<li>better evidence and a higher-quality posterior judgment;</li>
+<li>lower thesis, catalyst, or event uncertainty;</li>
+<li>observation of the market's reaction function and marginal participant;</li>
+<li>a more survivable path or a cleaner expression; and</li>
+<li>avoidance of carrying risk through an information-poor interval.</li>
+</ul>
+<p><strong>Cost of waiting:</strong></p>
+<ul>
+<li>foregone return and a worse entry price;</li>
+<li>less remaining upside or asymmetry;</li>
+<li>loss of liquidity, borrow, capacity, or instrument availability;</li>
+<li>crowding after the view becomes more widely recognized; and</li>
+<li>opportunity decay as the catalyst approaches or the thesis becomes priced.</li>
+</ul>
+<p>The default rule is:</p>
+<pre><code class="language-text">act now when the cost of waiting exceeds the value of more information
+wait when the value of more information exceeds the cost of waiting
+stage exposure when the comparison is close or highly uncertain
+</code></pre>
+<p>Paying a higher price after confirmation is rational when a modest amount of
+foregone upside buys a much larger reduction in truth, recognition, and path
+risk while sufficient payoff remains. Waiting is too expensive when the signal
+arrives only after the opportunity is largely priced.</p>
+<p>Let $w_i^*$ be the full target weight produced by sizing and let
+$\pi_i(X_t)\in[0,1]$ be the timing fraction implied by the current evidence and
+market state $X_t$. The requested exposure is:</p>
+<pre class="formula"><code>w_i^{\mathrm{requested}}(t)
+=
+\pi_i(X_t)w_i^*.</code></pre>
+
+<p>Timing determines $\pi_i(X_t)$ and its state transitions. It does not create a
+second sizing method, override hard limits, or decide how the approved exposure
+change is executed.</p>
+<h3>Being First: Owning Risk Before Recognition</h3>
+<p>“Being first” means carrying risk before the relevant marginal participants
+have recognized and expressed the thesis. It does not require being literally
+the first investor, and it does not mean buying merely because a security has
+fallen. The timing advantage comes from entering before the recognition event
+causes a discontinuous repricing.</p>
+<p>This posture matters most when waiting for confirmation could consume a large
+share of the payoff. If strong evidence is likely to cause a 20% upward gap,
+owning before the evidence preserves that move; buying afterward pays away the
+20% in exchange for much greater certainty. The decision is whether the
+expected confirmation gap is worth the incremental truth, path, and tail risk
+borne before confirmation.</p>
+<h4>Three ways to be first</h4>
+<table>
+<thead>
+<tr>
+<th>Posture</th>
+<th>What is known at entry</th>
+<th>Potential reward</th>
+<th>Primary risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pre-evidence</strong></td>
+<td>The mechanism is plausible, but direct validating evidence has not yet appeared.</td>
+<td>Captures nearly the entire move if the thesis inflects.</td>
+<td>Highest risk that the thesis is wrong, premature, or missing a critical fact.</td>
+</tr>
+<tr>
+<td><strong>Interpretation-first</strong></td>
+<td>Public evidence exists, but the market has not connected it to the disputed driver, financials, or valuation.</td>
+<td>Captures a large recognition move with more evidentiary support.</td>
+<td>The interpretation may be wrong, already understood, or economically immaterial.</td>
+</tr>
+<tr>
+<td><strong>Positioning-first</strong></td>
+<td>Some participants are beginning to update, but broad forecasts, ownership, and price have not caught up.</td>
+<td>Captures the broadening of recognition while avoiding the earliest uncertainty.</td>
+<td>Less upside remains, and the apparent update may be noise or a temporary flow.</td>
+</tr>
+</tbody>
+</table>
+<p>Interpretation-first is generally the most attractive form: the fund is early
+to the implication, not early to the existence of evidence. Pre-evidence
+positions require the highest hurdle and the smallest initial fraction of full
+risk.</p>
+<h4>Benefits of going first</h4>
+<ul>
+<li><strong>Capture the confirmation gap:</strong> retain returns that may disappear in one
+  large move when the disputed fact becomes visible.</li>
+<li><strong>Maximum remaining asymmetry:</strong> enter before estimates, valuation, and
+  positioning reflect the thesis.</li>
+<li><strong>Better capacity and liquidity:</strong> establish exposure before the trade becomes
+  crowded, borrow tightens, or the instrument becomes expensive.</li>
+<li><strong>More ways to win:</strong> benefit from both improving fundamentals and subsequent
+  market recognition rather than only the remaining post-recognition move.</li>
+<li><strong>Ability to build deliberately:</strong> use time before the catalyst to establish a
+  controlled position rather than chase after a gap.</li>
+</ul>
+<h4>Costs and risks of going first</h4>
+<ul>
+<li><strong>Falling-knife risk:</strong> continued selling may reflect new information rather
+  than temporary fear, forced flows, or slow recognition.</li>
+<li><strong>Adverse selection:</strong> other participants may understand the business,
+  balance sheet, capital structure, or event better than the fund does.</li>
+<li><strong>Prematurity:</strong> the view may eventually be right but lie outside the
+  investable recognition horizon.</li>
+<li><strong>Non-recognition:</strong> the expected catalyst may not reveal the disputed fact or
+  may not cause relevant participants to act.</li>
+<li><strong>Path damage:</strong> drawdown, volatility, financing, borrow, liquidity, or risk
+  limits may force an exit before the thesis resolves.</li>
+<li><strong>Opportunity cost:</strong> capital is consumed while a cheaper discriminating test
+  or better entry may still be ahead.</li>
+<li><strong>Behavioral damage:</strong> an early loss can make the fund unwilling to re-enter
+  precisely when confirmation finally arrives.</li>
+</ul>
+<h4>Falling-knife test</h4>
+<p>A lower price is not itself evidence of greater expected value. Before taking a
+being-first posture in a falling security, answer:</p>
+<ul>
+<li>What adverse information could the price decline be revealing?</li>
+<li>Which sellers appear informed, forced, constrained, or purely price-driven?</li>
+<li>What evidence supports the claim that the selling is temporary or excessive?</li>
+<li>Can the company and the selected security survive the downside scenario and
+  the expected recognition delay?</li>
+<li>What observation would distinguish “early but right” from “wrong”?</li>
+<li>What is the maximum pre-confirmation exposure and loss budget?</li>
+<li>What invalidates the entry, and what later evidence permits re-entry?</li>
+</ul>
+<p>If these questions cannot be answered, the position is not a disciplined early
+entry. It is an unbounded bet that recent selling will reverse.</p>
+<h4>Being-first admission rule</h4>
+<p>Going first should be admitted only when:</p>
+<ul>
+<li>the thesis has a complete causal bridge and a specific market-error
+  explanation;</li>
+<li>the expected price paid away for confirmation is material relative to the
+  total payoff;</li>
+<li>the incremental downside from acting early is bounded and survivable;</li>
+<li>a decision-relevant evidence window and recognition path are specified;</li>
+<li>the expression can survive the required tenor without unacceptable carry,
+  financing, or liquidity risk;</li>
+<li>the falling-knife test finds no unresolved decision-critical adverse signal;
+  and</li>
+<li>the policy includes explicit add, reduce, exit, and re-entry conditions.</li>
+</ul>
+<p>Being first does not imply being fully sized. A common posture is:</p>
+<pre><code class="language-text">small pre-recognition position
+→ add when the causal evidence strengthens
+→ add when relevant participants begin to update
+→ reach full intended exposure only while remaining payoff still clears the hurdle
+</code></pre>
+<p>The pre-recognition fraction should be small enough that adverse evidence can
+be processed without a forced exit, but large enough that a discontinuous move
+matters to portfolio returns. The target size still comes from sizing; timing
+decides how much of that target to carry before each recognition gate.</p>
+<h3>Marginal Price Setter and Catalyst Path</h3>
+<p>Timing requires a view of how the thesis reaches price. The relevant marginal
+buyer, seller, or short-coverer is not necessarily an identifiable individual;
+it is the type of market participant most likely to set the next meaningful
+price at the relevant horizon.</p>
+<p>For each timing decision, ask:</p>
+<ul>
+<li>Who appears to own, avoid, short, or finance the risk today?</li>
+<li>Who becomes the incremental buyer or seller if the disputed fact is
+  confirmed?</li>
+<li>What changes their behavior: earnings revisions, a KPI, valuation, a policy
+  decision, liquidity pressure, index flow, a mandate constraint, or short
+  covering?</li>
+<li>Is the expected buyer likely to act before, at, or after the next evidence
+  window?</li>
+<li>What observable proxies support this view: estimates, ownership, flows,
+  borrow, options, volume, liquidity, or price reaction to information?</li>
+</ul>
+<p>The fund does not need a story about a specific person. It needs a falsifiable
+view of the market's reaction function. A correct fundamental thesis with no
+credible route to a marginal buyer can remain a correct but poorly timed
+investment.</p>
+<h3>1. Thesis-Path Archetype</h3>
+<p>Timing starts by classifying the path through which the thesis is expected to
+resolve. The same entry rule should not govern an early inflection, a secular
+compounder, an event, and a panic-driven dislocation.</p>
+<table>
+<thead>
+<tr>
+<th>Archetype</th>
+<th>What the fund believes</th>
+<th>Appropriate timing posture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Early inflection</strong></td>
+<td>A material change is beginning but remains weakly visible or disputed.</td>
+<td>Enter selectively and size cautiously; require early evidence and a clear invalidation condition.</td>
+</tr>
+<tr>
+<td><strong>Confirming secular tailwind</strong></td>
+<td>A durable trend is visibly working, but its duration, magnitude, breadth, or profit capture remains underappreciated.</td>
+<td>Enter or add on confirmation while the trend is strengthening and remaining payoff exceeds trend and valuation risk.</td>
+</tr>
+<tr>
+<td><strong>Catalyst / event</strong></td>
+<td>A defined event or evidence window can test a material <code>variant_view</code>.</td>
+<td>Decide explicitly whether the payoff merits owning risk before the event, or whether post-event confirmation is superior.</td>
+</tr>
+<tr>
+<td><strong>Dislocation / panic</strong></td>
+<td>Forced selling, liquidity stress, or fear creates a price disconnected from plausible value.</td>
+<td>Focus first on survival, liquidity, balance-sheet/capital-structure risk, and the mechanism that closes the gap.</td>
+</tr>
+<tr>
+<td><strong>Mature or crowded thesis</strong></td>
+<td>The thesis is increasingly reflected in price and the marginal surprise has diminished.</td>
+<td>Raise the hurdle for new risk; trim, hedge, or hold only while remaining upside and trend persistence justify fragility risk.</td>
+</tr>
+<tr>
+<td><strong>Broken thesis</strong></td>
+<td>The central causal claim, payoff map, or catalyst path has failed.</td>
+<td>Exit, pause, or reverse according to the thesis and risk rules; do not relabel invalidation as a timing problem.</td>
+</tr>
+</tbody>
+</table>
+<h3>Entry Decision</h3>
+<p>The entry decision specifies whether to own exposure now, wait for confirmation,
+or decline the trade. It must be made against the <strong>remaining</strong> payoff, not the
+historical return already earned by others.</p>
+<p>For every candidate position, record:</p>
+<pre><code class="language-text">thesis-path archetype
+current stage: early | confirming | mature | broken
+next evidence window
+remaining upside / downside by scenario
+why entry now is preferable to waiting
+what evidence would justify waiting instead
+</code></pre>
+<p>An entry can be justified by one or more of:</p>
+<ul>
+<li>a price that has not incorporated the anticipated evidence;</li>
+<li>fundamental confirmation that materially raises confidence or expected value;</li>
+<li>upward revisions to the duration, magnitude, or breadth of a tailwind;</li>
+<li>an improving market mechanism, such as estimate revisions or a new marginal
+  buyer; or</li>
+<li>attractive asymmetry after a dislocation.</li>
+</ul>
+<h3>2. Confirmation and Trend-Persistence Timing</h3>
+<p>For a confirming secular tailwind, price momentum is admissible evidence, not
+the thesis by itself. The fund should ask whether the trend is becoming more real
+and more economically important faster than the market is repricing it.</p>
+<p>Trying to buy the exact bottom can create a second failure: the fund can be
+right eventually, suffer enough early pain to exit, and then lack a rule for
+re-entering. Every early or reduced position should therefore have explicit
+re-entry conditions. Renewed buying is useful evidence only when it can be
+connected to new information, an anticipated participant response, and a still
+attractive remaining payoff.</p>
+<h4>Evidence of persistence</h4>
+<ul>
+<li>Fundamental indicators, demand, backlog, capacity use, margins, or cash flow
+  continue to improve or accelerate.</li>
+<li>The trend spreads through an expected value chain or customer base rather than
+  depending on one fragile observation.</li>
+<li>Earnings estimates or other measurable expectations still lag the revised
+  economics.</li>
+<li>The company is demonstrably capturing the value pool rather than merely being
+  adjacent to a popular narrative.</li>
+<li>Price confirmation is consistent with the evidence and does not exhaust the
+  scenario-weighted upside.</li>
+</ul>
+<h4>Warnings of saturation or fragility</h4>
+<ul>
+<li>Price appreciation is materially faster than improving economics, estimates,
+  or the plausible valuation range.</li>
+<li>The evidence is narrowing, decelerating, or becoming dependent on a single
+  customer, product, or event.</li>
+<li>Positioning, valuation, liquidity, or financing creates an asymmetric unwind
+  risk.</li>
+<li>The market's prior skepticism has visibly disappeared without a correspondingly
+  larger remaining payoff.</li>
+</ul>
+<h4>Default actions</h4>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Default action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evidence strengthens; remaining payoff remains attractive</td>
+<td>Initiate or add, subject to sizing and portfolio constraints.</td>
+</tr>
+<tr>
+<td>Evidence strengthens; price has caught up</td>
+<td>Hold or wait; do not add merely because the trend is popular.</td>
+</tr>
+<tr>
+<td>Evidence is unchanged; price falls without thesis impairment</td>
+<td>Re-underwrite; add only if the scenario/payoff map improves and portfolio risk permits.</td>
+</tr>
+<tr>
+<td>Evidence weakens or the market now prices the thesis</td>
+<td>Trim, pause, hedge, or exit.</td>
+</tr>
+</tbody>
+</table>
+<h3>Staging and Execution</h3>
+<p>Investment timing may choose a one-time entry or a staged transition. Staging
+is useful when uncertainty, event risk, liquidity, or portfolio constraints
+make the desired final exposure inappropriate today.</p>
+<p>The timing decision specifies the desired exposure path. Execution then selects
+the trading schedule, order style, participation limit, and cost/risk tradeoff.
+Execution cannot repair a weak investment-timing decision.</p>
+<h3>Catalyst-Aware Exposure Path</h3>
+<p>The catalyst is defined in thesis formation as the mechanism that closes the
+market-error explanation. Timing does not redefine it. For each relevant
+evidence window, timing records the desired exposure before and after the
+catalyst: what becomes observable, whose view may change, and the expected
+effect on expectations, positioning, or price.</p>
+<p>Typical choices are:</p>
+<ul>
+<li>own full, partial, or no exposure before the event;</li>
+<li>wait for the event to remove uncertainty and accept a potentially higher entry
+  price;</li>
+<li>add only if the event confirms a specified condition; or</li>
+<li>reduce risk because the event could reveal a binary thesis failure.</li>
+</ul>
+<h3>Add, Trim, Exit, Pause, and Hedge Rules</h3>
+<p>Timing rules should be contingent on evidence and market state, not only on a
+mechanical price target.</p>
+<ul>
+<li><strong>Add:</strong> confirmation improves expected value or confidence and remaining
+  payoff still clears the risk hurdle.</li>
+<li><strong>Trim:</strong> price incorporates more than the new evidence justifies, risk budget
+  is breached, or crowding/liquidity fragility rises.</li>
+<li><strong>Exit:</strong> the thesis invalidates, the catalyst/path fails, the payoff is
+  realized, or a superior use of risk budget exists.</li>
+<li><strong>Pause:</strong> evidence is insufficient or contradictory; preserve the research
+  object but do not add risk.</li>
+<li><strong>Hedge:</strong> retain the thesis while reducing a separable macro, factor, event,
+  or portfolio risk.</li>
+</ul>
+<h3>No-Action Decision</h3>
+<p>No action is a positive timing decision. It applies when a thesis is sound but
+the expected value of owning risk today is inferior to waiting for a specified
+evidence condition, a better price, a portfolio-risk release, or a more liquid
+implementation window.</p>
+<p>Every no-action decision must state its next review trigger. “Wait for a better
+entry” is insufficient without a reason and a condition that resolves it.</p>
+<h3>Minimum Decision Record</h3>
+<pre><code class="language-yaml">timing_policy:
+  thesis_ref:
+  thesis_path_archetype:
+  current_stage: early | confirming | mature | broken
+  recognition_posture: first | staged | confirming | late
+  firstness_type: pre_evidence | interpretation_first | positioning_first | not_applicable
+  decision_horizon:
+  truth_probability_ref:
+  recognition_probability_by_horizon_ref:
+  weakest_recognition_gate:
+  expected_confirmation_gap:
+  falling_knife_assessment:
+    price_decline_driver:
+    possible_informed_selling:
+    evidence_of_forced_or_temporary_selling:
+    survival_assessment:
+    early_but_right_vs_wrong_test:
+  path_survivability:
+    financing_and_carry:
+    drawdown_and_risk_budget:
+    liquidity_under_stress:
+    instrument_tenor:
+    opportunity_cost:
+  value_of_waiting:
+  cost_of_waiting:
+  full_target_weight_ref:
+  pre_confirmation_max_fraction:
+  current_fraction_of_full_risk:
+  decision: initiate | add | hold | trim | exit | pause | hedge | no_action
+  next_evidence_window:
+  remaining_payoff_assessment:
+  price_vs_evidence_assessment:
+  entry_or_change_rationale:
+  risk_if_wrong:
+  add_if: []
+  hold_if: []
+  reduce_if: []
+  exit_if: []
+  reenter_if: []
+  next_review_trigger:
+  reason_codes: []
+</code></pre>
+<p>Useful reason codes include:</p>
+<pre><code class="language-text">recognition_horizon_too_long
+path_not_survivable
+value_of_waiting_exceeds_cost
+being_first_not_justified
+falling_knife_risk_unresolved
+expected_confirmation_gap_material
+scout_position_only
+wait_for_validation
+confirmation_too_expensive
+remaining_payoff_insufficient
+no_credible_marginal_buyer
+thesis_invalidated
+no_action
+</code></pre>
+<h3>Open Decisions</h3>
+<ul>
+<li>Which evidence and market-state measures should define a confirming secular
+  tailwind in V0?</li>
+<li>When should positive momentum justify an add versus merely prevent a trim?</li>
+<li>What event-risk and liquidity thresholds require staged entry or a no-action
+  decision?</li>
+<li>What minimum $q_T$ and remaining annualized payoff justify carrying
+  pre-recognition risk?</li>
+<li>How should path-survivability failures reduce the timing fraction versus
+  forcing a different expression, smaller target size, or no selection?</li>
+<li>Which observations are strong enough to trigger re-entry after an early exit?</li>
+<li>How large must the expected confirmation gap be to justify going first?</li>
+<li>What maximum fraction of full intended exposure should be permitted before
+  direct evidence or market confirmation?</li>
+<li>Which evidence best distinguishes informed selling from forced or temporary
+  selling in a falling security?</li>
+</ul>
+</article>
+<article id="doc-5_state-update-and-learning" hidden>
+<a class="source-link" href="../../human-reviewed/5_state-update-and-learning.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>5. State Update And Learning</h1>
+<p>Status: draft for human review
+Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a></p>
+<h2>Core Function</h2>
+<pre class="formula"><code>(C^E_{t+1},C^I_{t+1},\Theta_{t+1})
+=
+\operatorname{Update}(C^E_t,C^I_t,\Theta_t;O_{t+1}).</code></pre>
+
+<ul>
+<li><strong>$O_{t+1}$ — observations:</strong> new evidence, actions, market changes, and
+  outcomes.</li>
+<li><strong>$C^E_{t+1}$:</strong> updated external context.</li>
+<li><strong>$C^I_{t+1}$:</strong> updated portfolio state and constraint use.</li>
+<li><strong>$\Theta_{t+1}$:</strong> updated thesis state produced by the same pipeline in maintenance mode.</li>
+</ul>
+<h2>1. Run the Exact Same Pipeline</h2>
+<p><strong>First run:</strong> Run the pipeline to build the driver map, debates, market view,
+variant view, model, return distribution, and portfolio decision.</p>
+<p><strong>Maintenance:</strong> Run the exact same pipeline with the existing state plus the
+information that arrived or changed since the last successful update. Each
+stage asks whether its prior output should change. Use the new information
+alongside the full relevant context, including accumulated evidence.</p>
+<p><strong>Existing state + information diff → same pipeline in maintenance mode →
+updated state and decision, often “pass, do nothing.”</strong></p>
+<p>The stages retain the same purpose and output. “No change” is a valid result
+at each stage; reuse a valid prior output when its inputs are unchanged rather
+than repeat research or calculations. Continue evaluating independently changed
+inputs—for example, a new price can change expected returns even if the thesis
+is unchanged. Maintenance is not a separate thesis-formation process.</p>
+<h2>2. First Run Versus Maintenance</h2>
+<table>
+<thead>
+<tr>
+<th>Pipeline stage</th>
+<th>First run</th>
+<th>Maintenance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1A. Stock Drivers</strong></td>
+<td>Identify the financial and operating drivers and current pricing framework.</td>
+<td>Are those drivers changing? Does new evidence reveal a missing driver or a shift in what the stock trades on?</td>
+</tr>
+<tr>
+<td><strong>1B. Gather Relevant Context</strong></td>
+<td>Gather and filter the relevant evidence base.</td>
+<td>Collect new or revised information, remove repetition, and link it to existing research. Retain evidence that challenges the current map.</td>
+</tr>
+<tr>
+<td><strong>2A. Key Debates</strong></td>
+<td>Identify material questions and competing perspectives.</td>
+<td>Does the evidence resolve, change, or introduce a debate? Retire resolved questions and preserve what resolved them.</td>
+</tr>
+<tr>
+<td><strong>2B. Market Expectations</strong></td>
+<td>Establish the qualitative market view and key numbers using expectations, reverse valuation, and comps.</td>
+<td>What changed in guidance, consensus, buy-side bogeys, shared checks, cohort views, or positioning? Refresh price-implied assumptions and comps; record the prior versus current market view.</td>
+</tr>
+<tr>
+<td><strong>2C. Variant View</strong></td>
+<td>Identify what the market is missing or misjudging, map its implications, and test our disagreement.</td>
+<td>Does the evidence strengthen, weaken, invalidate, or eliminate our disagreement? Has the market caught up, or has the recognition path changed?</td>
+</tr>
+<tr>
+<td><strong>2D. Price Impact</strong></td>
+<td>Build the bridge from market and variant assumptions to metrics and conditional prices.</td>
+<td>Reconcile new actuals, revise affected forward assumptions, and recalculate prices using the existing model. Rebuild the model where the business or pricing framework has changed.</td>
+</tr>
+<tr>
+<td><strong>2E. Return Distribution</strong></td>
+<td>Define scenarios, assign probabilities, and calculate returns at a common horizon.</td>
+<td>Revise scenarios and probabilities where justified; refresh returns from the current price and remaining horizon, including delays in recognition.</td>
+</tr>
+<tr>
+<td><strong>3. Internal Context</strong></td>
+<td>Establish portfolio state, operating capacity, mandate, and constraints.</td>
+<td>Refresh positions, cash, orders, exposures, borrow, liquidity, and any authorized constraint changes.</td>
+</tr>
+<tr>
+<td><strong>4B. Sizing</strong></td>
+<td>Combine 2E outputs with portfolio risk and constraints to calculate target weights.</td>
+<td>Recalculate targets when returns, dependencies, portfolio state, or constraints change; compare with current exposure.</td>
+</tr>
+<tr>
+<td><strong>4C. Timing</strong></td>
+<td>Decide when and under what conditions to move toward target weights.</td>
+<td>Reassess whether to add, hold, trim, exit, or wait given the updated evidence, price, and next event.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Same Questions, New Comparison:</strong> At each stage, ask what changed versus the prior state, how material it is, and what follows—not merely whether another document appeared.</li>
+<li><strong>Cadence:</strong> The loop could check every ten or thirty minutes. This is a proposed polling frequency, not a requirement to change beliefs or trade each time.</li>
+<li><strong>Processing State:</strong> Track successful checks by source, include late arrivals and corrections, and save observations and dispositions before advancing checkpoints. A failed source check is not “nothing new.”</li>
+<li><strong>Accumulation:</strong> Keep relevant observations even when they individually produce no change; a pattern may eventually warrant revision or targeted research.</li>
+<li><strong>Urgent Risk:</strong> Financing, liquidity, or constraint problems go directly to the existing portfolio controls without waiting for a complete research pass.</li>
+</ul>
+<h2>3. Key Cases</h2>
+<ul>
+<li>
+<p><strong>Upcoming Earnings</strong></p>
+</li>
+<li>
+<p>Freeze our forecast, consensus, buy-side bogeys, and the metrics that test the key debates before the release.</p>
+</li>
+<li>
+<p>State what different outcomes would imply for the thesis and model.</p>
+</li>
+<li>
+<p><strong>New Earnings or Guidance</strong></p>
+</li>
+<li>
+<p>Reconcile reported results and guidance with the preview. Explain surprises in volume, pricing, mix, costs, or timing.</p>
+</li>
+<li>
+<p>Update the model and assess changes to the debates, market expectations, variant view, and scenario returns.</p>
+</li>
+<li>
+<p><strong>New Product Release</strong></p>
+</li>
+<li>
+<p>Does it introduce a new driver or change adoption, pricing, competition, costs, or cannibalization assumptions?</p>
+</li>
+<li>
+<p>Distinguish a product announcement from evidence of adoption and economic value; update the affected research or investigate what remains unknown.</p>
+</li>
+<li>
+<p><strong>Customer, Competitor, or Industry Datapoint</strong></p>
+</li>
+<li>
+<p>What reads through to the company, and how comparable is the evidence? Account for differences in customers, products, periods, and definitions.</p>
+</li>
+<li>
+<p>Assess whether it changes a driver forecast or adds to an accumulating pattern.</p>
+</li>
+<li>
+<p><strong>New Checks, Buy-Side Feedback, or Consensus Revisions</strong></p>
+</li>
+<li>
+<p>Has the market's bogey changed even if our business forecast has not?</p>
+</li>
+<li>
+<p>Refresh 2B, then reassess the size of our disagreement and remaining payoff.</p>
+</li>
+<li>
+<p><strong>Price, Valuation, or Positioning Move</strong></p>
+</li>
+<li>
+<p>Has the remaining return distribution changed at the new price? Is the stock beginning to trade on a different driver?</p>
+</li>
+<li>
+<p>Refresh the relevant valuation, return, sizing, and timing work without inventing a business-thesis change.</p>
+</li>
+<li>
+<p><strong>Macro, Financing, Liquidity, or Portfolio Change</strong></p>
+</li>
+<li>
+<p>Which scenario assumptions, shared exposures, or constraints change?</p>
+</li>
+<li>
+<p>Route urgent risk issues directly to internal context and portfolio controls; they do not wait for a full thesis review.</p>
+</li>
+<li>
+<p><strong>Missed Milestone or Periodic Model Review</strong></p>
+</li>
+<li>
+<p>Has an expected event failed to happen, the recognition path slipped, or an assumption become stale?</p>
+</li>
+<li>Periodically re-underwrite the whole idea: would we form the same thesis today, and what have incremental updates overlooked?</li>
+</ul>
+<h2>4. Output and Learning</h2>
+<ul>
+<li><strong>Change Record:</strong> Source, observation and availability dates, prior assumption, revised assumption or no-change rationale, and affected drivers or debates.</li>
+<li><strong>Updated State:</strong> Refreshed research, model, market expectations, scenarios, and return distribution where applicable, with prior versions retained.</li>
+<li><strong>Portfolio Handoff:</strong> Send changes in payoff, risk, or recognition timing to <a href="#doc-4b_sizing">4B sizing</a> and <a href="#doc-4c_timing">4C timing</a>.</li>
+<li><strong>Learning:</strong> Compare outcomes with the forecasts recorded beforehand. Distinguish business-forecast, market-expectations, valuation, sizing, timing, and execution errors from luck; use resolved forecasts to assess probability calibration.</li>
+<li><strong>Next Review:</strong> Record outstanding research, stale dependent outputs, processing checkpoints, and the next event, price, or scheduled trigger.</li>
+</ul>
+</article>
+<article id="doc-Other--executor-allocation" hidden>
+<a class="source-link" href="../../human-reviewed/Other/executor-allocation.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>Who Does What — Executor Allocation</h1>
+<p>Status: draft for human review
+Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a></p>
+<h2>Purpose</h2>
+<p>Assign each investment function to the executor best suited to perform it
+reliably, auditably, and within the fund's authority boundaries.</p>
+<pre class="formula"><code>\operatorname{owner}(f_v)
+\in
+\{\mathsf{AI},\mathsf{Code},\mathsf{Human}\}.</code></pre>
+
+<h2>AI</h2>
+<p>AI performs as much of the research, reasoning, coordination, monitoring, and
+decision loop as it can reliably handle, particularly work involving
+unstructured information and judgment under uncertainty. Its outputs retain
+sources, assumptions, uncertainty, and escalation conditions.</p>
+<h2>Deterministic Code</h2>
+<p>Deterministic code performs explicit calculations, optimization, numerical
+and structural validation, exposure measurement, reconciliation, and hard-rule
+enforcement. An LLM may prepare inputs or explain outputs but may not
+substitute for these services.</p>
+<h2>Humans</h2>
+<p>Humans define the constitution, mandate, objectives, risk tolerance, and
+authority boundaries. They resolve exceptional cases requiring accountable
+judgment and explicitly approve any change to the governing rules.</p>
+<h2>Function Contract</h2>
+<p>Every function records its owner, permitted inputs, permitted state reads and
+writes, output object, validation rule, abstention behavior, escalation path,
+and next consumer. A function cannot expand its own authority.</p>
+<h2>Visualization Contract</h2>
+<p>When the investment system is rendered as a graph, preserve three distinct
+dimensions:</p>
+<ul>
+<li><strong>Node identity:</strong> the function instance performing a state transformation.</li>
+<li><strong>Object identity:</strong> the canonical input and output types defined in
+  <a href="../../skills/OBJECTS.md">Object Store And Envelope</a>; show these in node
+  labels and on object-flow edges rather than inventing a second vocabulary.</li>
+<li><strong>Node color:</strong> reserve color exclusively for the function's primary
+  executor: <strong>AI</strong>, <strong>deterministic code</strong>, or <strong>human</strong>.</li>
+</ul>
+<p>Function type—such as Gather, Filter, Compress, Hypothesize, Validate, Compute,
+or Act—may be encoded by a text tag, glyph, or shape, but not by another color.
+Give every function one accountable primary owner. Show supporting executors
+with typed inbound edges or annotations rather than blended or gradient colors.
+Raw external artifacts may appear as low-opacity context particles, but they
+are not executor-owned nodes until a function admits them into a canonical
+object.</p>
+<p>The full graph should make the fund's many-to-one compression visible: broad
+external and internal context enters at the top, canonical objects pass through
+successively narrower functions, and one terminal decision object remains:
+selection, sizing, and timing, including no action.</p>
+<h2>Allocation Principle</h2>
+<p>Minimize recurring human execution without removing human accountability.
+Subject to validation and governance, the allocation should produce broader
+search, deeper checking, closer process adherence, higher-quality output,
+continuous operation, and lower marginal cost.</p>
+</article>
+<article id="doc-Other--portfolio-constitution-and-decision-governance" hidden>
+<a class="source-link" href="../../human-reviewed/Other/portfolio-constitution-and-decision-governance.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>$K$ — Portfolio Constitution And Decision Governance</h1>
+<p>Status: proposed companion to <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a>
+Scope: mock/shadow portfolio design only; no real-capital authority</p>
+<h2>The Missing Operational Layer</h2>
+<p>V4 correctly defines the hedge fund as:</p>
+<pre class="formula"><code>D=\Phi(C^E;C^I), \qquad C^I=(S,K).</code></pre>
+
+<p>It names the elements of $K$—mandate, risk budgets, concentration, liquidity, drawdown, approval, and escalation rules—but does not yet specify their <strong>operational contract</strong>: what exactly is optimized, which rules are hard, how qualitative exposure becomes measurable, who may change a rule, and when an action must be blocked.</p>
+<p>This document defines that missing layer. It is the constitution surrounding the expression function, not a replacement for thesis formation, sizing, or timing.</p>
+<pre><code class="language-text">evidence -&gt; competing perspectives -&gt; forecast/payoff inputs
+                                          |
+portfolio state + constitution --------&gt; feasible action set
+                                          |
+                               deterministic risk / optimization
+                                          |
+                        proposed action | no action | escalation
+</code></pre>
+<h2>1. A Nested, Not Single-Score, Objective</h2>
+<p>“Make good risk-adjusted money” is not a usable decision rule. It does not say when expected return is worth a larger drawdown, more liquidity risk, or greater thematic concentration.</p>
+<p>The decision rule should be lexicographic:</p>
+<pre class="formula"><code>\begin{aligned}
+\text{First: }&amp; \text{stay within survival, legal, mandate, and hard-risk limits};\\
+\text{Then: }&amp; \text{maximize expected net return over the stated horizon};\\
+\text{Then: }&amp; \text{apply declared tie-breakers, not conversational preference}.
+\end{aligned}</code></pre>
+
+<p>Formally, with portfolio state $S$, candidate action $a$, and constitution $K$:</p>
+<pre class="formula"><code>\mathcal A(S,K)=\{a : a \text{ satisfies all hard rules in } K\},</code></pre>
+
+<pre class="formula"><code>a^*=\arg\max_{a\in \mathcal A(S,K)}\mathbb E[\text{net return}\mid a],</code></pre>
+
+<p>with declared tie-breakers such as lower expected shortfall, lower stressed-liquidation days, lower turnover/cost, or lower concentration. The optimizer does not decide what risks are acceptable; it only chooses inside the human-set feasible set.</p>
+<h2>2. The Constitution Schema</h2>
+<p>Every limit needs: definition, unit, measurement method, data source, refresh cadence, owner, effective date, version, and response to a breach. A number without these fields is not a control.</p>
+<table>
+<thead>
+<tr>
+<th>Field family</th>
+<th>Required fields</th>
+<th>Why it exists</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity and mandate</td>
+<td>strategy identity; benchmark/counterfactual; horizon; eligible universe; prohibited instruments; base currency</td>
+<td>Prevents an apparently attractive trade from silently changing the product.</td>
+</tr>
+<tr>
+<td>Objective</td>
+<td>expected <strong>net</strong> return definition; fees, financing, borrow, transaction costs; declared tie-break order</td>
+<td>Makes the function optimize a defined outcome.</td>
+</tr>
+<tr>
+<td>Loss and tail budget</td>
+<td>maximum loss budget; high-water-mark definition; expected-shortfall metric; named stress scenarios; drawdown ladder and re-risk gate</td>
+<td>Protects survival and makes downside response pre-committed.</td>
+</tr>
+<tr>
+<td>Directional and factor exposure</td>
+<td>gross, net, beta, factor, macro-regime, volatility limits</td>
+<td>Measures what the portfolio is actually long and short.</td>
+</tr>
+<tr>
+<td>Concentration</td>
+<td>single name, issuer group, sector, country, theme, and common-driver limits</td>
+<td>Prevents a book of many tickers from being one bet.</td>
+</tr>
+<tr>
+<td>Liquidity and financing</td>
+<td>days-to-liquidate; ADV and market-impact assumptions; cash/collateral buffer; leverage; financing maturity; counterparty; borrow/recall limits</td>
+<td>Ensures the fund can survive its required exit path.</td>
+</tr>
+<tr>
+<td>Execution and capacity</td>
+<td>turnover limit; cost budget; order-size limits; capacity assumptions</td>
+<td>Stops paper alpha from becoming uneconomic churn.</td>
+</tr>
+<tr>
+<td>Evidence and model validity</td>
+<td>source freshness; provenance; uncertainty; required falsifier; missing-data behavior; model/out-of-distribution flags</td>
+<td>Prevents prose conviction from masquerading as an input.</td>
+</tr>
+<tr>
+<td>Authority and exceptions</td>
+<td>AI proposal rights; deterministic block rules; human approvals; exception sponsor, expiry, and compensating control</td>
+<td>Keeps the model from relaxing its own guardrails.</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>prediction record; action record; attribution taxonomy; postmortem and calibration cadence</td>
+<td>Lets the system improve without rewriting history.</td>
+</tr>
+</tbody>
+</table>
+<h2>3. Semantic Theme Concentration Is A First-Class Risk Control</h2>
+<p>This is the bridge between qualitative judgment and deterministic enforcement.</p>
+<p>Sector labels, correlations, and ticker counts are inadequate by themselves. A portfolio can own semiconductor, memory, networking, power, and software names while being one large bet on the AI-accelerator-capex cycle. Equally, statistical correlation can miss a common driver before the market realizes it.</p>
+<p>Define a theme by a shared causal dependency, not semantic proximity alone:</p>
+<pre><code class="language-yaml">theme_exposure_link:
+  instrument_id:
+  theme_id: ai_accelerator_capex_cycle
+  causal_driver: hyperscaler_and_sovereign_spending_on_accelerated_compute
+  economic_channels: [revenue, margin, valuation_multiple, financing]
+  direction: benefits_if_driver_strengthens | harmed_if_driver_strengthens | mixed
+  exposure_strength: 0.0_to_1.0
+  evidence_refs: []
+  alternative_explanations: []
+  confidence: low | medium | high
+  review_by:
+  status: proposed | validated | disputed | retired
+</code></pre>
+<p>The AI/analyst proposes and explains the link. A validation process checks it. A deterministic service calculates the exposure:</p>
+<pre class="formula"><code>E_t^{gross}=\sum_i |w_i|s_{i,t},
+\qquad
+E_t^{net}=\sum_i w_i d_{i,t}s_{i,t},</code></pre>
+
+<p>where $w_i$ is position weight, $s_{i,t}$ is validated theme strength, and $d_{i,t}$ is the directional sign. A company can have several theme links; do not force exclusive buckets.</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Required response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High-confidence mapping, within limit</td>
+<td>Permit ordinary portfolio review.</td>
+</tr>
+<tr>
+<td>Warning band reached or mapping confidence low</td>
+<td>Require review of the exposure map and explicit rationale.</td>
+</tr>
+<tr>
+<td>Theme gross limit breached</td>
+<td>Block proposed action except under a time-bounded human-approved exception.</td>
+</tr>
+<tr>
+<td>Statistical correlation or shared drawdown lacks a semantic explanation</td>
+<td>Open a representation-gap investigation.</td>
+</tr>
+<tr>
+<td>Semantic and statistical evidence agree</td>
+<td>Apply the more conservative control.</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Perspective Integrity: The AI Must Not Adopt The PM's View As Evidence</h2>
+<p>The AI should not be asked to “have opinions” in a chatty sense. It needs a persistent, auditable belief state that changes only for authorized reasons.</p>
+<pre><code class="language-text">PM value or risk preference -&gt; mandate / constraint
+PM directional statement    -&gt; labeled sponsor hypothesis
+admissible evidence         -&gt; independent belief ledger
+belief ledger + constitution -&gt; action proposal
+</code></pre>
+<p>A sponsor hypothesis can trigger research and red-teaming. It cannot change the official probability or trade recommendation merely by being restated.</p>
+<p>The required check is framing invariance: run a frozen evidence packet with neutral, bullish-sponsor, and bearish-sponsor framing. The official belief must remain within tolerance unless new evidence, a model correction, or a changed mandate is recorded. A requested bull or bear case is a scenario artifact, not an update to the official ledger.</p>
+<p>This framing-invariance check is a proposed control; its tolerance and review
+procedure must be defined before operational use.</p>
+<h2>5. Decision Object And Enforcement</h2>
+<p>The output of V4's expression function should not be only $(Z,T)$. It needs a reviewable decision object:</p>
+<pre><code class="language-yaml">portfolio_decision:
+  decision_id:
+  as_of_time:
+  constitution_version:
+  belief_ledger_ref:
+  proposed_action: enter | add | trim | hedge | exit | wait | no_action
+  target_weight_and_timing:
+  expected_net_return_and_uncertainty:
+  incremental_risk:
+    factor: []
+    semantic_theme: []
+    liquidity:
+    financing_and_borrow:
+    tail_and_stress:
+  binding_constraints: []
+  alternatives_considered: []
+  disconfirming_evidence_and_kill_criteria: []
+  control_result: allow | warn | block | escalate
+  exception_ref: null
+  reviewer_or_authority:
+</code></pre>
+<p>No input to this object should be silently inferred from prose. The LLM prepares source-backed hypotheses and structured estimates; data/risk/optimization services calculate exposures, stress, limits, and feasible weights.</p>
+<h2>6. What V4 Already Has, And What This Adds</h2>
+<table>
+<thead>
+<tr>
+<th>V4 capability</th>
+<th>Status in V4</th>
+<th>This companion adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External world and market state</td>
+<td>Clearly defined in $C^E$</td>
+<td>No replacement needed.</td>
+</tr>
+<tr>
+<td>Variant thesis, market belief, catalyst, payoff</td>
+<td>Strong companion workflow</td>
+<td>Persistent belief-update permission and sponsor-view separation.</td>
+</tr>
+<tr>
+<td>Position sizing and timing</td>
+<td>Strong single-thesis inputs and expression path</td>
+<td>Portfolio-wide objective, feasible set, and decision-object contract.</td>
+</tr>
+<tr>
+<td>Constraints in $K$</td>
+<td>Correctly named</td>
+<td>Definitions, units, hierarchy, owner, version, breach behavior, and exception protocol.</td>
+</tr>
+<tr>
+<td>Concentration/factor/liquidity</td>
+<td>Named as checks</td>
+<td>Semantic/common-driver exposure mapping and deterministic aggregation.</td>
+</tr>
+<tr>
+<td>Learning/state update</td>
+<td>Named as recurrent loop</td>
+<td>Forecast scoring, action attribution, and immutable belief/decision history.</td>
+</tr>
+</tbody>
+</table>
+<h2>7. Smallest Useful V0</h2>
+<p>Do not start by choosing final numerical limits. For one mock public-equity long/short book:</p>
+<ol>
+<li>version a short constitution with the field families above;</li>
+<li>define one benchmark, one objective horizon, and a handful of named stress scenarios;</li>
+<li>map 10–20 names to a few causal themes, including confidence and evidence;</li>
+<li>run every proposed entry/add/trim/exit through the <code>portfolio_decision</code> schema; and</li>
+<li>measure which constraints bind, which semantic maps were wrong, and whether sponsor framing moved an official belief without evidence.</li>
+</ol>
+<p>The success criterion is not a beautifully tuned optimizer. It is an auditable, repeatable explanation of why an action was allowed, blocked, sized, or left at zero.</p>
+</article>
+<article id="doc-Other--stock-return-and-catalyst-taxonomy" hidden>
+<a class="source-link" href="../../human-reviewed/Other/stock-return-and-catalyst-taxonomy.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>Stock Return And Catalyst Taxonomy</h1>
+<p><a href="#doc-hedge-fund-as-a-function-v4">Operating-loop overview</a> ·
+<a href="#doc-1a_stock_drivers">Understand What Drives the Stock</a> ·
+<a href="#doc-2c_form-a-variant-view">Form a Variant View</a> ·
+<a href="#doc-4c_timing">Timing</a></p>
+<h2>Core idea</h2>
+<p>A stock goes up when the market raises the value of the future cash flows and
+claims attributable to each share, lowers the return required to own those
+claims, or when buying pressure temporarily outruns available supply. It goes
+down through the mirror image.</p>
+<p>For a simple earnings-multiple representation:</p>
+<pre class="formula"><code>P_t = F_t \times M_t,</code></pre>
+
+<p>where $F_t$ is the market's chosen forward fundamental metric per share and
+$M_t$ is the multiple applied to it. Therefore:</p>
+<pre class="formula"><code>\frac{P_1}{P_0}
+=
+\frac{F_1}{F_0}
+\times
+\frac{M_1}{M_0}.</code></pre>
+
+<p>This is an attribution identity, not a complete valuation model. $F$ may be
+next-twelve-month EPS, out-year EPS, free cash flow per share, NAV, or a
+probability-weighted payoff. $M$ compresses discount rates, duration,
+quality, risk, and the valuation convention used by marginal investors.</p>
+<p>For underwriting, use the fuller bridge:</p>
+<pre><code class="language-text">realized shareholder return
+= change in the forward fundamental path per share
++ change in valuation / required return
++ cash and other value distributed to shareholders
++ change in security rights or share count
++ temporary or persistent market-mechanics effects
++ interaction terms
+</code></pre>
+<p>In multiplicative form, the interaction is real. If forward EPS rises 20% and
+the P/E rises from 20x to 25x, price rises $1.20 \times 1.25 - 1 = 50\%$, not
+45%.</p>
+<h2>1. The ways stocks go up or down</h2>
+<h3>1.1 Forward fundamental-path change</h3>
+<p>The market revises the amount, timing, persistence, or probability of future
+cash flows attributable to each share.</p>
+<table>
+<thead>
+<tr>
+<th>Up</th>
+<th>Down</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Higher unit demand, volume, price, or market share</td>
+<td>Lower demand, lost share, price pressure, or churn</td>
+</tr>
+<tr>
+<td>Better mix, gross margin, operating leverage, or cost structure</td>
+<td>Mix deterioration, margin compression, or diseconomies</td>
+</tr>
+<tr>
+<td>Lower capex or working-capital needs; higher cash conversion</td>
+<td>Higher capital intensity, working-capital use, or weak cash conversion</td>
+</tr>
+<tr>
+<td>Higher state probability: approval, launch, survival, successful transition</td>
+<td>Lower approval, launch, survival, or transition probability</td>
+</tr>
+<tr>
+<td>Greater persistence or a longer competitive-advantage period</td>
+<td>Pull-forward, saturation, mean reversion, or shorter duration</td>
+</tr>
+<tr>
+<td>Accretive buybacks or capital allocation raise value per share</td>
+<td>Dilution, SBC, bad M&amp;A, or value-destructive capital allocation lowers value per share</td>
+</tr>
+</tbody>
+</table>
+<p>This is the broad meaning of a <strong>forward revision</strong>. It is not limited to the
+next consensus EPS number. A revision can affect the whole revenue and margin
+curve, terminal economics, the probability distribution across scenarios, or
+the number of shares over which value is divided.</p>
+<p>Three distinctions matter:</p>
+<ol>
+<li><strong>Level versus revision.</strong> High growth is not bullish if the market already
+   expected higher growth. Price responds to the change relative to the prior.</li>
+<li><strong>Reported versus forward.</strong> A backward-looking beat matters only to the
+   extent it changes beliefs about the future generating process.</li>
+<li><strong>Near-term versus duration.</strong> A one-quarter EPS increase may be worth less
+   than evidence that a smaller improvement persists for five years.</li>
+</ol>
+<h3>1.2 Valuation or required-return change</h3>
+<p>The expected cash-flow path can remain unchanged while investors change the
+price they will pay for it.</p>
+<table>
+<thead>
+<tr>
+<th>Multiple expansion / lower required return</th>
+<th>Multiple compression / higher required return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lower risk-free rates or equity risk premium</td>
+<td>Higher rates or equity risk premium</td>
+</tr>
+<tr>
+<td>Lower company-specific uncertainty</td>
+<td>Higher uncertainty, leverage, cyclicality, or governance risk</td>
+</tr>
+<tr>
+<td>Greater confidence in durability, quality, or terminal value</td>
+<td>Shorter perceived duration or weaker terminal economics</td>
+</tr>
+<tr>
+<td>Reclassification into a higher-quality or scarcer peer group</td>
+<td>De-rating into a lower-quality, ex-growth, or impaired peer group</td>
+</tr>
+<tr>
+<td>Improved liquidity, investability, or shareholder base</td>
+<td>Liquidity deterioration, forced selling risk, or ownership overhang</td>
+</tr>
+<tr>
+<td>Reduced left-tail probability</td>
+<td>Newly visible tail risk or a wider outcome distribution</td>
+</tr>
+</tbody>
+</table>
+<p>“Narrative” belongs here only after translation. A new story can lower the
+perceived required return, lengthen the perceived duration, change the peer
+set, or attract a different marginal investor. The word alone is not a causal
+explanation.</p>
+<h3>1.3 Distributions, claims, and capital structure</h3>
+<p>Shareholder return is not identical to price return. Dividends, special
+distributions, spin-offs, tender offers, and acquisition consideration can
+transfer value to holders even when the quoted price falls mechanically.
+Conversely, dilution, new senior claims, expensive refinancing, or a coercive
+restructuring can reduce the value of the existing equity claim.</p>
+<p>Buybacks sit in two places: the cash outlay changes enterprise-to-equity value,
+while the lower share count can increase value per remaining share. Whether a
+buyback is accretive depends on price paid, funding, foregone uses of cash, and
+the business's subsequent value—not on the EPS arithmetic alone.</p>
+<h3>1.4 Security supply, demand, and market mechanics</h3>
+<p>Price can move without a contemporaneous change in enterprise fundamentals:</p>
+<ul>
+<li>index inclusion or deletion and benchmark rebalancing;</li>
+<li>fund inflows or redemptions, forced deleveraging, margin calls, or liquidation;</li>
+<li>short covering, borrow recalls, or a change in lendable supply;</li>
+<li>option-dealer hedging and volatility-control or risk-parity rebalancing;</li>
+<li>block trades, lockup expirations, issuance, float changes, and liquidity gaps;</li>
+<li>crowding changes or a new marginal buyer or seller.</li>
+</ul>
+<p>These effects can reverse, persist, or become reflexive. A higher stock price
+can lower financing costs, support acquisitions, improve employee retention,
+or prevent distress, thereby changing future fundamentals. The framework must
+not label every flow-driven move “noise,” but it also must not retrofit a
+fundamental story onto a mechanical move.</p>
+<h3>1.5 Time, carry, and convergence</h3>
+<p>A stock can appreciate with no new revision because an already-expected
+fundamental path is being realized. Examples include earnings growth under a
+constant multiple, a discount to a known cash payment closing as the payment
+date approaches, or uncertainty resolving without changing the mean payoff.</p>
+<p>This is why “the stock rose” does not prove that estimates were revised upward.
+Attribution must separate:</p>
+<ul>
+<li>a change in expectations;</li>
+<li>delivery of the expectations already embedded in price;</li>
+<li>a change in the valuation applied to those expectations; and</li>
+<li>market mechanics.</li>
+</ul>
+<h2>2. What counts as a forward revision</h2>
+<h3>Direct forward revisions</h3>
+<ul>
+<li>management raises or cuts revenue, margin, EPS, FCF, capex, or KPI guidance;</li>
+<li>analysts change estimates after new evidence;</li>
+<li>company-provided backlog, bookings, pricing, capacity, or pipeline changes;</li>
+<li>a probability-weighted milestone changes expected launch, approval, default,
+  recovery, or commercialization value.</li>
+</ul>
+<h3>Evidence that looks like, leads, or forces a forward revision</h3>
+<ul>
+<li>a reported-quarter result reveals a different run rate or earning process;</li>
+<li>customer, supplier, competitor, channel, or geographic read-through;</li>
+<li>market-share, traffic, usage, retention, pricing, inventory, or lead-time data;</li>
+<li>hiring, capex, capacity, or procurement behavior that reveals management's
+  private demand expectation;</li>
+<li>a product-quality, cost-curve, or technical benchmark that changes future
+  adoption or unit economics;</li>
+<li>regulation, tax, tariffs, litigation, reimbursement, or policy that changes
+  the future profit pool;</li>
+<li>financing availability or cost that changes survival, dilution, or growth
+  capacity;</li>
+<li>repeated evidence that changes the perceived persistence of a trend even
+  before published consensus moves.</li>
+</ul>
+<p>The research edge is often to forecast the <strong>revision before it appears in
+consensus</strong>. The causal unit is:</p>
+<pre><code class="language-text">new evidence
+-&gt; disputed operating or state assumption changes
+-&gt; forward financial distribution changes
+-&gt; published estimates may follow
+-&gt; marginal investors trade
+-&gt; price changes
+</code></pre>
+<p>Published sell-side estimate changes are therefore sometimes the catalyst,
+sometimes confirmation, and sometimes a lagging measurement of a catalyst that
+the market already processed.</p>
+<h2>3. Catalyst taxonomy: source versus transmission</h2>
+<p>A catalyst should be classified on two axes. The <strong>source class</strong> says where
+the evidence or constraint came from. The <strong>transmission channel</strong> says which
+price input it changes. Do not substitute one for the other.</p>
+<table>
+<thead>
+<tr>
+<th>Source class</th>
+<th>Examples</th>
+<th>Likely transmission channels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Earnings and guidance</td>
+<td>Results, outlook, segment disclosure</td>
+<td>Forward path, state probability, valuation</td>
+</tr>
+<tr>
+<td>Operating KPI and alternative data</td>
+<td>Usage, traffic, bookings, pricing, churn</td>
+<td>Forward path, persistence</td>
+</tr>
+<tr>
+<td>Product and competitive</td>
+<td>Launch, benchmark, win/loss, substitution</td>
+<td>Forward path, state probability, duration</td>
+</tr>
+<tr>
+<td>Customer/supplier/peer read-through</td>
+<td>Orders, inventory, capacity, pricing</td>
+<td>Forward path, diffusion across a value chain</td>
+</tr>
+<tr>
+<td>Capital allocation and corporate action</td>
+<td>Buyback, dividend, M&amp;A, spin, asset sale</td>
+<td>Per-share claims, forward path, valuation</td>
+</tr>
+<tr>
+<td>Financing and capital structure</td>
+<td>Refinancing, issuance, downgrade, covenant</td>
+<td>Survival, dilution, discount rate, security rights</td>
+</tr>
+<tr>
+<td>Management and governance</td>
+<td>CEO change, incentives, controls, activism</td>
+<td>Forward path, risk premium, capital allocation</td>
+</tr>
+<tr>
+<td>Legal, policy, and regulatory</td>
+<td>Approval, ruling, tax, tariff, reimbursement</td>
+<td>State probability, forward path, risk premium</td>
+</tr>
+<tr>
+<td>Macro and regime</td>
+<td>Rates, FX, commodities, inflation, demand</td>
+<td>Forward path, discount rate, factor exposure</td>
+</tr>
+<tr>
+<td>Positioning, flow, and technical</td>
+<td>Index event, squeeze, forced selling</td>
+<td>Security supply/demand; sometimes reflexive fundamentals</td>
+</tr>
+<tr>
+<td>Gradual recognition</td>
+<td>Revision waves, repeated KPI proof, thesis diffusion</td>
+<td>Any channel, but spread across time</td>
+</tr>
+</tbody>
+</table>
+<p>The sign is always two-sided. The same source can cause an upward forward
+revision, a downward revision, multiple expansion, multiple compression, or a
+mixed result. A company can miss current EPS yet rise because guidance and
+long-duration economics improve; it can beat and fall because the beat was
+low quality, the forward guide fell, or the required multiple compressed.</p>
+<h2>4. Required return bridge in every thesis</h2>
+<p>Every candidate thesis should attribute its conditional return by channel:</p>
+<pre><code class="language-yaml">return_bridge:
+  as_of:
+  horizon:
+  starting_price:
+  valuation_metric:
+
+  forward_fundamental:
+    market_prior:
+    example_case:
+    change_pct:
+    driver_contributions: []
+
+  valuation:
+    market_prior_multiple_or_required_return:
+    example_case_multiple_or_required_return:
+    change_pct:
+    reasons: []
+
+  distributions_and_claims:
+    dividends_or_distributions:
+    buyback_or_dilution_effect:
+    capital_structure_effect:
+
+  market_mechanics:
+    expected_effect:
+    persistence: transient | persistent | reflexive | unknown
+
+  interaction_effect:
+  implied_value:
+  implied_total_return:
+  downside_case:
+  attribution_confidence:
+</code></pre>
+<p>Every catalyst hypothesis should then name:</p>
+<ol>
+<li>the point-in-time market prior;</li>
+<li>the new evidence relative to that prior;</li>
+<li>the assumption or barrier it changes;</li>
+<li>the transmission channel in the return bridge;</li>
+<li>the expected sign, magnitude, speed, and persistence;</li>
+<li>the marginal investor expected to revise or trade; and</li>
+<li>what observation would show that the catalyst occurred but did not transmit.</li>
+</ol>
+<p>This makes “forward revisions” operational. The thesis is not merely “numbers
+go up.” It specifies which numbers, relative to what prior, because of what
+evidence, with what duration, how much value sensitivity, and whether the
+expected return also requires a favorable multiple change.</p>
+<h2>5. Diagnostic questions</h2>
+<ul>
+<li>Is the thesis underwriting a business outcome, an expectations change, or
+  both?</li>
+<li>Which part of expected return comes from fundamental revisions and which
+  part requires multiple change?</li>
+<li>Is the multiple assumption independent, or is it a second expression of the
+  same durability evidence already counted in the forward model?</li>
+<li>Does the catalyst create new information, or merely announce a date?</li>
+<li>Is consensus the relevant prior, or are whisper expectations, valuation,
+  options, and positioning more informative?</li>
+<li>Is a price move fundamental, mechanical, or reflexive, and what evidence
+  would distinguish them?</li>
+<li>Could the thesis be right about the business but wrong about the stock
+  because the result was already priced, the multiple compressed, dilution
+  intervened, or recognition took too long?</li>
+<li>Could the stock rise despite a fundamental miss because the forward
+  distribution, discount rate, or positioning improved more?</li>
+</ul>
+</article>
+<article id="doc-hedge-fund-as-a-function-v4" hidden>
+<a class="source-link" href="../../human-reviewed/hedge-fund-as-a-function-v4.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
+<h1>A Hedge Fund as a Function — Version 4</h1>
+<p>Status: current canonical overview  </p>
+<h2>Executive Summary</h2>
+<ul>
+<li>
+<p><strong>A hedge fund is a continuously running information-compression function:</strong>
+  It transforms an unbounded, noisy external world into a small set of
+  capital-allocation decisions.</p>
+</li>
+<li>
+<p><strong>The central design fallacy is thinking of AI as a tool for a human
+  investor:</strong> That framing begins with a human-centered workflow and asks where
+  AI can assist. An AI first fund should instead be designed as a system of
+  component functions i.e. <em>What is the best possible
+  allocation of the fund's functions across AI, deterministic code, and
+  humans?</em></p>
+</li>
+<li>
+<p><strong>Every higher-level AI reasoning function in the investment process can be
+  decomposed into a DAG built from four linked primitive function types:</strong>
+  1. <strong>Gather</strong> finds the plausible evidence universe for a specified object or
+     question.
+  2. <strong>Filter</strong> retains the relevant, reliable, feasible, and
+     not-already-priced subset from a feed or gathered universe.
+  3. <strong>Compress</strong> converts retained evidence into compact, decision-useful
+     representations.
+  4. <strong>Hypothesize</strong> proposes explicit, testable causal claims, forecasts, and
+     payoff implications.</p>
+</li>
+</ul>
+<pre class="formula"><code>\boxed{
+f_v:\mathcal X_v\rightarrow\mathcal Y_v,
+\qquad
+\operatorname{type}(f_v)\in
+\{\mathsf{Gather},\mathsf{Filter},\mathsf{Compress},\mathsf{Hypothesize}\}
+}</code></pre>
+
+<p>The four function types above provide the working grammar; each function must
+also specify its inputs, outputs, validation rule, and owner.</p>
+<h2>The Core Function</h2>
+<pre class="formula"><code>\boxed{
+D=
+\left(
+\underbrace{\mathrm{Sel}}_{\text{selection}},
+\underbrace{Z}_{\text{sizing}},
+\underbrace{T}_{\text{timing}}
+\right)
+=\Phi(C^E;C^I)
+}</code></pre>
+
+<ul>
+<li>$C^E$: <strong>external context</strong> — the lawful external world relevant to
+  investing;</li>
+<li>$C^I$: <strong>internal context</strong> — the fund's own state and rules for action;</li>
+<li>$D$: <strong>decision</strong> — a complete portfolio action, including no action;</li>
+<li>$\mathrm{Sel}$: <strong>selection</strong> — which assets or expressions merit
+  portfolio exposure;</li>
+<li>$Z$: <strong>sizing</strong> — the target weight and risk allocation; and</li>
+<li>$T$: <strong>timing</strong> — the path from current exposure to the target exposure.</li>
+</ul>
+<h2>Shared Research, Fund-Specific Decisions</h2>
+<p>The same research backbone can serve many funds. Stages 0–2 build a versioned,
+source-linked account of the external world: causal drivers, competing
+scenarios, probabilities, market expectations, and conditional payoffs. A
+fund's objective, existing book, or preferred trade is not evidence that a
+scenario is more likely. Distinct evidence or a corrected model can change a
+research conclusion; a different mandate alone cannot.</p>
+<p>Research outputs are reusable <strong>for the same question, information set, as-of
+time, instrument, and horizon</strong>. A fund may request a different horizon or
+payoff calculation without creating a different underlying truth. Its mandate
+may also determine which questions receive attention; that prioritization
+does not alter the answers. Preserve uncertainty and genuine disagreement in
+the shared record rather than forcing a single unsupported point view.</p>
+<p>Stage 3 supplies each fund's own state and constitution. Stage 4 uses the
+research outputs with that fund's objective, eligible instruments, current
+exposures, risk limits, costs, and execution capacity to choose selection,
+sizing, and timing. Thus one research assessment can support different
+portfolios, including a zero position or no action. In stage 5, new external
+evidence updates research; fund-specific trades, capital flows, and rule
+changes update the relevant fund's internal state. A position or P&amp;L outcome
+alone does not rewrite a research probability.</p>
+<h2><a href="#doc-Other--executor-allocation">Who Does What</a></h2>
+<pre class="formula"><code>\operatorname{owner}(f_v)
+\in
+\{\mathsf{AI},\mathsf{Code},\mathsf{Human}\}.</code></pre>
+
+<ul>
+<li><strong>AI:</strong> Perform as much of the research, reasoning, coordination, and
+  decision loop as it can reliably handle, particularly work involving
+  unstructured information and judgment under uncertainty.</li>
+<li><strong>Deterministic code:</strong> Perform explicit calculations, optimization,
+  numerical and structural validation, exposure measurement, and hard-rule
+  enforcement.</li>
+<li><strong>Humans:</strong> Define the fund's constitution and resolve exceptional cases that
+  require human judgment, accountability, or a change to the rules.</li>
+</ul>
+<h2>1. Gather Relevant Information</h2>
+<p>Sections 1 and 2 form the <strong>research loop</strong>: our current understanding directs
+information gathering, and new evidence revises the drivers, debates, and view.
+Questions from any part of thesis formation can send us back to 1A or 1B.</p>
+<h3>1A. <a href="#doc-1a_stock_drivers">Understand What Drives the Stock</a></h3>
+<p>Defines the four price inputs and current or emerging drivers that determine
+what external information is relevant.</p>
+<h3>1B. <a href="#doc-1b_gather-relevant-context">Gather Relevant Context</a></h3>
+<p>Filters external information for relevance to those price drivers, then refines
+the retained context into source-linked information objects.</p>
+<pre class="formula"><code>C^E=(\operatorname{Micro},\mathsf T,\operatorname{Macro},M).</code></pre>
+
+<ul>
+<li><strong>$\operatorname{Micro}$:</strong> company, asset, industry, value-chain, and
+  capital-structure economics.</li>
+<li><strong>$\mathsf T$:</strong> technological capability, cost curves, adoption,
+  architectures, standards, and platforms.</li>
+<li><strong>$\operatorname{Macro}$:</strong> broad economic regime, policy, geopolitics,
+  and physical or social constraints.</li>
+<li><strong>$M$:</strong> market state — expectations, valuation, positioning, flows,
+  liquidity, financing, borrow, leverage, and participant constraints.</li>
+</ul>
+<h2>2. Thesis Formation</h2>
+<ul>
+<li><strong><a href="#doc-2a_identify-key-debates">2A. Identify the Key Debates</a>:</strong> identifies
+  material questions and competing answers.</li>
+<li><strong><a href="#doc-2b_understand-market-pricing">2B. Understand Market Pricing</a>:</strong> infers
+  the market view, underlying assumptions, and what price appears to reflect.</li>
+<li><strong><a href="#doc-2c_form-a-variant-view">2C. Form a Variant View</a>:</strong> develops an
+  evidence-backed disagreement and maps the affected debates and stock drivers.</li>
+<li><strong><a href="#doc-2d_model_price_impact">2D. Model Price Impact</a>:</strong> quantifies the changes
+  in operating and financial metrics and the resulting conditional stock price.</li>
+<li><strong><a href="#doc-2e_calculate_expected_returns">2E. Calculate Expected Returns</a>:</strong> calculates probability-weighted expected returns and preserves the supporting scenarios, uncertainty, and dependencies for 4B sizing.</li>
+</ul>
+<pre class="formula"><code>\Theta
+=\{\theta_i\}_{i\in\mathcal U}
+=\operatorname{FormTheses}(C^E;\mathcal U).</code></pre>
+
+<ul>
+<li><strong>$\Theta$:</strong> the candidate-thesis set for the research universe $\mathcal U$;
+  eligible theses can be reused across funds. Each fund's permitted subset is
+  determined in stage 3, not by changing the evidence or probabilities here.</li>
+<li><strong>$V_M$:</strong> the market view embedded in expectations and price.</li>
+<li><strong>$V_V$:</strong> the research assessment's evidence-backed variant view on a
+  material driver; a fund can use it without owning the resulting trade.</li>
+<li><strong>$E_V$:</strong> evidence supporting the variant view.</li>
+<li><strong>$G_M$:</strong> why the market can maintain its current view.</li>
+<li><strong>$C$ and $\Delta P$:</strong> the catalyst and conditional price difference.</li>
+</ul>
+<h2>3. <a href="#doc-3_internal-context">Internal Context</a></h2>
+<pre class="formula"><code>C^I=(S,K),
+\qquad
+\mathcal U_{\mathrm{fund}}=\mathcal U_{\mathrm{fund}}(C^I).</code></pre>
+
+<ul>
+<li><strong>$S$ — state:</strong> positions, capital, orders, exposures, liquidity, P&amp;L,
+  financing, borrow, capacity, and readiness.</li>
+<li><strong>$K$ — constitution:</strong> mandate, objectives, constraints, risk budgets,
+  decision rights, approvals, and escalation rules.</li>
+<li><strong>$\mathcal U_{\mathrm{fund}}$ — investable universe:</strong> the assets and
+  instruments permitted by the current state and constitution; this is a
+  fund-specific subset or expression of the research universe $\mathcal U$.</li>
+</ul>
+<p>The operational contract for $K$ lives in
+<a href="#doc-Other--portfolio-constitution-and-decision-governance">Portfolio Constitution And Decision Governance</a>.</p>
+<h2>4. Expression</h2>
+<pre class="formula"><code>D
+=\operatorname{Express}(\Theta;C^I)
+=
+\left(
+\underbrace{\mathrm{Sel}}_{\text{what}},
+\underbrace{Z}_{\text{how much}},
+\underbrace{T}_{\text{when}}
+\right).</code></pre>
+
+<h3>4a. <a href="#doc-4a_selection">Selection</a></h3>
+<ul>
+<li><strong>$\mathrm{Sel}$ — what:</strong> 2A–2E identify research candidates; final
+  portfolio selection follows from nonzero target weights in 4B for this fund.</li>
+</ul>
+<h3>4b. <a href="#doc-4b_sizing">Sizing</a></h3>
+<ul>
+<li><strong>$Z$ — how much:</strong> the optimizer combines 2E return distributions with
+  portfolio risk and constraints to determine target weights, including zero.</li>
+</ul>
+<h3>4c. <a href="#doc-4c_timing">Timing</a></h3>
+<ul>
+<li><strong>$T$ — when:</strong> the conditions under which the portfolio should move from
+  its current exposure to its target exposure.</li>
+</ul>
+<p>Expression is the bridge from what the fund believes to what the portfolio
+should own. It is complete only when selection, sizing, and timing are all
+specified. No selection, zero size, and no action are valid outputs. Execution
+then determines how an approved exposure change is traded.</p>
+<h2>5. <a href="#doc-5_state-update-and-learning">State Update And Learning</a></h2>
+<pre class="formula"><code>(C^E_{t+1},C^I_{t+1},\Theta_{t+1})
+=
+\operatorname{Update}(C^E_t,C^I_t,\Theta_t;O_{t+1}).</code></pre>
+
+<ul>
+<li><strong>$O_{t+1}$ — observations:</strong> new evidence, actions, market changes, and
+  outcomes.</li>
+<li><strong>$C^E_{t+1}$:</strong> updated external context.</li>
+<li><strong>$C^I_{t+1}$:</strong> updated portfolio state and constraint use.</li>
+<li><strong>$\Theta_{t+1}$:</strong> updated thesis state produced by the same pipeline in
+  maintenance mode, reusing valid outputs whose inputs remain unchanged.</li>
+</ul>
+</article>
+</div>
+</dialog>
+<script>
+(() => {
+  const reader = document.getElementById('document-reader');
+  const title = document.getElementById('reader-title');
+  const articles = [...reader.querySelectorAll('article')];
+  let opener = null;
+  function showDocument() {
+    const article = articles.find(item => '#' + item.id === location.hash);
+    if (!article) { if (reader.open) reader.close(); return; }
+    articles.forEach(item => { item.hidden = item !== article; });
+    title.textContent = article.querySelector('h1')?.textContent || 'Framework document';
+    if (!reader.open) { opener = document.activeElement; reader.showModal(); }
+    reader.scrollTop = 0;
+  }
+  reader.addEventListener('close', () => {
+    if (articles.some(item => '#' + item.id === location.hash)) history.replaceState(null, '', location.pathname + location.search);
+    opener?.focus();
+  });
+  document.getElementById('close-reader').addEventListener('click', () => reader.close());
+  window.addEventListener('hashchange', showDocument);
+  showDocument();
+})();
+</script>
+</body>
+</html>

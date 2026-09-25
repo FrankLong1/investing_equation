@@ -1,4 +1,4 @@
-# 0. Understand What Drives the Stock
+# 1A. Understand What Drives the Stock
 
 [Core model v4](./hedge-fund-as-a-function-v4.md) ·
 [Identify the Key Debates](./2a_identify-key-debates.md) ·

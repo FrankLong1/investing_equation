@@ -14,4 +14,6 @@ The registry describes seven skills and their typed handoffs. It is a design spe
 
 [POLICY-V0.md](POLICY-V0.md) specifies policy parameters; [OBJECTS.md](OBJECTS.md) defines versioned records; [fixtures](fixtures/README.md) describe planned adverse cases. Arithmetic, optimization, hard limits, and execution require separate deterministic services. The human review gate retains decision authority.
 
+Implementation starting point: [function stubs](function_stubs.py) and [remaining gates](IMPLEMENTATION.md).
+
 Run `python3 ../scripts/validate-skill-routing.py` from this directory to check the registry.

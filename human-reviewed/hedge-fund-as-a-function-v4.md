@@ -61,6 +61,31 @@ $$
 - $Z$: **sizing** — the target weight and risk allocation; and
 - $T$: **timing** — the path from current exposure to the target exposure.
 
+## Shared Research, Fund-Specific Decisions
+
+The same research backbone can serve many funds. Stages 1–2 build a versioned,
+source-linked account of the external world: causal drivers, competing
+scenarios, probabilities, market expectations, and conditional payoffs. A
+fund's objective, existing book, or preferred trade is not evidence that a
+scenario is more likely. Distinct evidence or a corrected model can change a
+research conclusion; a different mandate alone cannot.
+
+Research outputs are reusable **for the same question, information set, as-of
+time, instrument, and horizon**. A fund may request a different horizon or
+payoff calculation without creating a different underlying truth. Its mandate
+may also determine which questions receive attention; that prioritization
+does not alter the answers. Preserve uncertainty and genuine disagreement in
+the shared record rather than forcing a single unsupported point view.
+
+Stage 3 supplies each fund's own state and constitution. Stage 4 uses the
+research outputs with that fund's objective, eligible instruments, current
+exposures, risk limits, costs, and execution capacity to choose selection,
+sizing, and timing. Thus one research assessment can support different
+portfolios, including a zero position or no action. In stage 5, new external
+evidence updates research; fund-specific trades, capital flows, and rule
+changes update the relevant fund's internal state. A position or P&L outcome
+alone does not rewrite a research probability.
+
 ## [Who Does What](Other/executor-allocation.md)
 
 $$
@@ -78,12 +103,18 @@ $$
 - **Humans:** Define the fund's constitution and resolve exceptional cases that
   require human judgment, accountability, or a change to the rules.
 
-## 0. [Understand What Drives the Stock](0_stock_drivers.md)
+## 1. Gather Relevant Information
+
+Sections 1 and 2 form the **research loop**: our current understanding directs
+information gathering, and new evidence revises the drivers, debates, and view.
+Questions from any part of thesis formation can send us back to 1A or 1B.
+
+### 1A. [Understand What Drives the Stock](1a_stock_drivers.md)
 
 Defines the four price inputs and current or emerging drivers that determine
 what external information is relevant.
 
-## 1. [External Context](1_external-context.md)
+### 1B. [Gather Relevant Context](1b_gather-relevant-context.md)
 
 Filters external information for relevance to those price drivers, then refines
 the retained context into source-linked information objects.
@@ -119,9 +150,12 @@ $$
 =\operatorname{FormTheses}(C^E;\mathcal U).
 $$
 
-- **$\Theta$:** the candidate-thesis set for the investable universe.
+- **$\Theta$:** the candidate-thesis set for the research universe $\mathcal U$;
+  eligible theses can be reused across funds. Each fund's permitted subset is
+  determined in stage 3, not by changing the evidence or probabilities here.
 - **$V_M$:** the market view embedded in expectations and price.
-- **$V_V$:** the fund's variant view on a material driver.
+- **$V_V$:** the research assessment's evidence-backed variant view on a
+  material driver; a fund can use it without owning the resulting trade.
 - **$E_V$:** evidence supporting the variant view.
 - **$G_M$:** why the market can maintain its current view.
 - **$C$ and $\Delta P$:** the catalyst and conditional price difference.
@@ -131,15 +165,16 @@ $$
 $$
 C^I=(S,K),
 \qquad
-\mathcal U=\mathcal U(C^I).
+\mathcal U_{\mathrm{fund}}=\mathcal U_{\mathrm{fund}}(C^I).
 $$
 
 - **$S$ — state:** positions, capital, orders, exposures, liquidity, P&L,
   financing, borrow, capacity, and readiness.
 - **$K$ — constitution:** mandate, objectives, constraints, risk budgets,
   decision rights, approvals, and escalation rules.
-- **$\mathcal U$ — investable universe:** the assets and instruments permitted
-  by the current state and constitution.
+- **$\mathcal U_{\mathrm{fund}}$ — investable universe:** the assets and
+  instruments permitted by the current state and constitution; this is a
+  fund-specific subset or expression of the research universe $\mathcal U$.
 
 The operational contract for $K$ lives in
 [Portfolio Constitution And Decision Governance](Other/portfolio-constitution-and-decision-governance.md).
@@ -159,8 +194,8 @@ $$
 
 ### 4a. [Selection](./4a_selection.md)
 
-- **$\mathrm{Sel}$ — what:** candidate selection is encompassed by 2A–2E thesis
-  formation; final holdings follow from nonzero target weights in 4B.
+- **$\mathrm{Sel}$ — what:** 2A–2E identify research candidates; final
+  portfolio selection follows from nonzero target weights in 4B for this fund.
 
 ### 4b. [Sizing](./4b_sizing.md)
 

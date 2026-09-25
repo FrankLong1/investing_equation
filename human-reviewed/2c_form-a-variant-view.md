@@ -4,7 +4,7 @@
 [Identify the Key Debates](./2a_identify-key-debates.md) ·
 [Understand Market Pricing](./2b_understand-market-pricing.md) ·
 [Model Price Impact](./2d_model_price_impact.md) ·
-[Stock Drivers](./0_stock_drivers.md)
+[Stock Drivers](./1a_stock_drivers.md)
 
 ## Purpose
 
