@@ -12,8 +12,8 @@ export function makeSculpture(host, stages, colors, openChapter, onError) {
   host.append(renderer.domElement);
   const scene = new T.Scene(), camera = new T.PerspectiveCamera(38, 1, .1, 80);
   camera.position.set(0, -4.3, 10.7); camera.lookAt(0, 0, 0);
-  scene.add(new T.HemisphereLight(0xffffff, 0xc2b9a0, 2.7));
-  const sun = new T.DirectionalLight(0xfff7e7, 3.1); sun.position.set(-3, 5, 9); sun.castShadow = true;
+  scene.add(new T.HemisphereLight(0xffffff, 0xcbd2dc, 2.7));
+  const sun = new T.DirectionalLight(0xffffff, 3.1); sun.position.set(-3, 5, 9); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: .5, far: 25 }); sun.shadow.normalBias = .03; sun.shadow.bias = -.0001; sun.shadow.radius = 5; scene.add(sun);
   const floor = new T.Mesh(new T.PlaneGeometry(100, 100), new T.ShadowMaterial({ opacity: .13 })); floor.position.z = -.7; floor.receiveShadow = true; scene.add(floor);
   const assembly = new T.Group(); assembly.rotation.z = -.22; scene.add(assembly);
@@ -25,13 +25,13 @@ export function makeSculpture(host, stages, colors, openChapter, onError) {
     const material = new T.MeshStandardMaterial({ color: colors[i % colors.length], roughness: .96, metalness: 0 });
     const piece = new T.Group(), mesh = new T.Mesh(geo, material); mesh.castShadow = true; mesh.receiveShadow = true; mesh.userData.index = i; piece.add(mesh); pickable.push(mesh);
     const canvas = document.createElement('canvas'); canvas.width = canvas.height = 256;
-    const context = canvas.getContext('2d'); context.fillStyle = '#262e30'; context.textAlign = 'center'; context.textBaseline = 'middle'; context.font = 'italic 125px Georgia'; context.fillText(stage.id, 128, 137);
+    const context = canvas.getContext('2d'); context.fillStyle = i < 3 ? '#ffffff' : '#263345'; context.textAlign = 'center'; context.textBaseline = 'middle'; context.font = '300 110px Arial'; context.fillText(stage.id, 128, 137);
     const texture = new T.CanvasTexture(canvas); texture.colorSpace = T.SRGBColorSpace;
     const ink = new T.Mesh(new T.PlaneGeometry(.85, .85), new T.MeshBasicMaterial({ map: texture, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1 }));
     ink.position.set(Math.cos(mid) * 2.1, Math.sin(mid) * 2.1, .185); ink.rotation.z = .22; piece.add(ink);
     piece.userData = { mid, index: i }; piece.position.z = (i % 3) * .085; assembly.add(piece); pieces.push(piece);
   });
-  const pin = new T.Mesh(new T.CylinderGeometry(.46, .46, .21, 64), new T.MeshStandardMaterial({ color: 0xeee6d2, roughness: .9 })); pin.rotation.x = Math.PI / 2; pin.position.z = .08; pin.castShadow = true; assembly.add(pin);
+  const pin = new T.Mesh(new T.CylinderGeometry(.46, .46, .21, 64), new T.MeshStandardMaterial({ color: 0xe9edf2, roughness: .9 })); pin.rotation.x = Math.PI / 2; pin.position.z = .08; pin.castShadow = true; assembly.add(pin);
   let selected = -1, hover = -1, paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let time = 0, last = performance.now(), angle = -.22, down = null, frame, moved = false;
   const raycaster = new T.Raycaster();

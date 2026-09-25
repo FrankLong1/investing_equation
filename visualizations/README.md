@@ -46,7 +46,7 @@ visualizations/
 ```
 
 - [Neon studies](neon-studies/README.md): the five original dark, glowing, spatial diagrams, grouped as one family.
-- [Paper Atlas](paper-atlas/README.md): a warm editorial field guide with a tactile Three.js sculpture, numbered chapters, and a scroll-based reading view.
+- [Paper Atlas](paper-atlas/README.md): a restrained editorial field guide with a tactile Three.js sculpture, numbered chapters, and a scroll-based reading view.
 - [Metro Map](metro-map/README.md): a transit diagram with chapter routes, section stations, and source tickets.
 - [Miniature City](miniature-city/README.md): a playful Three.js town with clickable districts and buildings.
 - [Signal Desk](signal-desk/README.md): a keyboard-driven document terminal with search and raw source inspection.

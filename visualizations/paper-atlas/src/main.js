@@ -2,7 +2,7 @@ import './style.css';
 import { stages, nodes, documents, excerpt } from './content.js';
 import { makeSculpture } from './sculpture.js';
 const $ = s => document.querySelector(s);
-const colors = ['#d6573b', '#6c8e79', '#e8b83e', '#5072ba', '#dba8b0'];
+const colors = ['#303e52', '#526278', '#738297', '#a1acba', '#c1c9d3'];
 let current = null;
 let paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
 function nodeButton(text, action) { const b = document.createElement('button'); b.textContent = text; b.onclick = action; return b; }
@@ -34,7 +34,7 @@ function render(node, scroll) {
   chapterButtons.forEach((b, i) => b.setAttribute('aria-expanded', String(i === stageIndex)));
   if (!node) { if (scroll) $('#chapters').scrollIntoView({ behavior: paused ? 'instant' : 'smooth' }); return; }
   $('#trail').replaceChildren(nodeButton('Contents', () => navigate(null)), ...trail.map(p => nodeButton(` / ${p.id}`, () => navigate(p))));
-  $('#chapter-mark').textContent = node.id; $('#chapter-mark').style.color = colors[Math.max(0, stageIndex) % colors.length];
+  $('#chapter-mark').textContent = node.id; $('#chapter-mark').style.color = '#1d2533';
   $('#reading-title').textContent = node.title; $('#reading-intro').textContent = excerpt(node);
   $('#status').textContent = node.proposed ? 'PROPOSED SUBDIVISION\nFrom the function contracts.' : node.children.length ? `${node.children.length} sections to explore.` : 'At the source. Read the original document below.';
   $('#children').replaceChildren();

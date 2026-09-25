@@ -30,3 +30,10 @@ All six Three.js production builds pass. Paper Atlas was inspected in the browse
 - The current Simple HTML folder reorganization and math-rendering changes were preserved; its four rendering regression checks pass. Registry routing validation also passes.
 
 The map and terminal use SVG/HTML; the city uses Three.js. These are intentionally different interfaces, rather than recolors of the existing scenes. No live investment processing is implied.
+
+## Paper Atlas editorial refinement — 2026-09-25
+
+- Replaced the warm palette and italic headlines with cool white, slate tones, an architectural grid, and clean sans-serif typography, inspired by Coatue’s public website.
+- Paper Atlas production build passes; Vite reports the existing large Three.js bundle warning.
+- Browser checked: opening composition, expanded Thesis Formation, nested 2C navigation, and original source dialog.
+- Updated the family gallery preview to match. Root content and hierarchy are unchanged.

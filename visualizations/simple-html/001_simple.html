@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Research Loop · Simple HTML · Investing Equation</title>
 <style>
-:root{color-scheme:light dark;--background:light-dark(#fff,#181818);--foreground:light-dark(#1a1c1f,#fff);--card:color-mix(in oklab,var(--foreground) 5%,var(--background));--card-foreground:var(--foreground);--border:color-mix(in srgb,var(--foreground) 18%,var(--background));--muted-foreground:light-dark(#59616b,#bac0c8);--viz-series-1:light-dark(#339cff,#83c3ff);--viz-series-2:light-dark(#f3883b,#f59a56);font:14px/1.5 system-ui,sans-serif;background:var(--background);color:var(--foreground)}
-body{margin:0;padding:24px}main{max-width:736px;margin:auto}h2{font-size:20px;line-height:1.3}h3{font-size:16px;line-height:1.4}.text-small{font-size:12px}a{color:inherit}#research-portfolio-loop a.node{text-decoration:none;transition:background .12s}#research-portfolio-loop a.node:hover{background:color-mix(in srgb,var(--viz-series-1) 12%,var(--card))}a:focus-visible,button:focus-visible{outline:2px solid var(--viz-series-1);outline-offset:3px}.page-nav{display:flex;justify-content:space-between;gap:16px;margin-bottom:20px;color:var(--muted-foreground);font-size:12px}
-dialog{box-sizing:border-box;width:min(880px,calc(100% - 24px));max-height:88vh;padding:0;border:1px solid var(--border);border-radius:14px;background:var(--background);color:var(--foreground)}dialog::backdrop{background:#0008}.reader-bar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 20px;background:var(--background);border-bottom:1px solid var(--border);z-index:1}.reader-bar button{font:inherit;color:inherit;border:1px solid var(--border);background:var(--card);border-radius:7px;padding:6px 12px;cursor:pointer}.reader-content{padding:20px 28px;overflow-wrap:anywhere}.reader-content h1{font-size:25px;line-height:1.3}.reader-content h2{margin-top:28px}.reader-content h3{margin-top:24px}.reader-content a{color:var(--viz-series-1);text-underline-offset:3px}.reader-content table{display:block;overflow:auto;border-collapse:collapse;width:100%;font-size:13px}.reader-content th,.reader-content td{text-align:left;padding:10px;min-width:140px;border-bottom:1px solid var(--border);vertical-align:top}.reader-content pre{overflow:auto;padding:12px;background:var(--card);border-radius:6px;font-size:12px}.reader-content code{font-family:ui-monospace,monospace}.source-link{font-size:12px}.reader-content img{max-width:100%}[hidden]{display:none!important}@media(max-width:540px){body{padding:12px}.reader-content{padding:14px 16px}}@media(prefers-reduced-motion:reduce){#research-portfolio-loop a.node{transition:none}}
+:root{color-scheme:light;--background:#f8f9fa;--foreground:#1d2533;--card:#fff;--card-foreground:#1d2533;--border:#1d253329;--muted-foreground:#626b78;--viz-series-1:#426190;--viz-series-2:#526278;font:14px/1.5 system-ui,sans-serif;background:var(--background);color:var(--foreground)}
+body{margin:0;padding:24px}main{max-width:736px;margin:auto}h2{font-size:20px;line-height:1.3}h3{font-size:16px;line-height:1.4}.text-small{font-size:12px}a{color:inherit}#research-portfolio-loop a.node{text-decoration:none;transition:background .18s,color .18s,border-color .18s}#research-portfolio-loop a.node:hover{background:#1d2533;color:#fff;border-color:#1d2533}a:focus-visible,button:focus-visible{outline:2px solid var(--viz-series-1);outline-offset:3px}.page-nav{display:flex;justify-content:space-between;gap:16px;margin-bottom:20px;color:var(--muted-foreground);font-size:12px}
+dialog{box-sizing:border-box;width:min(880px,calc(100% - 24px));max-height:88vh;padding:0;border:1px solid var(--border);border-radius:0;background:var(--background);color:var(--foreground)}dialog::backdrop{background:#1d253360;backdrop-filter:blur(5px)}.reader-bar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 20px;background:var(--background);border-bottom:1px solid var(--border);z-index:1}.reader-bar button{font:inherit;color:inherit;border:1px solid var(--border);background:var(--card);border-radius:0;padding:6px 12px;cursor:pointer}.reader-content{padding:20px 28px;overflow-wrap:anywhere}.reader-content h1{font-size:25px;line-height:1.3}.reader-content h2{margin-top:28px}.reader-content h3{margin-top:24px}.reader-content a{color:var(--viz-series-1);text-underline-offset:3px}.reader-content table{display:block;overflow:auto;border-collapse:collapse;width:100%;font-size:13px}.reader-content th,.reader-content td{text-align:left;padding:10px;min-width:140px;border-bottom:1px solid var(--border);vertical-align:top}.reader-content pre{overflow:auto;padding:12px;background:var(--card);border-radius:0;font-size:12px}.reader-content code{font-family:ui-monospace,monospace}.source-link{font-size:12px}.reader-content img{max-width:100%}[hidden]{display:none!important}@media(max-width:540px){body{padding:12px}.reader-content{padding:14px 16px}}@media(prefers-reduced-motion:reduce){#research-portfolio-loop a.node{transition:none}}
 
 .reader-content{font-size:15px;line-height:1.65}
 .reader-content p,.reader-content li{max-width:100%}
@@ -20,6 +20,16 @@ dialog{box-sizing:border-box;width:min(880px,calc(100% - 24px));max-height:88vh;
 .reader-bar{align-items:flex-start}
 .reader-bar button{flex-shrink:0}
 @media(max-width:540px){.reader-content{font-size:14px}.reader-content h1{font-size:23px}.reader-bar{padding:12px 16px}.reader-content .math-display{padding:12px 2px}}
+/* Paint-only theme: preserve diagram dimensions, text metrics and breakpoints. */
+body{background-image:linear-gradient(90deg,transparent calc(100% - 1px),#1d253308 0);background-size:184px 100%;background-position:center top}
+.page-nav{color:#626b78}
+.page-nav span:first-child{color:#1d2533}
+#research-portfolio-loop .number{color:#526278}
+#research-portfolio-loop a.node:hover .number{color:#c1c9d3}
+#research-portfolio-loop section.wrapper{border-top-color:#1d2533}
+.reader-bar button{background:#1d2533;color:#fff;border-color:#1d2533}
+.reader-content h1,.reader-content h2,.reader-content h3{color:#1d2533;font-weight:500}
+.reader-content a:hover{color:#1d2533}
 </style>
 </head>
 <body>
@@ -30,13 +40,13 @@ dialog{box-sizing:border-box;width:min(880px,calc(100% - 24px));max-height:88vh;
 #research-portfolio-loop {color:var(--foreground);font-family:inherit;}
 #research-portfolio-loop * {box-sizing:border-box;}
 #research-portfolio-loop h2,#research-portfolio-loop h3 {margin:0;font-weight:500;}
-#research-portfolio-loop .wrapper {border:1px solid var(--border);border-radius:16px;padding:20px;}
-#research-portfolio-loop .research {background:color-mix(in srgb,var(--viz-series-1) 4%,transparent);}
-#research-portfolio-loop .portfolio {background:color-mix(in srgb,var(--viz-series-2) 4%,transparent);}
+#research-portfolio-loop .wrapper {border:1px solid var(--border);border-radius:0;padding:20px;}
+#research-portfolio-loop .research {background:#f8f9fa;}
+#research-portfolio-loop .portfolio {background:#f8f9fa;}
 #research-portfolio-loop .groups {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;margin-top:20px;}
-#research-portfolio-loop .stage {min-width:0;border:1px solid var(--border);border-radius:12px;padding:16px;}
+#research-portfolio-loop .stage {min-width:0;border:1px solid var(--border);border-radius:0;padding:16px;}
 #research-portfolio-loop .stage h3 {margin-bottom:18px;}
-#research-portfolio-loop .node {border:1px solid var(--border);border-radius:8px;padding:12px;background:var(--card);color:var(--card-foreground);display:flex;gap:10px;align-items:baseline;min-width:0;}
+#research-portfolio-loop .node {border:1px solid var(--border);border-radius:0;padding:12px;background:var(--card);color:var(--card-foreground);display:flex;gap:10px;align-items:baseline;min-width:0;}
 #research-portfolio-loop .number {font-weight:500;white-space:nowrap;}
 #research-portfolio-loop .node span:last-child {overflow-wrap:anywhere;}
 #research-portfolio-loop .arrow {text-align:center;color:var(--muted-foreground);padding:3px;}
@@ -48,7 +58,7 @@ dialog{box-sizing:border-box;width:min(880px,calc(100% - 24px));max-height:88vh;
 #research-portfolio-loop .gather .iteration {margin-top:18px;}
 #research-portfolio-loop .gather .loop-label {margin-top:auto;padding-top:24px;}
 #research-portfolio-loop .risk-layout {display:grid;grid-template-columns:1fr 30px 1.3fr;align-items:center;gap:12px;margin-top:18px;}
-#research-portfolio-loop .expression {border:1px solid var(--border);border-radius:12px;padding:16px;}
+#research-portfolio-loop .expression {border:1px solid var(--border);border-radius:0;padding:16px;}
 #research-portfolio-loop .expression h3 {margin-bottom:14px;}
 #research-portfolio-loop .learn {max-width:430px;margin:0 auto;}
 #research-portfolio-loop .return {display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;}

@@ -4,6 +4,10 @@ A simple, offline diagram of the research loop and portfolio management and risk
 
 Every stage box opens its Markdown document in an embedded reader. Links between embedded documents stay in that reader. **Open Markdown source** uses a relative path to the original repository file. Escape or Close returns to the diagram.
 
+## Appearance
+
+Uses Paper Atlas’s cool white and slate palette, square borders, faint background rules, and dark hover states. The original diagram layout, spacing, text metrics, arrows, and responsive breakpoints are preserved. Browser comparison at the desktop viewport found identical positions and dimensions across all 85 measured diagram and container elements.
+
 ## Rebuild
 
 From the repository root:

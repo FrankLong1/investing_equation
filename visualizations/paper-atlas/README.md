@@ -1,6 +1,6 @@
 # Paper Atlas
 
-A separate visual direction: warm paper, serif editorial typography, matte colors, a softly lit Three.js paper sculpture, and a continuous reading journey.
+A separate visual direction: a cool white architectural grid, restrained sans-serif typography, slate tones, a softly lit Three.js paper sculpture, and a continuous reading journey.
 
 ## Run and build
 
@@ -19,6 +19,6 @@ Click a numbered piece of the sculpture or choose a chapter in the contents. The
 - `src/sculpture.js`: independently implemented extruded paper sectors, printed numbers, physical materials, lights, shadows, picking, and movement.
 - `src/main.js`: chapter navigation, history, reading view, and source dialog.
 - `src/content.js`: this experiment's loader for the root Markdown documents; no dependency on the Neon Studies implementations.
-- `src/style.css`: paper palette, responsive editorial layout, typography, and reading styles.
+- `src/style.css`: monochrome palette, responsive editorial layout, typography, and reading styles.
 
 Colors distinguish chapters visually, not executor ownership. The sculpture is an index, not a claim about dependency order or capital allocation. Proposed subdivisions are labeled. The source reader preserves Markdown and equations verbatim rather than typesetting them.
