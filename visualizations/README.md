@@ -1,6 +1,6 @@
 # Visualization lab
 
-Independent visual families for the existing investment framework. The Three.js experiments read `human-reviewed/` and `functions/` directly from the repository. There is no shared visualization model.
+Independent visual families for the existing investment framework. The interactive experiments read `human-reviewed/` and `functions/` directly from the repository. There is no shared visualization model.
 
 ## Run
 
@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite to choose a family. `npm run build` builds all six Three.js experiments independently. The top-level npm workspace only installs dependencies and provides launch commands.
+Open the local URL printed by Vite to choose a family. `npm run build` builds all nine npm-based experiments independently. The top-level npm workspace only installs dependencies and provides launch commands.
 
 ## Families
 
@@ -34,7 +34,12 @@ visualizations/
 │   │   └── style.css
 │   ├── package.json
 │   └── vite.config.js
-├── 006-naive-html/
+├── simple-html/
+│   ├── 001_simple.html
+│   └── compile.py
+├── metro-map/
+├── miniature-city/
+├── signal-desk/
 ├── index.html
 ├── package.json
 └── vite.config.js
@@ -42,9 +47,12 @@ visualizations/
 
 - [Neon studies](neon-studies/README.md): the five original dark, glowing, spatial diagrams, grouped as one family.
 - [Paper Atlas](paper-atlas/README.md): a warm editorial field guide with a tactile Three.js sculpture, numbered chapters, and a scroll-based reading view.
-- [Naive HTML](006-naive-html/README.md): the existing standalone HTML reference diagram. Its files and compiler remain in their original folder.
+- [Metro Map](metro-map/README.md): a transit diagram with chapter routes, section stations, and source tickets.
+- [Miniature City](miniature-city/README.md): a playful Three.js town with clickable districts and buildings.
+- [Signal Desk](signal-desk/README.md): a keyboard-driven document terminal with search and raw source inspection.
+- [Simple HTML](simple-html/README.md): the existing standalone HTML reference diagram. Its compiled page is `simple-html/001_simple.html`; its compiler and templates live alongside it.
 
-Each experiment owns its source loader, interaction, rendering, and styling. Each build contains just that experiment; use the development gallery for cross-family navigation. The main development server redirects the old `/001-…/` through `/005-…/` URLs into `neon-studies/`.
+Every theme has its own folder. Variants of the same theme stay inside that folder. Each experiment owns its source loader, interaction, rendering, and styling. Each build contains just that experiment; use the development gallery for cross-family navigation. The main development server redirects the old `/001-…/` through `/005-…/` URLs into `neon-studies/`.
 
 ## Content and further experiments
 

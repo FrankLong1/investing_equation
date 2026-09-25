@@ -3,16 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Research Loop · Naive HTML · Investing Equation</title>
+<title>Research Loop · Simple HTML · Investing Equation</title>
 <style>
 :root{color-scheme:light dark;--background:light-dark(#fff,#181818);--foreground:light-dark(#1a1c1f,#fff);--card:color-mix(in oklab,var(--foreground) 5%,var(--background));--card-foreground:var(--foreground);--border:color-mix(in srgb,var(--foreground) 18%,var(--background));--muted-foreground:light-dark(#59616b,#bac0c8);--viz-series-1:light-dark(#339cff,#83c3ff);--viz-series-2:light-dark(#f3883b,#f59a56);font:14px/1.5 system-ui,sans-serif;background:var(--background);color:var(--foreground)}
-body{margin:0;padding:24px}main{max-width:736px;margin:auto}h2{font-size:20px;line-height:1.3}h3{font-size:16px;line-height:1.4}.text-small{font-size:12px}a{color:inherit}#research-portfolio-loop a.node{text-decoration:none;transition:background .12s}#research-portfolio-loop a.node:hover{background:color-mix(in srgb,var(--viz-series-1) 12%,var(--card))}a:focus-visible,button:focus-visible{outline:2px solid var(--viz-series-1);outline-offset:3px}.page-nav{display:flex;justify-content:space-between;gap:16px;margin-bottom:20px;color:var(--muted-foreground);font-size:12px}.page-nav a{text-underline-offset:3px}
+body{margin:0;padding:24px}main{max-width:736px;margin:auto}h2{font-size:20px;line-height:1.3}h3{font-size:16px;line-height:1.4}.text-small{font-size:12px}a{color:inherit}#research-portfolio-loop a.node{text-decoration:none;transition:background .12s}#research-portfolio-loop a.node:hover{background:color-mix(in srgb,var(--viz-series-1) 12%,var(--card))}a:focus-visible,button:focus-visible{outline:2px solid var(--viz-series-1);outline-offset:3px}.page-nav{display:flex;justify-content:space-between;gap:16px;margin-bottom:20px;color:var(--muted-foreground);font-size:12px}
 dialog{box-sizing:border-box;width:min(880px,calc(100% - 24px));max-height:88vh;padding:0;border:1px solid var(--border);border-radius:14px;background:var(--background);color:var(--foreground)}dialog::backdrop{background:#0008}.reader-bar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 20px;background:var(--background);border-bottom:1px solid var(--border);z-index:1}.reader-bar button{font:inherit;color:inherit;border:1px solid var(--border);background:var(--card);border-radius:7px;padding:6px 12px;cursor:pointer}.reader-content{padding:20px 28px;overflow-wrap:anywhere}.reader-content h1{font-size:25px;line-height:1.3}.reader-content h2{margin-top:28px}.reader-content h3{margin-top:24px}.reader-content a{color:var(--viz-series-1);text-underline-offset:3px}.reader-content table{display:block;overflow:auto;border-collapse:collapse;width:100%;font-size:13px}.reader-content th,.reader-content td{text-align:left;padding:10px;min-width:140px;border-bottom:1px solid var(--border);vertical-align:top}.reader-content pre{overflow:auto;padding:12px;background:var(--card);border-radius:6px;font-size:12px}.reader-content code{font-family:ui-monospace,monospace}.source-link{font-size:12px}.reader-content img{max-width:100%}[hidden]{display:none!important}@media(max-width:540px){body{padding:12px}.reader-content{padding:14px 16px}}@media(prefers-reduced-motion:reduce){#research-portfolio-loop a.node{transition:none}}
+
+.reader-content{font-size:15px;line-height:1.65}
+.reader-content p,.reader-content li{max-width:100%}
+.reader-content li+li{margin-top:6px}
+.reader-content math{font-family:"STIX Two Math","Cambria Math",math;font-size:1.08em;overflow-wrap:normal}
+.reader-content .math-display{margin:22px 0;padding:16px 4px;overflow-x:auto;overflow-y:hidden}
+.reader-content .math-display math{display:block;width:max-content;min-width:100%;font-size:1.18em}
+.reader-content table{margin:18px 0;line-height:1.5}
+.reader-content th{background:var(--card);font-weight:600}
+.reader-bar{align-items:flex-start}
+.reader-bar button{flex-shrink:0}
+@media(max-width:540px){.reader-content{font-size:14px}.reader-content h1{font-size:23px}.reader-bar{padding:12px 16px}.reader-content .math-display{padding:12px 2px}}
 </style>
 </head>
 <body>
 <main>
-<nav class="page-nav"><a href="../index.html">← Visualization lab</a><span>006 · Naive HTML</span></nav>
+<header class="page-nav"><span>Investing Equation</span><span>Simple HTML · Self-contained</span></header>
 <div id="research-portfolio-loop">
 <style>
 #research-portfolio-loop {color:var(--foreground);font-family:inherit;}
@@ -115,31 +127,29 @@ dialog{box-sizing:border-box;width:min(880px,calc(100% - 24px));max-height:88vh;
 <a href="#doc-2a_identify-key-debates">Identify the Key Debates</a> ·
 <a href="#doc-Other--stock-return-and-catalyst-taxonomy">Stock Return and Catalyst Taxonomy</a></p>
 <h2>Price inputs</h2>
-<pre class="formula"><code>P_t
+<div class="math-display"><math data-tex="P_t
 =
 \operatorname{Price}
-\left(F_t,\mathrm{Mult}_t,\mathrm{Tech}_t,\mathrm{Macro}_t\right).</code></pre>
-
+\left(F_t,\mathrm{Mult}_t,\mathrm{Tech}_t,\mathrm{Macro}_t\right)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>P</mi><mi>t</mi></msub><mo>&#x0003D;</mo><mo>Price</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><msub><mi>F</mi><mi>t</mi></msub><mo>&#x0002C;</mo><msub><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">t</mi></mrow><mi>t</mi></msub><mo>&#x0002C;</mo><msub><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">h</mi></mrow><mi>t</mi></msub><mo>&#x0002C;</mo><msub><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi></mrow><mi>t</mi></msub><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>Fundamentals ($F_t$):</strong> the expected path of business economics—revenue,
+<li><strong>Fundamentals (<math data-tex="F_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>F</mi><mi>t</mi></msub></mrow></math>):</strong> the expected path of business economics—revenue,
   earnings, cash flow, assets, or a probability-weighted payoff. The market
   often trades on forward operating indicators such as backlog, bookings,
   usage, or power capacity because they inform that path. Identify both the
   indicator receiving market attention and the assumptions connecting it to
   future financial outcomes.</li>
-<li><strong>Multiple ($\mathrm{Mult}_t$):</strong> what investors will pay for the selected
+<li><strong>Multiple (<math data-tex="\mathrm{Mult}_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">t</mi></mrow><mi>t</mi></msub></mrow></math>):</strong> what investors will pay for the selected
   fundamental, based on growth, quality, durability, defensibility, capital
   intensity, cash conversion, and uncertainty. High but temporary or expensive
   growth can receive a low multiple.</li>
-<li><strong>Technicals ($\mathrm{Tech}_t$):</strong> positioning, flows, float, borrow, options
+<li><strong>Technicals (<math data-tex="\mathrm{Tech}_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">h</mi></mrow><mi>t</mi></msub></mrow></math>):</strong> positioning, flows, float, borrow, options
   exposure, index activity, and forced transactions that determine who must
   trade against how much liquidity.</li>
-<li><strong>Macro ($\mathrm{Macro}_t$):</strong> rates, inflation, growth, policy, FX,
+<li><strong>Macro (<math data-tex="\mathrm{Macro}_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi></mrow><mi>t</mi></msub></mrow></math>):</strong> rates, inflation, growth, policy, FX,
   commodities, and the broader risk regime.</li>
 </ul>
 <p>The compact valuation shorthand is:</p>
-<pre class="formula"><code>P_t \approx F_t \times \mathrm{Mult}_t.</code></pre>
-
+<div class="math-display"><math data-tex="P_t \approx F_t \times \mathrm{Mult}_t." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>P</mi><mi>t</mi></msub><mo>&#x02248;</mo><msub><mi>F</mi><mi>t</mi></msub><mo>&#x000D7;</mo><msub><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">t</mi></mrow><mi>t</mi></msub><mo>&#x0002E;</mo></mrow></math></div>
 <p>This shorthand does not mean the stock trades directly on EPS. Investors may
 use an operating indicator as a proxy for future financial outcomes, or even
 quote value per unit of that indicator. The conversion depends on demand,
@@ -251,12 +261,10 @@ affect the stock through fundamentals, the multiple, technicals, or macro.</p>
 <li><strong>Measure covariance and price response:</strong> test whether changes or surprises
   in the variable coincide with abnormal stock returns:</li>
 </ul>
-<p>$$
-  \operatorname{Cov}
-  \left(\operatorname{Surprise}(d_t),AR_t\right).
-  $$</p>
+<div class="math-display"><math data-tex="\operatorname{Cov}
+  \left(\operatorname{Surprise}(d_t),AR_t\right)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>Cov</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mo>Surprise</mo><mo stretchy="false">&#x00028;</mo><msub><mi>d</mi><mi>t</mi></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><mi>A</mi><msub><mi>R</mi><mi>t</mi></msub><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>Variables:</strong> $d_t$ is the candidate driver; $AR_t$ is the stock's return
+<li><strong>Variables:</strong> <math data-tex="d_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>d</mi><mi>t</mi></msub></mrow></math> is the candidate driver; <math data-tex="AR_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><msub><mi>R</mi><mi>t</mi></msub></mrow></math> is the stock's return
     after controlling for market and sector moves.</li>
 <li><strong>Limitation:</strong> covariance is noisy because of anticipation, omitted
     variables, simultaneous news, and regime changes.</li>
@@ -278,8 +286,7 @@ world into a bounded research input: <strong>filtration</strong> and <strong>ref
 document does not decide what the investment process believes or what the portfolio should do.</p>
 <h2>1. Filtration</h2>
 <h3>Information Taxonomy</h3>
-<pre class="formula"><code>C^E=(\operatorname{Micro},\mathsf T,\operatorname{Macro},M).</code></pre>
-
+<div class="math-display"><math data-tex="C^E=(\operatorname{Micro},\mathsf T,\operatorname{Macro},M)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>C</mi><mi>E</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mo>Micro</mo><mo>&#x0002C;</mo><mi mathvariant="sans-serif">T</mi><mo>&#x0002C;</mo><mo>Macro</mo><mo>&#x0002C;</mo><mi>M</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
 <li><strong>Micro:</strong> company, asset, industry, value-chain, and capital-structure
   economics.</li>
@@ -306,10 +313,9 @@ through fundamentals, the multiple, technicals, or macro. Include plausible
 emerging drivers even when the market does not yet recognize them. The tiers
 below identify which holdings, candidates, or read-throughs that information
 affects.</p>
-<pre class="formula"><code>\text{External context }(\operatorname{Micro},\mathsf T,\operatorname{Macro},M)
+<div class="math-display"><math data-tex="\text{External context }(\operatorname{Micro},\mathsf T,\operatorname{Macro},M)
 \xrightarrow{\operatorname{Filter}}
-\text{Retained external context}.</code></pre>
-
+\text{Retained external context}." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mtext>External&#x000A0;context&#x000A0;</mtext><mo stretchy="false">&#x00028;</mo><mo>Micro</mo><mo>&#x0002C;</mo><mi mathvariant="sans-serif">T</mi><mo>&#x0002C;</mo><mo>Macro</mo><mo>&#x0002C;</mo><mi>M</mi><mo stretchy="false">&#x00029;</mo><mover><mstyle scriptlevel="0"><mo>&#x2192;</mo></mstyle><mpadded width="+0.833em" lspace="0.556em" voffset="-.2em" height="-.2em"><mrow><mo>Filter</mo></mrow><mspace depth=".25em" /></mpadded></mover><mtext>Retained&#x000A0;external&#x000A0;context</mtext><mo>&#x0002E;</mo></mrow></math></div>
 <p>Classify each candidate observation by the nearest investable object it can
 affect. Choose one <strong>primary relevance tier</strong> and record secondary links as
 tags:</p>
@@ -447,7 +453,7 @@ sustainable as capacity expands?” is a debate; “margins” is only a topic.<
 is discussing them. Keep the evidence that a question matters separate from
 the claim that the market has overlooked it; assess market awareness in 2B.</p>
 <h2>From a Debate to Price</h2>
-<pre class="formula"><code>b
+<div class="math-display"><math data-tex="b
 \rightarrow
 d
 \rightarrow
@@ -457,10 +463,9 @@ P,
 \qquad
 \mathbf{x}
 =
-\left(F,\mathrm{Mult},\mathrm{Tech},\mathrm{Macro}\right),</code></pre>
-
-<p>where $b$ is a key debate, $d$ is the material driver it affects, and
-$\mathbf{x}$ is the set of Step 1A price inputs through which it reaches price.</p>
+\left(F,\mathrm{Mult},\mathrm{Tech},\mathrm{Macro}\right)," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>b</mi><mo>&#x02192;</mo><mi>d</mi><mo>&#x02192;</mo><mi>&#x1D431;</mi><mo>&#x02192;</mo><mi>P</mi><mo>&#x0002C;</mo><mspace width="2em" /><mi>&#x1D431;</mi><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mi>F</mi><mo>&#x0002C;</mo><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">t</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">h</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi></mrow><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0002C;</mo></mrow></math></div>
+<p>where <math data-tex="b" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>b</mi></mrow></math> is a key debate, <math data-tex="d" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>d</mi></mrow></math> is the material driver it affects, and
+<math data-tex="\mathbf{x}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D431;</mi></mrow></math> is the set of Step 1A price inputs through which it reaches price.</p>
 <h2>Output: Key Debate Map</h2>
 <p>For each debate, record the question, affected driver, competing answers,
 supporting sources, materiality rationale, and relevant horizon. Carry open
@@ -929,15 +934,14 @@ uses one standardized formula or explicitly calibrated scenario weights.</p>
 <li><strong>Expected Return:</strong> Calculate the probability-weighted average of scenario total returns using an explicit spreadsheet or calculation model. Retain dispersion, probability of loss, and material downside scenarios alongside the mean; they answer different questions.</li>
 <li><strong>Path Risk:</strong> Record interim drawdown, funding, or liquidity risks separately; an attractive terminal return does not describe the path needed to reach it.</li>
 </ul>
-<p>For a cash equity, with scenario $s$, current price $P_0$, horizon price
-$P_{T,s}$, and cash distributions $D_s$ received through the horizon (without
+<p>For a cash equity, with scenario <math data-tex="s" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi></mrow></math>, current price <math data-tex="P_0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mn>0</mn></msub></mrow></math>, horizon price
+<math data-tex="P_{T,s}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>P</mi><mrow><mi>T</mi><mo>&#x0002C;</mo><mi>s</mi></mrow></msub></mrow></math>, and cash distributions <math data-tex="D_s" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>D</mi><mi>s</mi></msub></mrow></math> received through the horizon (without
 reinvestment), gross total return and expected return are:</p>
-<pre class="formula"><code>R_s = \frac{P_{T,s} + D_s - P_0}{P_0},
+<div class="math-display"><math data-tex="R_s = \frac{P_{T,s} + D_s - P_0}{P_0},
 \qquad
 \widehat{\mathbb{E}}[R_T] = \sum_s p_s R_s,
 \qquad
-\sum_s p_s = 1.</code></pre>
-
+\sum_s p_s = 1." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>R</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>P</mi><mrow><mi>T</mi><mo>&#x0002C;</mo><mi>s</mi></mrow></msub><mo>&#x0002B;</mo><msub><mi>D</mi><mi>s</mi></msub><mo>&#x02212;</mo><msub><mi>P</mi><mn>0</mn></msub></mrow><mrow><msub><mi>P</mi><mn>0</mn></msub></mrow></mfrac><mo>&#x0002C;</mo><mspace width="2em" /><mover><mrow><mi>&#x1D53C;</mi></mrow><mo>&#x0005E;</mo></mover><mo stretchy="false">[</mo><msub><mi>R</mi><mi>T</mi></msub><mo stretchy="false">]</mo><mo>&#x0003D;</mo><munder><mo>&#x02211;</mo><mi>s</mi></munder><msub><mi>p</mi><mi>s</mi></msub><msub><mi>R</mi><mi>s</mi></msub><mo>&#x0002C;</mo><mspace width="2em" /><munder><mo>&#x02211;</mo><mi>s</mi></munder><msub><mi>p</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002E;</mo></mrow></math></div>
 <p>Use instrument-specific payoff calculations for derivatives and reconcile
 short-position cash flows and financing in sizing. State any costs already
 included so 4B does not deduct them again.</p>
@@ -1023,27 +1027,26 @@ recognition probabilities already included here.</p>
 <p>Status: draft for human review
 Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a></p>
 <h2>Core Function</h2>
-<pre class="formula"><code>C^I=(S,K).</code></pre>
-
+<div class="math-display"><math data-tex="C^I=(S,K)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>C</mi><mi>I</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>S</mi><mo>&#x0002C;</mo><mi>K</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>$S$ — current state:</strong> book and position state together with the capital,
+<li><strong><math data-tex="S" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math> — current state:</strong> book and position state together with the capital,
   liquidity, financing, counterparties, and operational capacity available to
   act.</li>
-<li><strong>$K$ — mandate, objectives, and constraints:</strong> what the fund is trying to
+<li><strong><math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math> — mandate, objectives, and constraints:</strong> what the fund is trying to
   achieve and the risk and governance boundaries within which it may act.</li>
 </ul>
 <h2>Components</h2>
-<h3>3.1 Book And Position State Within $S$</h3>
+<h3>3.1 Book And Position State Within <math data-tex="S" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math></h3>
 <ul>
 <li>Positions, cash, orders, fills, P&amp;L, and current long, short, factor, theme,
   concentration, liquidity, and other portfolio exposures.</li>
 </ul>
-<h3>3.2 Operating Capacity Within $S$</h3>
+<h3>3.2 Operating Capacity Within <math data-tex="S" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math></h3>
 <ul>
 <li>Available capital and collateral, financing and borrow capacity, fund-level
   liquidity needs, broker and counterparty relationships, custody, and
   operational readiness. These are observed or available resources, distinct
-  from the permissions and limits in $K$.</li>
+  from the permissions and limits in <math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math>.</li>
 </ul>
 <h3>3.3 Mandate, Objectives, And Constraints</h3>
 <ul>
@@ -1053,12 +1056,12 @@ Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function �
 </ul>
 <h2>Boundary</h2>
 <ul>
-<li>Together, $S$ and $K$ determine which portfolio actions are feasible
+<li>Together, <math data-tex="S" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math> and <math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math> determine which portfolio actions are feasible
   and appropriate given the fund's external context and theses.</li>
 <li>Internal context changes what the fund may or should do without changing what
   the fund claims is externally true.</li>
 <li>Multiple funds can reuse the same dated research assessment. Each fund keeps
-  its own $S$ and $K$; eligibility, risk budget, costs, and capacity can lead
+  its own <math data-tex="S" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math> and <math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math>; eligibility, risk budget, costs, and capacity can lead
   to different decisions from the same assessment. A mandate may specify a
   research question or horizon, but it cannot by itself revise the evidence or
   probability assigned to an external outcome.</li>
@@ -1092,16 +1095,15 @@ Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function �
 target portfolio weights. It decides how much of the portfolio's scarce risk
 budget each asset should receive. It is not a synonym for conviction, a reward
 for a good story, or a mechanical translation of upside into capital.</p>
-<p>For $\mathcal U=\mathcal U(C^I)$, the output is:</p>
-<pre class="formula"><code>Z=\{w_i\}_{i\in\mathcal U},
+<p>For <math data-tex="\mathcal U=\mathcal U(C^I)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="script">U</mi><mo>&#x0003D;</mo><mi mathvariant="script">U</mi><mo stretchy="false">&#x00028;</mo><msup><mi>C</mi><mi>I</mi></msup><mo stretchy="false">&#x00029;</mo></mrow></math>, the output is:</p>
+<div class="math-display"><math data-tex="Z=\{w_i\}_{i\in\mathcal U},
 \qquad
-w_i\in[\underline w_i(K),\overline w_i(K)].</code></pre>
-
-<p>A nonzero $w_i$ allocates capital long or short. When $K$ permits a zero
-weight, $w_i=0$ is a valid portfolio-construction result, not a rejection of
+w_i\in[\underline w_i(K),\overline w_i(K)]." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>Z</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x0007B;</mo><msub><mi>w</mi><mi>i</mi></msub><msub><mo stretchy="false">&#x0007D;</mo><mrow><mi>i</mi><mo>&#x02208;</mo><mi mathvariant="script">U</mi></mrow></msub><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>w</mi><mi>i</mi></msub><mo>&#x02208;</mo><mo stretchy="false">[</mo><msub><munder><mi>w</mi><mo accent="true">&#x02015;</mo></munder><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><mi>K</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><msub><mover><mi>w</mi><mo accent="true">&#x02015;</mo></mover><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><mi>K</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">]</mo><mo>&#x0002E;</mo></mrow></math></div>
+<p>A nonzero <math data-tex="w_i" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math> allocates capital long or short. When <math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math> permits a zero
+weight, <math data-tex="w_i=0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> is a valid portfolio-construction result, not a rejection of
 the candidate thesis or a separate selection decision.
 The lower and upper bounds come from the applicable mandate and constraints
-$K$; this framework does not prescribe numerical position limits.</p>
+<math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math>; this framework does not prescribe numerical position limits.</p>
 <p>The thesis system supplies structured judgments. Deterministic portfolio and
 risk systems later reconcile those inputs with correlation, factor exposure,
 liquidity, costs, and hard constraints. This document defines the core
@@ -1217,18 +1219,17 @@ and explain how it is represented.</p>
   portfolio_constraints_to_check: []
 </code></pre>
 <h2>Mean–Variance Optimizer: Starting Point</h2>
-<p>A mean–variance formulation chooses portfolio weights $w$ using expected
-returns $\mu$ from 2E and a portfolio return covariance matrix $\Sigma$:</p>
-<pre class="formula"><code>\max_{w \in \mathcal W}\quad
+<p>A mean–variance formulation chooses portfolio weights <math data-tex="w" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>w</mi></mrow></math> using expected
+returns <math data-tex="\mu" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi></mrow></math> from 2E and a portfolio return covariance matrix <math data-tex="\Sigma" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A3;</mi></mrow></math>:</p>
+<div class="math-display"><math data-tex="\max_{w \in \mathcal W}\quad
 w^\top\mu
 - \frac{\lambda}{2} w^\top\Sigma w
-- C(w-w_0).</code></pre>
-
+- C(w-w_0)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mo>max</mo><mrow><mi>w</mi><mo>&#x02208;</mo><mi mathvariant="script">W</mi></mrow></msub><mspace width="1em" /><msup><mi>w</mi><mo>&#x022A4;</mo></msup><mi>&#x003BC;</mi><mo>&#x02212;</mo><mfrac><mrow><mi>&#x003BB;</mi></mrow><mrow><mn>2</mn></mrow></mfrac><msup><mi>w</mi><mo>&#x022A4;</mo></msup><mi>&#x003A3;</mi><mi>w</mi><mo>&#x02212;</mo><mi>C</mi><mo stretchy="false">&#x00028;</mo><mi>w</mi><mo>&#x02212;</mo><msub><mi>w</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>Expected Return:</strong> $w^\top\mu$ is expected portfolio return. For this formulation, use asset returns in excess of the cash funding rate and account for cash consistently.</li>
-<li><strong>Risk:</strong> $w^\top\Sigma w$ is portfolio variance, including cross-asset dependencies; $\lambda$ controls the penalty for variance. The covariance model is a separate estimate, not something supplied by independent bull/base/bear tables.</li>
-<li><strong>Costs:</strong> $w_0$ is the current portfolio. $C$ represents trading costs; include holding, borrow, and financing costs consistently where applicable, without duplicating costs already in expected returns.</li>
-<li><strong>Constraints:</strong> $\mathcal W$ contains the mandate's position, leverage, exposure, liquidity, and other applicable limits.</li>
+<li><strong>Expected Return:</strong> <math data-tex="w^\top\mu" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>w</mi><mo>&#x022A4;</mo></msup><mi>&#x003BC;</mi></mrow></math> is expected portfolio return. For this formulation, use asset returns in excess of the cash funding rate and account for cash consistently.</li>
+<li><strong>Risk:</strong> <math data-tex="w^\top\Sigma w" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>w</mi><mo>&#x022A4;</mo></msup><mi>&#x003A3;</mi><mi>w</mi></mrow></math> is portfolio variance, including cross-asset dependencies; <math data-tex="\lambda" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math> controls the penalty for variance. The covariance model is a separate estimate, not something supplied by independent bull/base/bear tables.</li>
+<li><strong>Costs:</strong> <math data-tex="w_0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mn>0</mn></msub></mrow></math> is the current portfolio. <math data-tex="C" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi></mrow></math> represents trading costs; include holding, borrow, and financing costs consistently where applicable, without duplicating costs already in expected returns.</li>
+<li><strong>Constraints:</strong> <math data-tex="\mathcal W" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="script">W</mi></mrow></math> contains the mandate's position, leverage, exposure, liquidity, and other applicable limits.</li>
 <li><strong>Consistent Inputs:</strong> Align return and covariance horizons and units. A long-horizon thesis forecast cannot be paired mechanically with a daily risk estimate.</li>
 </ul>
 <p>The optimizer consumes estimates; it does not infer which thesis is true or
@@ -1329,24 +1330,22 @@ the expected recognition mechanism has had a reasonable chance to work.</p>
 <ul>
 <li><strong>Truth probability:</strong> how likely is the variant view to be right?</li>
 <li><strong>Recognition probability:</strong> conditional on the view being right, how likely
-  is the market to update toward it by horizon $T$?</li>
+  is the market to update toward it by horizon <math data-tex="T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi></mrow></math>?</li>
 <li><strong>Path survivability:</strong> can the position remain financeable, liquid,
   admissible, and behaviorally holdable until that recognition can occur?</li>
 <li><strong>Remaining payoff:</strong> after waiting, confirmation, carry, and price movement,
   is enough return still available?</li>
 </ul>
-<p>The recognition probability $q_T$ is supplied by the thesis record:</p>
-<pre class="formula"><code>q_T
+<p>The recognition probability <math data-tex="q_T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>q</mi><mi>T</mi></msub></mrow></math> is supplied by the thesis record:</p>
+<div class="math-display"><math data-tex="q_T
 =
 \Pr(\text{the market recognizes the variant view by }T
-\mid \text{the variant view is right}).</code></pre>
-
-<p>If $p_{\mathrm{truth}}$ is the probability that the view is right, then the
+\mid \text{the variant view is right})." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>q</mi><mi>T</mi></msub><mo>&#x0003D;</mo><mo movablelimits="true">Pr</mo><mo stretchy="false">&#x00028;</mo><mtext>the&#x000A0;market&#x000A0;recognizes&#x000A0;the&#x000A0;variant&#x000A0;view&#x000A0;by&#x000A0;</mtext><mi>T</mi><mo>&#x02223;</mo><mtext>the&#x000A0;variant&#x000A0;view&#x000A0;is&#x000A0;right</mtext><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
+<p>If <math data-tex="p_{\mathrm{truth}}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>p</mi><mrow><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi></mrow></mrow></msub></mrow></math> is the probability that the view is right, then the
 following is a useful diagnostic:</p>
-<pre class="formula"><code>\Pr(\text{right and recognized by }T)
+<div class="math-display"><math data-tex="\Pr(\text{right and recognized by }T)
 =
-p_{\mathrm{truth}}q_T.</code></pre>
-
+p_{\mathrm{truth}}q_T." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo movablelimits="true">Pr</mo><mo stretchy="false">&#x00028;</mo><mtext>right&#x000A0;and&#x000A0;recognized&#x000A0;by&#x000A0;</mtext><mi>T</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>p</mi><mrow><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi></mrow></mrow></msub><msub><mi>q</mi><mi>T</mi></msub><mo>&#x0002E;</mo></mrow></math></div>
 <p>This is not an expected-return formula. Deterministic scenario analysis must
 also include the return and loss in every state, partial recognition, time,
 carry, financing, liquidity, and the path before resolution. Its purpose is to
@@ -1419,14 +1418,13 @@ stage exposure when the comparison is close or highly uncertain
 foregone upside buys a much larger reduction in truth, recognition, and path
 risk while sufficient payoff remains. Waiting is too expensive when the signal
 arrives only after the opportunity is largely priced.</p>
-<p>Let $w_i^*$ be the full target weight produced by sizing and let
-$\pi_i(X_t)\in[0,1]$ be the timing fraction implied by the current evidence and
-market state $X_t$. The requested exposure is:</p>
-<pre class="formula"><code>w_i^{\mathrm{requested}}(t)
+<p>Let <math data-tex="w_i^*" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>w</mi><mi>i</mi><mo>&#x0002A;</mo></msubsup></mrow></math> be the full target weight produced by sizing and let
+<math data-tex="\pi_i(X_t)\in[0,1]" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C0;</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">&#x00029;</mo><mo>&#x02208;</mo><mo stretchy="false">[</mo><mn>0</mn><mo>&#x0002C;</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math> be the timing fraction implied by the current evidence and
+market state <math data-tex="X_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>X</mi><mi>t</mi></msub></mrow></math>. The requested exposure is:</p>
+<div class="math-display"><math data-tex="w_i^{\mathrm{requested}}(t)
 =
-\pi_i(X_t)w_i^*.</code></pre>
-
-<p>Timing determines $\pi_i(X_t)$ and its state transitions. It does not create a
+\pi_i(X_t)w_i^*." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msubsup><mi>w</mi><mi>i</mi><mrow><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">q</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">d</mi></mrow></mrow></msubsup><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>&#x003C0;</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">&#x00029;</mo><msubsup><mi>w</mi><mi>i</mi><mo>&#x0002A;</mo></msubsup><mo>&#x0002E;</mo></mrow></math></div>
+<p>Timing determines <math data-tex="\pi_i(X_t)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C0;</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>X</mi><mi>t</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math> and its state transitions. It does not create a
 second sizing method, override hard limits, or decide how the approved exposure
 change is executed.</p>
 <h3>Being First: Owning Risk Before Recognition</h3>
@@ -1803,7 +1801,7 @@ no_action
 <li>When should positive momentum justify an add versus merely prevent a trim?</li>
 <li>What event-risk and liquidity thresholds require staged entry or a no-action
   decision?</li>
-<li>What minimum $q_T$ and remaining annualized payoff justify carrying
+<li>What minimum <math data-tex="q_T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>q</mi><mi>T</mi></msub></mrow></math> and remaining annualized payoff justify carrying
   pre-recognition risk?</li>
 <li>How should path-survivability failures reduce the timing fraction versus
   forcing a different expression, smaller target size, or no selection?</li>
@@ -1821,16 +1819,15 @@ no_action
 <p>Status: draft for human review
 Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a></p>
 <h2>Core Function</h2>
-<pre class="formula"><code>(C^E_{t+1},C^I_{t+1},\Theta_{t+1})
+<div class="math-display"><math data-tex="(C^E_{t+1},C^I_{t+1},\Theta_{t+1})
 =
-\operatorname{Update}(C^E_t,C^I_t,\Theta_t;O_{t+1}).</code></pre>
-
+\operatorname{Update}(C^E_t,C^I_t,\Theta_t;O_{t+1})." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo stretchy="false">&#x00028;</mo><msubsup><mi>C</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow><mi>E</mi></msubsup><mo>&#x0002C;</mo><msubsup><mi>C</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow><mi>I</mi></msubsup><mo>&#x0002C;</mo><msub><mi>&#x00398;</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>Update</mo><mo stretchy="false">&#x00028;</mo><msubsup><mi>C</mi><mi>t</mi><mi>E</mi></msubsup><mo>&#x0002C;</mo><msubsup><mi>C</mi><mi>t</mi><mi>I</mi></msubsup><mo>&#x0002C;</mo><msub><mi>&#x00398;</mi><mi>t</mi></msub><mi>;</mi><msub><mi>O</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>$O_{t+1}$ — observations:</strong> new evidence, actions, market changes, and
+<li><strong><math data-tex="O_{t+1}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>O</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub></mrow></math> — observations:</strong> new evidence, actions, market changes, and
   outcomes.</li>
-<li><strong>$C^E_{t+1}$:</strong> updated external context.</li>
-<li><strong>$C^I_{t+1}$:</strong> updated portfolio state and constraint use.</li>
-<li><strong>$\Theta_{t+1}$:</strong> updated thesis state produced by the same pipeline in maintenance mode.</li>
+<li><strong><math data-tex="C^E_{t+1}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>C</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow><mi>E</mi></msubsup></mrow></math>:</strong> updated external context.</li>
+<li><strong><math data-tex="C^I_{t+1}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>C</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow><mi>I</mi></msubsup></mrow></math>:</strong> updated portfolio state and constraint use.</li>
+<li><strong><math data-tex="\Theta_{t+1}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x00398;</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub></mrow></math>:</strong> updated thesis state produced by the same pipeline in maintenance mode.</li>
 </ul>
 <h2>1. Run the Exact Same Pipeline</h2>
 <p><strong>First run:</strong> Run the pipeline to build the driver map, debates, market view,
@@ -2005,10 +2002,9 @@ Parent: <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function �
 <h2>Purpose</h2>
 <p>Assign each investment function to the executor best suited to perform it
 reliably, auditably, and within the fund's authority boundaries.</p>
-<pre class="formula"><code>\operatorname{owner}(f_v)
+<div class="math-display"><math data-tex="\operatorname{owner}(f_v)
 \in
-\{\mathsf{AI},\mathsf{Code},\mathsf{Human}\}.</code></pre>
-
+\{\mathsf{AI},\mathsf{Code},\mathsf{Human}\}." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>owner</mo><mo stretchy="false">&#x00028;</mo><msub><mi>f</mi><mi>v</mi></msub><mo stretchy="false">&#x00029;</mo><mo>&#x02208;</mo><mo stretchy="false">&#x0007B;</mo><mrow><mi mathvariant="sans-serif">A</mi><mi mathvariant="sans-serif">I</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="sans-serif">C</mi><mi mathvariant="sans-serif">o</mi><mi mathvariant="sans-serif">d</mi><mi mathvariant="sans-serif">e</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="sans-serif">H</mi><mi mathvariant="sans-serif">u</mi><mi mathvariant="sans-serif">m</mi><mi mathvariant="sans-serif">a</mi><mi mathvariant="sans-serif">n</mi></mrow><mo stretchy="false">&#x0007D;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <h2>AI</h2>
 <p>AI performs as much of the research, reasoning, coordination, monitoring, and
 decision loop as it can reliably handle, particularly work involving
@@ -2057,14 +2053,13 @@ continuous operation, and lower marginal cost.</p>
 </article>
 <article id="doc-Other--portfolio-constitution-and-decision-governance" hidden>
 <a class="source-link" href="../../human-reviewed/Other/portfolio-constitution-and-decision-governance.md" target="_blank" rel="noopener">Open Markdown source ↗</a>
-<h1>$K$ — Portfolio Constitution And Decision Governance</h1>
+<h1><math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math> — Portfolio Constitution And Decision Governance</h1>
 <p>Status: proposed companion to <a href="#doc-hedge-fund-as-a-function-v4">A Hedge Fund as a Function — Version 4</a>
 Scope: mock/shadow portfolio design only; no real-capital authority</p>
 <h2>The Missing Operational Layer</h2>
 <p>V4 correctly defines the hedge fund as:</p>
-<pre class="formula"><code>D=\Phi(C^E;C^I), \qquad C^I=(S,K).</code></pre>
-
-<p>It names the elements of $K$—mandate, risk budgets, concentration, liquidity, drawdown, approval, and escalation rules—but does not yet specify their <strong>operational contract</strong>: what exactly is optimized, which rules are hard, how qualitative exposure becomes measurable, who may change a rule, and when an action must be blocked.</p>
+<div class="math-display"><math data-tex="D=\Phi(C^E;C^I), \qquad C^I=(S,K)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>D</mi><mo>&#x0003D;</mo><mi>&#x003A6;</mi><mo stretchy="false">&#x00028;</mo><msup><mi>C</mi><mi>E</mi></msup><mi>;</mi><msup><mi>C</mi><mi>I</mi></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><mspace width="2em" /><msup><mi>C</mi><mi>I</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>S</mi><mo>&#x0002C;</mo><mi>K</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
+<p>It names the elements of <math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math>—mandate, risk budgets, concentration, liquidity, drawdown, approval, and escalation rules—but does not yet specify their <strong>operational contract</strong>: what exactly is optimized, which rules are hard, how qualitative exposure becomes measurable, who may change a rule, and when an action must be blocked.</p>
 <p>This document defines that missing layer. It is the constitution surrounding the expression function, not a replacement for thesis formation, sizing, or timing.</p>
 <pre><code class="language-text">evidence -&gt; competing perspectives -&gt; forecast/payoff inputs
                                           |
@@ -2077,17 +2072,14 @@ portfolio state + constitution --------&gt; feasible action set
 <h2>1. A Nested, Not Single-Score, Objective</h2>
 <p>“Make good risk-adjusted money” is not a usable decision rule. It does not say when expected return is worth a larger drawdown, more liquidity risk, or greater thematic concentration.</p>
 <p>The decision rule should be lexicographic:</p>
-<pre class="formula"><code>\begin{aligned}
+<div class="math-display"><math data-tex="\begin{aligned}
 \text{First: }&amp; \text{stay within survival, legal, mandate, and hard-risk limits};\\
 \text{Then: }&amp; \text{maximize expected net return over the stated horizon};\\
 \text{Then: }&amp; \text{apply declared tie-breakers, not conversational preference}.
-\end{aligned}</code></pre>
-
-<p>Formally, with portfolio state $S$, candidate action $a$, and constitution $K$:</p>
-<pre class="formula"><code>\mathcal A(S,K)=\{a : a \text{ satisfies all hard rules in } K\},</code></pre>
-
-<pre class="formula"><code>a^*=\arg\max_{a\in \mathcal A(S,K)}\mathbb E[\text{net return}\mid a],</code></pre>
-
+\end{aligned}" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mtext>First:&#x000A0;</mtext><mi>&</mi><mtext>stay&#x000A0;within&#x000A0;survival,&#x000A0;legal,&#x000A0;mandate,&#x000A0;and&#x000A0;hard-risk&#x000A0;limits</mtext><mi>;</mi><mspace linebreak="newline" /><mtext>Then:&#x000A0;</mtext><mi>&</mi><mtext>maximize&#x000A0;expected&#x000A0;net&#x000A0;return&#x000A0;over&#x000A0;the&#x000A0;stated&#x000A0;horizon</mtext><mi>;</mi><mspace linebreak="newline" /><mtext>Then:&#x000A0;</mtext><mi>&</mi><mtext>apply&#x000A0;declared&#x000A0;tie-breakers,&#x000A0;not&#x000A0;conversational&#x000A0;preference</mtext><mo>&#x0002E;</mo></mrow></mrow></math></div>
+<p>Formally, with portfolio state <math data-tex="S" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math>, candidate action <math data-tex="a" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math>, and constitution <math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math>:</p>
+<div class="math-display"><math data-tex="\mathcal A(S,K)=\{a : a \text{ satisfies all hard rules in } K\}," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi mathvariant="script">A</mi><mo stretchy="false">&#x00028;</mo><mi>S</mi><mo>&#x0002C;</mo><mi>K</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x0007B;</mo><mi>a</mi><mi>:</mi><mi>a</mi><mtext>&#x000A0;satisfies&#x000A0;all&#x000A0;hard&#x000A0;rules&#x000A0;in&#x000A0;</mtext><mi>K</mi><mo stretchy="false">&#x0007D;</mo><mo>&#x0002C;</mo></mrow></math></div>
+<div class="math-display"><math data-tex="a^*=\arg\max_{a\in \mathcal A(S,K)}\mathbb E[\text{net return}\mid a]," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>a</mi><mo>&#x0002A;</mo></msup><mo>&#x0003D;</mo><mo>arg</mo><msub><mo>max</mo><mrow><mi>a</mi><mo>&#x02208;</mo><mi mathvariant="script">A</mi><mo stretchy="false">&#x00028;</mo><mi>S</mi><mo>&#x0002C;</mo><mi>K</mi><mo stretchy="false">&#x00029;</mo></mrow></msub><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mtext>net&#x000A0;return</mtext><mo>&#x02223;</mo><mi>a</mi><mo stretchy="false">]</mo><mo>&#x0002C;</mo></mrow></math></div>
 <p>with declared tie-breakers such as lower expected shortfall, lower stressed-liquidation days, lower turnover/cost, or lower concentration. The optimizer does not decide what risks are acceptable; it only chooses inside the human-set feasible set.</p>
 <h2>2. The Constitution Schema</h2>
 <p>Every limit needs: definition, unit, measurement method, data source, refresh cadence, owner, effective date, version, and response to a breach. A number without these fields is not a control.</p>
@@ -2170,11 +2162,10 @@ portfolio state + constitution --------&gt; feasible action set
   status: proposed | validated | disputed | retired
 </code></pre>
 <p>The AI/analyst proposes and explains the link. A validation process checks it. A deterministic service calculates the exposure:</p>
-<pre class="formula"><code>E_t^{gross}=\sum_i |w_i|s_{i,t},
+<div class="math-display"><math data-tex="E_t^{gross}=\sum_i |w_i|s_{i,t},
 \qquad
-E_t^{net}=\sum_i w_i d_{i,t}s_{i,t},</code></pre>
-
-<p>where $w_i$ is position weight, $s_{i,t}$ is validated theme strength, and $d_{i,t}$ is the directional sign. A company can have several theme links; do not force exclusive buckets.</p>
+E_t^{net}=\sum_i w_i d_{i,t}s_{i,t}," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msubsup><mi>E</mi><mi>t</mi><mrow><mi>g</mi><mi>r</mi><mi>o</mi><mi>s</mi><mi>s</mi></mrow></msubsup><mo>&#x0003D;</mo><munder><mo>&#x02211;</mo><mi>i</mi></munder><mo stretchy="false">&#x0007C;</mo><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x0007C;</mo><msub><mi>s</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>t</mi></mrow></msub><mo>&#x0002C;</mo><mspace width="2em" /><msubsup><mi>E</mi><mi>t</mi><mrow><mi>n</mi><mi>e</mi><mi>t</mi></mrow></msubsup><mo>&#x0003D;</mo><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><msub><mi>d</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>t</mi></mrow></msub><msub><mi>s</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>t</mi></mrow></msub><mo>&#x0002C;</mo></mrow></math></div>
+<p>where <math data-tex="w_i" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math> is position weight, <math data-tex="s_{i,t}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>t</mi></mrow></msub></mrow></math> is validated theme strength, and <math data-tex="d_{i,t}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>d</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>t</mi></mrow></msub></mrow></math> is the directional sign. A company can have several theme links; do not force exclusive buckets.</p>
 <table>
 <thead>
 <tr>
@@ -2217,7 +2208,7 @@ belief ledger + constitution -&gt; action proposal
 <p>This framing-invariance check is a proposed control; its tolerance and review
 procedure must be defined before operational use.</p>
 <h2>5. Decision Object And Enforcement</h2>
-<p>The output of V4's expression function should not be only $(Z,T)$. It needs a reviewable decision object:</p>
+<p>The output of V4's expression function should not be only <math data-tex="(Z,T)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>Z</mi><mo>&#x0002C;</mo><mi>T</mi><mo stretchy="false">&#x00029;</mo></mrow></math>. It needs a reviewable decision object:</p>
 <pre><code class="language-yaml">portfolio_decision:
   decision_id:
   as_of_time:
@@ -2252,7 +2243,7 @@ procedure must be defined before operational use.</p>
 <tbody>
 <tr>
 <td>External world and market state</td>
-<td>Clearly defined in $C^E$</td>
+<td>Clearly defined in <math data-tex="C^E" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>C</mi><mi>E</mi></msup></mrow></math></td>
 <td>No replacement needed.</td>
 </tr>
 <tr>
@@ -2266,7 +2257,7 @@ procedure must be defined before operational use.</p>
 <td>Portfolio-wide objective, feasible set, and decision-object contract.</td>
 </tr>
 <tr>
-<td>Constraints in $K$</td>
+<td>Constraints in <math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math></td>
 <td>Correctly named</td>
 <td>Definitions, units, hierarchy, owner, version, breach behavior, and exception protocol.</td>
 </tr>
@@ -2306,19 +2297,17 @@ claims attributable to each share, lowers the return required to own those
 claims, or when buying pressure temporarily outruns available supply. It goes
 down through the mirror image.</p>
 <p>For a simple earnings-multiple representation:</p>
-<pre class="formula"><code>P_t = F_t \times M_t,</code></pre>
-
-<p>where $F_t$ is the market's chosen forward fundamental metric per share and
-$M_t$ is the multiple applied to it. Therefore:</p>
-<pre class="formula"><code>\frac{P_1}{P_0}
+<div class="math-display"><math data-tex="P_t = F_t \times M_t," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>P</mi><mi>t</mi></msub><mo>&#x0003D;</mo><msub><mi>F</mi><mi>t</mi></msub><mo>&#x000D7;</mo><msub><mi>M</mi><mi>t</mi></msub><mo>&#x0002C;</mo></mrow></math></div>
+<p>where <math data-tex="F_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>F</mi><mi>t</mi></msub></mrow></math> is the market's chosen forward fundamental metric per share and
+<math data-tex="M_t" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>M</mi><mi>t</mi></msub></mrow></math> is the multiple applied to it. Therefore:</p>
+<div class="math-display"><math data-tex="\frac{P_1}{P_0}
 =
 \frac{F_1}{F_0}
 \times
-\frac{M_1}{M_0}.</code></pre>
-
-<p>This is an attribution identity, not a complete valuation model. $F$ may be
+\frac{M_1}{M_0}." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><msub><mi>P</mi><mn>1</mn></msub></mrow><mrow><msub><mi>P</mi><mn>0</mn></msub></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>F</mi><mn>1</mn></msub></mrow><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow></mfrac><mo>&#x000D7;</mo><mfrac><mrow><msub><mi>M</mi><mn>1</mn></msub></mrow><mrow><msub><mi>M</mi><mn>0</mn></msub></mrow></mfrac><mo>&#x0002E;</mo></mrow></math></div>
+<p>This is an attribution identity, not a complete valuation model. <math data-tex="F" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math> may be
 next-twelve-month EPS, out-year EPS, free cash flow per share, NAV, or a
-probability-weighted payoff. $M$ compresses discount rates, duration,
+probability-weighted payoff. <math data-tex="M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math> compresses discount rates, duration,
 quality, risk, and the valuation convention used by marginal investors.</p>
 <p>For underwriting, use the fuller bridge:</p>
 <pre><code class="language-text">realized shareholder return
@@ -2675,17 +2664,16 @@ expected return also requires a favorable multiple change.</p>
      payoff implications.</p>
 </li>
 </ul>
-<pre class="formula"><code>\boxed{
+<div class="math-display"><math data-tex="\boxed{
 f_v:\mathcal X_v\rightarrow\mathcal Y_v,
 \qquad
 \operatorname{type}(f_v)\in
 \{\mathsf{Gather},\mathsf{Filter},\mathsf{Compress},\mathsf{Hypothesize}\}
-}</code></pre>
-
+}" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><menclose notation="box"><mrow><msub><mi>f</mi><mi>v</mi></msub><mi>:</mi><msub><mi mathvariant="script">X</mi><mi>v</mi></msub><mo>&#x02192;</mo><msub><mi mathvariant="script">Y</mi><mi>v</mi></msub><mo>&#x0002C;</mo><mspace width="2em" /><mo>type</mo><mo stretchy="false">&#x00028;</mo><msub><mi>f</mi><mi>v</mi></msub><mo stretchy="false">&#x00029;</mo><mo>&#x02208;</mo><mo stretchy="false">&#x0007B;</mo><mrow><mi mathvariant="sans-serif">G</mi><mi mathvariant="sans-serif">a</mi><mi mathvariant="sans-serif">t</mi><mi mathvariant="sans-serif">h</mi><mi mathvariant="sans-serif">e</mi><mi mathvariant="sans-serif">r</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="sans-serif">F</mi><mi mathvariant="sans-serif">i</mi><mi mathvariant="sans-serif">l</mi><mi mathvariant="sans-serif">t</mi><mi mathvariant="sans-serif">e</mi><mi mathvariant="sans-serif">r</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="sans-serif">C</mi><mi mathvariant="sans-serif">o</mi><mi mathvariant="sans-serif">m</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">r</mi><mi mathvariant="sans-serif">e</mi><mi mathvariant="sans-serif">s</mi><mi mathvariant="sans-serif">s</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="sans-serif">H</mi><mi mathvariant="sans-serif">y</mi><mi mathvariant="sans-serif">p</mi><mi mathvariant="sans-serif">o</mi><mi mathvariant="sans-serif">t</mi><mi mathvariant="sans-serif">h</mi><mi mathvariant="sans-serif">e</mi><mi mathvariant="sans-serif">s</mi><mi mathvariant="sans-serif">i</mi><mi mathvariant="sans-serif">z</mi><mi mathvariant="sans-serif">e</mi></mrow><mo stretchy="false">&#x0007D;</mo></mrow></menclose></mrow></math></div>
 <p>The four function types above provide the working grammar; each function must
 also specify its inputs, outputs, validation rule, and owner.</p>
 <h2>The Core Function</h2>
-<pre class="formula"><code>\boxed{
+<div class="math-display"><math data-tex="\boxed{
 D=
 \left(
 \underbrace{\mathrm{Sel}}_{\text{selection}},
@@ -2693,20 +2681,19 @@ D=
 \underbrace{T}_{\text{timing}}
 \right)
 =\Phi(C^E;C^I)
-}</code></pre>
-
+}" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><menclose notation="box"><mrow><mi>D</mi><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><munder><munder><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>selection</mtext></mrow></munder><mo>&#x0002C;</mo><munder><munder><mrow><mi>Z</mi></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>sizing</mtext></mrow></munder><mo>&#x0002C;</mo><munder><munder><mrow><mi>T</mi></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>timing</mtext></mrow></munder><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0003D;</mo><mi>&#x003A6;</mi><mo stretchy="false">&#x00028;</mo><msup><mi>C</mi><mi>E</mi></msup><mi>;</mi><msup><mi>C</mi><mi>I</mi></msup><mo stretchy="false">&#x00029;</mo></mrow></menclose></mrow></math></div>
 <ul>
-<li>$C^E$: <strong>external context</strong> — the lawful external world relevant to
+<li><math data-tex="C^E" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>C</mi><mi>E</mi></msup></mrow></math>: <strong>external context</strong> — the lawful external world relevant to
   investing;</li>
-<li>$C^I$: <strong>internal context</strong> — the fund's own state and rules for action;</li>
-<li>$D$: <strong>decision</strong> — a complete portfolio action, including no action;</li>
-<li>$\mathrm{Sel}$: <strong>selection</strong> — which assets or expressions merit
+<li><math data-tex="C^I" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>C</mi><mi>I</mi></msup></mrow></math>: <strong>internal context</strong> — the fund's own state and rules for action;</li>
+<li><math data-tex="D" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi></mrow></math>: <strong>decision</strong> — a complete portfolio action, including no action;</li>
+<li><math data-tex="\mathrm{Sel}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow></mrow></math>: <strong>selection</strong> — which assets or expressions merit
   portfolio exposure;</li>
-<li>$Z$: <strong>sizing</strong> — the target weight and risk allocation; and</li>
-<li>$T$: <strong>timing</strong> — the path from current exposure to the target exposure.</li>
+<li><math data-tex="Z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Z</mi></mrow></math>: <strong>sizing</strong> — the target weight and risk allocation; and</li>
+<li><math data-tex="T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi></mrow></math>: <strong>timing</strong> — the path from current exposure to the target exposure.</li>
 </ul>
 <h2>Shared Research, Fund-Specific Decisions</h2>
-<p>The same research backbone can serve many funds. Stages 0–2 build a versioned,
+<p>The same research backbone can serve many funds. Stages 1–2 build a versioned,
 source-linked account of the external world: causal drivers, competing
 scenarios, probabilities, market expectations, and conditional payoffs. A
 fund's objective, existing book, or preferred trade is not evidence that a
@@ -2727,10 +2714,9 @@ evidence updates research; fund-specific trades, capital flows, and rule
 changes update the relevant fund's internal state. A position or P&amp;L outcome
 alone does not rewrite a research probability.</p>
 <h2><a href="#doc-Other--executor-allocation">Who Does What</a></h2>
-<pre class="formula"><code>\operatorname{owner}(f_v)
+<div class="math-display"><math data-tex="\operatorname{owner}(f_v)
 \in
-\{\mathsf{AI},\mathsf{Code},\mathsf{Human}\}.</code></pre>
-
+\{\mathsf{AI},\mathsf{Code},\mathsf{Human}\}." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>owner</mo><mo stretchy="false">&#x00028;</mo><msub><mi>f</mi><mi>v</mi></msub><mo stretchy="false">&#x00029;</mo><mo>&#x02208;</mo><mo stretchy="false">&#x0007B;</mo><mrow><mi mathvariant="sans-serif">A</mi><mi mathvariant="sans-serif">I</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="sans-serif">C</mi><mi mathvariant="sans-serif">o</mi><mi mathvariant="sans-serif">d</mi><mi mathvariant="sans-serif">e</mi></mrow><mo>&#x0002C;</mo><mrow><mi mathvariant="sans-serif">H</mi><mi mathvariant="sans-serif">u</mi><mi mathvariant="sans-serif">m</mi><mi mathvariant="sans-serif">a</mi><mi mathvariant="sans-serif">n</mi></mrow><mo stretchy="false">&#x0007D;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
 <li><strong>AI:</strong> Perform as much of the research, reasoning, coordination, and
   decision loop as it can reliably handle, particularly work involving
@@ -2751,16 +2737,15 @@ what external information is relevant.</p>
 <h3>1B. <a href="#doc-1b_gather-relevant-context">Gather Relevant Context</a></h3>
 <p>Filters external information for relevance to those price drivers, then refines
 the retained context into source-linked information objects.</p>
-<pre class="formula"><code>C^E=(\operatorname{Micro},\mathsf T,\operatorname{Macro},M).</code></pre>
-
+<div class="math-display"><math data-tex="C^E=(\operatorname{Micro},\mathsf T,\operatorname{Macro},M)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>C</mi><mi>E</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mo>Micro</mo><mo>&#x0002C;</mo><mi mathvariant="sans-serif">T</mi><mo>&#x0002C;</mo><mo>Macro</mo><mo>&#x0002C;</mo><mi>M</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>$\operatorname{Micro}$:</strong> company, asset, industry, value-chain, and
+<li><strong><math data-tex="\operatorname{Micro}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>Micro</mo></mrow></math>:</strong> company, asset, industry, value-chain, and
   capital-structure economics.</li>
-<li><strong>$\mathsf T$:</strong> technological capability, cost curves, adoption,
+<li><strong><math data-tex="\mathsf T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="sans-serif">T</mi></mrow></math>:</strong> technological capability, cost curves, adoption,
   architectures, standards, and platforms.</li>
-<li><strong>$\operatorname{Macro}$:</strong> broad economic regime, policy, geopolitics,
+<li><strong><math data-tex="\operatorname{Macro}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>Macro</mo></mrow></math>:</strong> broad economic regime, policy, geopolitics,
   and physical or social constraints.</li>
-<li><strong>$M$:</strong> market state — expectations, valuation, positioning, flows,
+<li><strong><math data-tex="M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math>:</strong> market state — expectations, valuation, positioning, flows,
   liquidity, financing, borrow, leverage, and participant constraints.</li>
 </ul>
 <h2>2. Thesis Formation</h2>
@@ -2775,60 +2760,57 @@ the retained context into source-linked information objects.</p>
   in operating and financial metrics and the resulting conditional stock price.</li>
 <li><strong><a href="#doc-2e_calculate_expected_returns">2E. Calculate Expected Returns</a>:</strong> calculates probability-weighted expected returns and preserves the supporting scenarios, uncertainty, and dependencies for 4B sizing.</li>
 </ul>
-<pre class="formula"><code>\Theta
+<div class="math-display"><math data-tex="\Theta
 =\{\theta_i\}_{i\in\mathcal U}
-=\operatorname{FormTheses}(C^E;\mathcal U).</code></pre>
-
+=\operatorname{FormTheses}(C^E;\mathcal U)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x00398;</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x0007B;</mo><msub><mi>&#x003B8;</mi><mi>i</mi></msub><msub><mo stretchy="false">&#x0007D;</mo><mrow><mi>i</mi><mo>&#x02208;</mo><mi mathvariant="script">U</mi></mrow></msub><mo>&#x0003D;</mo><mo>FormTheses</mo><mo stretchy="false">&#x00028;</mo><msup><mi>C</mi><mi>E</mi></msup><mi>;</mi><mi mathvariant="script">U</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>$\Theta$:</strong> the candidate-thesis set for the research universe $\mathcal U$;
+<li><strong><math data-tex="\Theta" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00398;</mi></mrow></math>:</strong> the candidate-thesis set for the research universe <math data-tex="\mathcal U" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="script">U</mi></mrow></math>;
   eligible theses can be reused across funds. Each fund's permitted subset is
   determined in stage 3, not by changing the evidence or probabilities here.</li>
-<li><strong>$V_M$:</strong> the market view embedded in expectations and price.</li>
-<li><strong>$V_V$:</strong> the research assessment's evidence-backed variant view on a
+<li><strong><math data-tex="V_M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>V</mi><mi>M</mi></msub></mrow></math>:</strong> the market view embedded in expectations and price.</li>
+<li><strong><math data-tex="V_V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>V</mi><mi>V</mi></msub></mrow></math>:</strong> the research assessment's evidence-backed variant view on a
   material driver; a fund can use it without owning the resulting trade.</li>
-<li><strong>$E_V$:</strong> evidence supporting the variant view.</li>
-<li><strong>$G_M$:</strong> why the market can maintain its current view.</li>
-<li><strong>$C$ and $\Delta P$:</strong> the catalyst and conditional price difference.</li>
+<li><strong><math data-tex="E_V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>E</mi><mi>V</mi></msub></mrow></math>:</strong> evidence supporting the variant view.</li>
+<li><strong><math data-tex="G_M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>G</mi><mi>M</mi></msub></mrow></math>:</strong> why the market can maintain its current view.</li>
+<li><strong><math data-tex="C" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi></mrow></math> and <math data-tex="\Delta P" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mi>P</mi></mrow></math>:</strong> the catalyst and conditional price difference.</li>
 </ul>
 <h2>3. <a href="#doc-3_internal-context">Internal Context</a></h2>
-<pre class="formula"><code>C^I=(S,K),
+<div class="math-display"><math data-tex="C^I=(S,K),
 \qquad
-\mathcal U_{\mathrm{fund}}=\mathcal U_{\mathrm{fund}}(C^I).</code></pre>
-
+\mathcal U_{\mathrm{fund}}=\mathcal U_{\mathrm{fund}}(C^I)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>C</mi><mi>I</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>S</mi><mo>&#x0002C;</mo><mi>K</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi mathvariant="script">U</mi><mrow><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi></mrow></mrow></msub><mo>&#x0003D;</mo><msub><mi mathvariant="script">U</mi><mrow><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi></mrow></mrow></msub><mo stretchy="false">&#x00028;</mo><msup><mi>C</mi><mi>I</mi></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>$S$ — state:</strong> positions, capital, orders, exposures, liquidity, P&amp;L,
+<li><strong><math data-tex="S" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>S</mi></mrow></math> — state:</strong> positions, capital, orders, exposures, liquidity, P&amp;L,
   financing, borrow, capacity, and readiness.</li>
-<li><strong>$K$ — constitution:</strong> mandate, objectives, constraints, risk budgets,
+<li><strong><math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math> — constitution:</strong> mandate, objectives, constraints, risk budgets,
   decision rights, approvals, and escalation rules.</li>
-<li><strong>$\mathcal U_{\mathrm{fund}}$ — investable universe:</strong> the assets and
+<li><strong><math data-tex="\mathcal U_{\mathrm{fund}}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi mathvariant="script">U</mi><mrow><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi></mrow></mrow></msub></mrow></math> — investable universe:</strong> the assets and
   instruments permitted by the current state and constitution; this is a
-  fund-specific subset or expression of the research universe $\mathcal U$.</li>
+  fund-specific subset or expression of the research universe <math data-tex="\mathcal U" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="script">U</mi></mrow></math>.</li>
 </ul>
-<p>The operational contract for $K$ lives in
+<p>The operational contract for <math data-tex="K" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi></mrow></math> lives in
 <a href="#doc-Other--portfolio-constitution-and-decision-governance">Portfolio Constitution And Decision Governance</a>.</p>
 <h2>4. Expression</h2>
-<pre class="formula"><code>D
+<div class="math-display"><math data-tex="D
 =\operatorname{Express}(\Theta;C^I)
 =
 \left(
 \underbrace{\mathrm{Sel}}_{\text{what}},
 \underbrace{Z}_{\text{how much}},
 \underbrace{T}_{\text{when}}
-\right).</code></pre>
-
+\right)." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>D</mi><mo>&#x0003D;</mo><mo>Express</mo><mo stretchy="false">&#x00028;</mo><mi>&#x00398;</mi><mi>;</mi><msup><mi>C</mi><mi>I</mi></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><munder><munder><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>what</mtext></mrow></munder><mo>&#x0002C;</mo><munder><munder><mrow><mi>Z</mi></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>how&#x000A0;much</mtext></mrow></munder><mo>&#x0002C;</mo><munder><munder><mrow><mi>T</mi></mrow><mo>&#x23DF;</mo></munder><mrow><mtext>when</mtext></mrow></munder><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0002E;</mo></mrow></math></div>
 <h3>4a. <a href="#doc-4a_selection">Selection</a></h3>
 <ul>
-<li><strong>$\mathrm{Sel}$ — what:</strong> 2A–2E identify research candidates; final
+<li><strong><math data-tex="\mathrm{Sel}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow></mrow></math> — what:</strong> 2A–2E identify research candidates; final
   portfolio selection follows from nonzero target weights in 4B for this fund.</li>
 </ul>
 <h3>4b. <a href="#doc-4b_sizing">Sizing</a></h3>
 <ul>
-<li><strong>$Z$ — how much:</strong> the optimizer combines 2E return distributions with
+<li><strong><math data-tex="Z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Z</mi></mrow></math> — how much:</strong> the optimizer combines 2E return distributions with
   portfolio risk and constraints to determine target weights, including zero.</li>
 </ul>
 <h3>4c. <a href="#doc-4c_timing">Timing</a></h3>
 <ul>
-<li><strong>$T$ — when:</strong> the conditions under which the portfolio should move from
+<li><strong><math data-tex="T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi></mrow></math> — when:</strong> the conditions under which the portfolio should move from
   its current exposure to its target exposure.</li>
 </ul>
 <p>Expression is the bridge from what the fund believes to what the portfolio
@@ -2836,16 +2818,15 @@ should own. It is complete only when selection, sizing, and timing are all
 specified. No selection, zero size, and no action are valid outputs. Execution
 then determines how an approved exposure change is traded.</p>
 <h2>5. <a href="#doc-5_state-update-and-learning">State Update And Learning</a></h2>
-<pre class="formula"><code>(C^E_{t+1},C^I_{t+1},\Theta_{t+1})
+<div class="math-display"><math data-tex="(C^E_{t+1},C^I_{t+1},\Theta_{t+1})
 =
-\operatorname{Update}(C^E_t,C^I_t,\Theta_t;O_{t+1}).</code></pre>
-
+\operatorname{Update}(C^E_t,C^I_t,\Theta_t;O_{t+1})." xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo stretchy="false">&#x00028;</mo><msubsup><mi>C</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow><mi>E</mi></msubsup><mo>&#x0002C;</mo><msubsup><mi>C</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow><mi>I</mi></msubsup><mo>&#x0002C;</mo><msub><mi>&#x00398;</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>Update</mo><mo stretchy="false">&#x00028;</mo><msubsup><mi>C</mi><mi>t</mi><mi>E</mi></msubsup><mo>&#x0002C;</mo><msubsup><mi>C</mi><mi>t</mi><mi>I</mi></msubsup><mo>&#x0002C;</mo><msub><mi>&#x00398;</mi><mi>t</mi></msub><mi>;</mi><msub><mi>O</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math></div>
 <ul>
-<li><strong>$O_{t+1}$ — observations:</strong> new evidence, actions, market changes, and
+<li><strong><math data-tex="O_{t+1}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>O</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub></mrow></math> — observations:</strong> new evidence, actions, market changes, and
   outcomes.</li>
-<li><strong>$C^E_{t+1}$:</strong> updated external context.</li>
-<li><strong>$C^I_{t+1}$:</strong> updated portfolio state and constraint use.</li>
-<li><strong>$\Theta_{t+1}$:</strong> updated thesis state produced by the same pipeline in
+<li><strong><math data-tex="C^E_{t+1}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>C</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow><mi>E</mi></msubsup></mrow></math>:</strong> updated external context.</li>
+<li><strong><math data-tex="C^I_{t+1}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>C</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow><mi>I</mi></msubsup></mrow></math>:</strong> updated portfolio state and constraint use.</li>
+<li><strong><math data-tex="\Theta_{t+1}" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x00398;</mi><mrow><mi>t</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></msub></mrow></math>:</strong> updated thesis state produced by the same pipeline in
   maintenance mode, reusing valid outputs whose inputs remain unchanged.</li>
 </ul>
 </article>

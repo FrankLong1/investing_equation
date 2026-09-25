@@ -16,6 +16,17 @@ These are starter studies, not a live execution visualization. Decorative lines 
 
 ## Family regrouping and Paper Atlas — 2026-09-25
 
-The original five studies now live under `neon-studies/`; relative Markdown imports, build roots, workspace installation, gallery links, and documentation were updated. Old study URLs redirect through the main development server. `006-naive-html/` remains separate and unchanged.
+The original five studies now live under `neon-studies/`; relative Markdown imports, build roots, workspace installation, gallery links, and documentation were updated. Old study URLs redirect through the main development server. `simple-html/` remains separate and unchanged.
 
 All six Three.js production builds pass. Paper Atlas was inspected in the browser: the sculpture rendered, clicking a piece opened its chapter, and nested section navigation opened the root-backed reading view. The new family uses an independently implemented renderer and interaction design.
+
+## Three additional visual families — 2026-09-25
+
+- Added independent `metro-map/`, `miniature-city/`, and `signal-desk/` families, with separate interaction and rendering implementations.
+- All nine npm workspace builds pass. Dependency audit reports zero vulnerabilities.
+- Content checks cover all nine loaders: each preserves the five reviewed chapters, 51 reachable nodes, valid source paths, and proposed subdivision labels.
+- Browser checks verified Metro Map station selection and original-document reading; Miniature City chapter and function expansion; Signal Desk `open 2C`, text search, Enter selection, and inline original-source reading. All three were visually inspected.
+- Fixed SVG station hit targets and the terminal's long-line overflow during browser review. Inspected browser logs showed no runtime errors for the city and terminal checks.
+- The current Simple HTML folder reorganization and math-rendering changes were preserved; its four rendering regression checks pass. Registry routing validation also passes.
+
+The map and terminal use SVG/HTML; the city uses Three.js. These are intentionally different interfaces, rather than recolors of the existing scenes. No live investment processing is implied.

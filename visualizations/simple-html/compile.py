@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compile the diagram and repository Markdown into one offline HTML file.
 
-Run from any directory: python3 visualizations/006-naive-html/compile.py
+Run from any directory: python3 visualizations/simple-html/compile.py
 Install the adjacent requirements.txt first. The output needs no server or JS libraries.
 """
 from pathlib import Path
@@ -12,6 +12,9 @@ import re
 
 try:
     import markdown
+    from markdown.extensions import Extension
+    from markdown.preprocessors import Preprocessor
+    from latex2mathml.converter import convert
 except ImportError:
     raise SystemExit('Install the renderer: python3 -m pip install -r ' + str(Path(__file__).with_name('requirements.txt')))
 
@@ -38,13 +41,43 @@ def doc_id(path):
     return 'doc-' + path.relative_to(DOCS).with_suffix('').as_posix().replace('/', '--')
 
 
+class MathPreprocessor(Preprocessor):
+    # Fenced code is already stashed by Markdown. Leave inline code untouched,
+    # distinguish $variable$ from currency, and handle indented display formulas.
+    pattern = re.compile(
+        r"(?P<code>`+[^`]*`+)"
+        r"|(?P<block>(?<!\\)\$\$(?P<display>.*?)\$\$)"
+        r"|(?P<inline>(?<![\\$])\$(?![\s\d$])(?P<tex>[^$\n]*?\S)(?<!\\)\$(?!\d))",
+        re.S,
+    )
+
+    def run(self, lines):
+        def typeset(match):
+            if match['code']:
+                return match[0]
+            block = match['block'] is not None
+            tex = (match['display'] if block else match['tex']).strip()
+            # latex2mathml lacks the standard arg operator alias.
+            normalized = re.sub(r'\\arg\b', lambda _: r'\operatorname{arg}', tex)
+            math = convert(normalized, display='block' if block else 'inline')
+            # Keep source in an attribute for inspection, never as visible code.
+            math = math.replace('<math ', '<math data-tex="' + escape(tex, quote=True) + '" ', 1)
+            if block:
+                math = '<div class="math-display">' + math + '</div>'
+            return self.md.htmlStash.store(math)
+        return self.pattern.sub(typeset, '\n'.join(lines)).split('\n')
+
+
+class MathExtension(Extension):
+    def extendMarkdown(self, md):
+        md.preprocessors.register(MathPreprocessor(md), 'typeset_math', 24)
+
+
 def render_document(path, embedded):
     source = path.read_text()
-    # Preserve formulas verbatim; no remote math renderer is required.
-    source = re.sub(r'^\$\$\s*\n(.*?)\n\$\$\s*$',
-                    lambda m: '<pre class="formula"><code>' + escape(m[1]) + '</code></pre>\n',
-                    source, flags=re.M | re.S)
-    rendered = markdown.markdown(source, extensions=['tables', 'fenced_code', 'sane_lists'])
+    rendered = markdown.markdown(source, extensions=[
+        'tables', 'fenced_code', 'sane_lists', MathExtension(),
+    ])
 
     def link(match):
         value = match[1]
@@ -86,8 +119,8 @@ def compile_html():
     documents = '\n'.join(render_document(p, embedded) for p in paths)
     template = (HERE / 'page.html').read_text()
     output = template.replace('<!-- DIAGRAM -->', diagram).replace('<!-- DOCUMENTS -->', documents)
-    (HERE / 'index.html').write_text(output)
-    print(f'Compiled {len(linked)} linked boxes and {len(paths)} embedded documents → {HERE / "index.html"}')
+    (HERE / '001_simple.html').write_text(output)
+    print(f'Compiled {len(linked)} linked boxes and {len(paths)} embedded documents → {HERE / "001_simple.html"}')
 
 
 if __name__ == '__main__':
